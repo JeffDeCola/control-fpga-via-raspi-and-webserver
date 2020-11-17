@@ -3,7 +3,7 @@
 [![CodeClimate Issues](https://codeclimate.com/github/JeffDeCola/control-fpga-via-raspi-and-webserver/badges/issue_count.svg)](https://codeclimate.com/github/JeffDeCola/control-fpga-via-raspi-and-webserver/issues)
 [![MIT License](http://img.shields.io/:license-mit-blue.svg)](http://jeffdecola.mit-license.org)
 
-_Control a FPGA via Raspberry Pi and a WebServer._
+_Control a FPGA via Raspberry Pi and a Webserver._
 
 Table of Contents,
 
@@ -13,10 +13,9 @@ Table of Contents,
 
 ## OVERVIEW
 
-This is the setup,
+The setup,
 
 ![IMAGE - controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg - IMAGE](docs/pics/controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg)
-
 
 ## MY GITHUB WEBPAGE IS UPDATED USING CONCOURSE (OPTIONAL)
 
