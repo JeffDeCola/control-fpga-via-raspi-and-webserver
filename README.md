@@ -1,9 +1,9 @@
 # control-fpga-via-raspi-and-webserver
 
-[![CodeClimate Issues](https://codeclimate.com/github/JeffDeCola/my-cheat-sheets/badges/issue_count.svg)](https://codeclimate.com/github/JeffDeCola/my-cheat-sheets/issues)
+[![CodeClimate Issues](https://codeclimate.com/github/JeffDeCola/control-fpga-via-raspi-and-webserver/badges/issue_count.svg)](https://codeclimate.com/github/JeffDeCola/control-fpga-via-raspi-and-webserver/issues)
 [![MIT License](http://img.shields.io/:license-mit-blue.svg)](http://jeffdecola.mit-license.org)
 
-_tbd._
+_Control a FPGA via Raspberry Pi and a WebServer._
 
 Table of Contents,
 
@@ -11,32 +11,35 @@ Table of Contents,
 
 [GitHub Webpage](https://jeffdecola.github.io/control-fpga-via-raspi-and-webserver/)
 
-## TBD
+## OVERVIEW
 
-tbd
+This is the setup,
+
+![IMAGE - controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg - IMAGE](docs/pics/controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg)
+
 
 ## MY GITHUB WEBPAGE IS UPDATED USING CONCOURSE (OPTIONAL)
 
 For fun, I use concourse to automatically update
-[my GitHub Webpage](https://jeffdecola.github.io/my-cheat-sheets/) and alert me of
+[my GitHub Webpage](https://jeffdecola.github.io/control-fpga-via-raspi-and-webserver/) and alert me of
 the changes via repo status and slack.
 
 The update is accomplished this by copying and editing/updating
 this `README.md` file to `/docs/_includes/README.md`.
 
-A pipeline file [pipeline.yml](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/ci/scripts/readme-github-pages.sh)
+A pipeline file [pipeline.yml](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/ci/scripts/readme-github-pages.sh)
 shows the entire ci flow. Visually, it looks like,
 
-![IMAGE - my-cheat-sheets concourse ci pipeline - IMAGE](docs/pics/my-cheat-sheets-pipeline.jpg)
+![IMAGE - control-fpga-via-raspi-and-webserver concourse ci pipeline - IMAGE](docs/pics/control-fpga-via-raspi-and-webserver-pipeline.jpg)
 
 The `jobs` and `tasks` are,
 
 * `job-readme-github-pages` runs task
-  [readme-github-pages.sh](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/ci/scripts/readme-github-pages.sh).
+  [readme-github-pages.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/ci/scripts/readme-github-pages.sh).
 
 The concourse `resources types` are,
 
-* `my-cheat-sheets` uses a resource type
+* `control-fpga-via-raspi-and-webserver` uses a resource type
   [docker-image](https://hub.docker.com/r/concourse/git-resource/)
   to PULL a repo from github.
 * `resource-slack-alert` uses a resource type
@@ -47,4 +50,4 @@ The concourse `resources types` are,
   that will update your git status for that particular commit.
 
 For more information on using concourse for continuous integration,
-refer to my cheat sheet on [concourse](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/operations-tools/continuous-integration-continuous-deployment/concourse-cheat-sheet).
+refer to my cheat sheet on [concourse](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/software/operations-tools/continuous-integration-continuous-deployment/concourse-cheat-sheet).
