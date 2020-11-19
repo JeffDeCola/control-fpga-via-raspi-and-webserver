@@ -7,13 +7,13 @@ _Control a FPGA via Raspberry Pi and a Webserver._
 
 Table of Contents,
 
-* [OVERVIEW](https://github.com/JeffDeCola//tree/masterh#overview)
-* [SECTION I - THE FPGA](https://github.com/JeffDeCola//tree/masterh#section-i---the-fpga)
-* [SECTION II - THE RASPI](https://github.com/JeffDeCola//tree/masterh#section-ii---the-raspi)
-  * [GPIO INTERFACE](https://github.com/JeffDeCola//tree/masterh#gpio-interface)
-  * [WEBSERVER INTERFACE](https://github.com/JeffDeCola//tree/masterh#webserver-interface)
-* [SECTION III - THE WEBSERVER](https://github.com/JeffDeCola//tree/masterh#section-iii---the-webserver)
-* [MY GITHUB WEBPAGE IS UPDATED USING CONCOURSE (OPTIONAL)](https://github.com/JeffDeCola//tree/masterh#my-github-webpage-is-updated-using-concourse-optional)
+* [OVERVIEW](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#overview)
+* [SECTION I - THE FPGA](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-i---the-fpga)
+* [SECTION II - THE RASPI](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-ii---the-raspi)
+  * [GPIO INTERFACE](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#gpio-interface)
+  * [WEBSERVER INTERFACE](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#webserver-interface)
+* [SECTION III - THE WEBSERVER](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-iii---the-webserver)
+* [MY GITHUB WEBPAGE IS UPDATED USING CONCOURSE (OPTIONAL)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#my-github-webpage-is-updated-using-concourse-optional)
 
 Documents and references,
 
