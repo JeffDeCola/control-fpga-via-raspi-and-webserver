@@ -3,11 +3,13 @@
 [![CodeClimate Issues](https://codeclimate.com/github/JeffDeCola/control-fpga-via-raspi-and-webserver/badges/issue_count.svg)](https://codeclimate.com/github/JeffDeCola/control-fpga-via-raspi-and-webserver/issues)
 [![MIT License](http://img.shields.io/:license-mit-blue.svg)](http://jeffdecola.mit-license.org)
 
-_Control a FPGA via Raspberry Pi and a Webserver._
+_Control a FPGA via Raspberry Pi and a Webserver.  Pay with it at
+[jeffdecola.com/fpga](http://jeffdecola.com/fpga)._
 
 Table of Contents,
 
 * [OVERVIEW](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#overview)
+* [MORE DETAIL](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#more-detail)
 * [SECTION I - THE FPGA](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-i---the-fpga)
 * [SECTION II - THE RASPBERRY PI](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-ii---the-raspberry-pi)
   * [GPIO INTERFACE](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#gpio-interface)
@@ -35,6 +37,8 @@ This project is sepearted into 3 sections,
 
 ![IMAGE - overview.jpg - IMAGE](docs/pics/overview.jpg)
 
+## MORE DETAIL
+
 A little more detail,
 
 ![IMAGE - controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg - IMAGE](docs/pics/controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg)
@@ -45,13 +49,16 @@ The Hardware I'm using is an 8-bit microprocessor I designed in Verilog (An HDL 
 and burned to an FPGA. This explanation is out of the scope of this repo but the entire code and implementation can be found in my repo
 [my-systemverilog-examples](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable-8-bit-microprocessor).
 
-The I/O of the processor we shall connect to is as follows,
+To operate the microprocessor, set both inputs (DATA_IN_A and DATA_IN_B),
+chose an OPCODE instruction (such as ADD), and observe the resulting DATA_OUT.
+
+This top-level illustration may help,
 
 ![IMAGE - Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg - IMAGE](https://github.com/JeffDeCola/my-systemverilog-examples/blob/master/docs/pics/Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg?raw=true)
 
 ## SECTION II - THE RASPBERRY PI
 
-The Raspi shall control the I/O of the FPGA and provide an Interface to
+The RasPi shall control the I/O of the FPGA and provide an interface to
 the webserver.  This code has been written is go.
 
 ### GPIO INTERFACE
@@ -62,14 +69,14 @@ Input/Ouput of the FPGA development board via Pmod connectors.
 There will be a total of 31 I/O pins.
 The RasPi will connect to for the 8-buit processor is as follows,
 
-* OUTPUT (CONTROL)
+* **OUTPUT (CONTROL)**
   * [3:0] OPCODE
   * GO_BAR
   * RESET
   * JAM
   * [7:0] DATA_IN_A
   * [7:0] DATA_IN_B
-* INPUT (CAPTURE)
+* **INPUT (CAPTURE)**
   * [7:0] DATA_OUT
 
 ### WEBSERVER INTERFACE

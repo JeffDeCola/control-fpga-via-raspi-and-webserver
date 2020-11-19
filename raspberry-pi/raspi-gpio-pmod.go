@@ -16,6 +16,7 @@ var go_pin_out gpio.PinIO
 var led_pin_out gpio.PinIO
 var test_pin_in gpio.PinIO
 
+// GO BUTTON
 func go_button(userInputCh chan int) {
 
 	// Loop forever
@@ -26,18 +27,26 @@ func go_button(userInputCh chan int) {
 
 		if go_button_level == 1 {
 
-			fmt.Println("- Setting LED to 1")
+			fmt.Println("- Setting GO button and LED to 1")
 
 			err := go_pin_out.Out(gpio.High)
+			if err != nil {
+				log.Fatal(err)
+			}
+			err = led_pin_out.Out(gpio.High)
 			if err != nil {
 				log.Fatal(err)
 			}
 
 		} else if go_button_level == 0 {
 
-			fmt.Println("- Setting LED to 0")
+			fmt.Println("- Setting GO button and LED to 0")
 
 			err := go_pin_out.Out(gpio.Low)
+			if err != nil {
+				log.Fatal(err)
+			}
+			err = led_pin_out.Out(gpio.Low)
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -48,7 +57,8 @@ func go_button(userInputCh chan int) {
 
 }
 
-func get_button_in(getTestButtonCh chan int, testButtonLevelCh chan int) {
+// TEST DATA
+func test_data(getTestDataCh chan int, getTestDataLevelCh chan int) {
 
 	// Loop forever
 	// MONITOR TEST DEPENDING WHEN ASKED
@@ -110,14 +120,23 @@ func init() {
 func main() {
 
 	var userInputCh = make(chan int)
-	var getTestButtonCh = make(chan int)
-	var testButtonLevelCh = make(chan int)
 	var userInput int
+	var getTestDataCh = make(chan int)
+	var getTestDataLevelCh = make(chan int)
 
 	// OUTPUTS -------------------------------------
 
 	// SET THE GO BUTTON
 	go go_button(userInputCh)
+
+	// INPUTS --------------------------------------
+
+	// GET LEVEL FOR TEST BUTTON WHEN ASKED
+	go test_data(getTestDataCh, getTestDataLevelCh)
+
+	// CONTROL -------------------------------------
+
+	// USER INPUT
 	fmt.Println("Enter the following")
 	fmt.Println("0 - set LED level LOW")
 	fmt.Println("1 - set LED level HIGH")
@@ -125,14 +144,6 @@ func main() {
 	fmt.Println("3 - get TEST level")
 	fmt.Println("4 - Exit")
 
-	// INPUTS --------------------------------------
-
-	// GET LEVEL FOR TEST BUTTON WHEN ASKED
-	go get_button_in(getTestButtonCh, testButtonLevelCh)
-
-	// CONTROL -------------------------------------
-
-	// LOOP USER INPUT
 	for {
 		fmt.Scanln(&userInput)
 		userInputCh <- userInput
@@ -148,7 +159,7 @@ func main() {
 			fmt.Println("You pressed 2 - get LED level")
 		case (userInput == 3):
 			fmt.Println("You pressed 3 - get TEST level")
-			getTestButtonCh <- 1
+			getTestDataCh <- 1
 		case (userInput == 4):
 			fmt.Println("You pressed 4 - Exit")
 			break
