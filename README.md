@@ -7,13 +7,13 @@ _Control a FPGA via Raspberry Pi and a Webserver._
 
 Table of Contents,
 
-* [OVERVIEW](https://github.com/JeffDeCola//tree/masterh#overview)
-* [SECTION I - THE FPGA](https://github.com/JeffDeCola//tree/masterh#section-i---the-fpga)
-* [SECTION II - THE RASPI](https://github.com/JeffDeCola//tree/masterh#section-ii---the-raspi)
-  * [GPIO INTERFACE](https://github.com/JeffDeCola//tree/masterh#gpio-interface)
-  * [WEBSERVER INTERFACE](https://github.com/JeffDeCola//tree/masterh#webserver-interface)
-* [SECTION III - THE WEBSERVER](https://github.com/JeffDeCola//tree/masterh#section-iii---the-webserver)
-* [MY GITHUB WEBPAGE IS UPDATED USING CONCOURSE (OPTIONAL)](https://github.com/JeffDeCola//tree/masterh#my-github-webpage-is-updated-using-concourse-optional)
+* [OVERVIEW](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#overview)
+* [SECTION I - THE FPGA](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-i---the-fpga)
+* [SECTION II - THE RASPBERRY PI](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-ii---the-raspberry-pi)
+  * [GPIO INTERFACE](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#gpio-interface)
+  * [WEBSERVER INTERFACE](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#webserver-interface)
+* [SECTION III - THE WEBSERVER](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-iii---the-webserver)
+* [MY GITHUB WEBPAGE IS UPDATED USING CONCOURSE (OPTIONAL)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#my-github-webpage-is-updated-using-concourse-optional)
 
 Documents and references,
 
@@ -46,7 +46,7 @@ The I/O of the processor we shall connect to is as follows,
 
 ![IMAGE - Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg - IMAGE](https://github.com/JeffDeCola/my-systemverilog-examples/blob/master/docs/pics/Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg?raw=true)
 
-## SECTION II - THE RASPI
+## SECTION II - THE RASPBERRY PI
 
 The Raspi shall control the I/O of the FPGA and provide an Interface to
 the webserver.  This code has been written is go.
