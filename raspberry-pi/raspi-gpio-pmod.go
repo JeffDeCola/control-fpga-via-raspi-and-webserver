@@ -12,35 +12,47 @@ import (
 )
 
 // The pins
-var go_button_out gpio.PinIO
+var go_pin_out gpio.PinIO
+var led_pin_out gpio.PinIO
+var test_pin_in gpio.PinIO
 
 func go_button(userInputCh chan int) {
 
-	//var go_button_level int
-
 	// Loop forever
+	// SET OUTPUT BUTTON DEPENDING ON userInputCh
 	for {
 
 		go_button_level := <-userInputCh
+
 		if go_button_level == 1 {
 
-			fmt.Println("You pressed 1")
+			fmt.Println("- Setting LED to 1")
 
-			err := go_button_out.Out(gpio.High)
+			err := go_pin_out.Out(gpio.High)
 			if err != nil {
 				log.Fatal(err)
 			}
 
 		} else if go_button_level == 0 {
 
-			fmt.Println("You pressed 0")
+			fmt.Println("- Setting LED to 0")
 
-			err := go_button_out.Out(gpio.Low)
+			err := go_pin_out.Out(gpio.Low)
 			if err != nil {
 				log.Fatal(err)
 			}
 
 		}
+
+	}
+
+}
+
+func get_button_in(getTestButtonCh chan int, testButtonLevelCh chan int) {
+
+	// Loop forever
+	// MONITOR TEST DEPENDING WHEN ASKED
+	for {
 
 	}
 
@@ -54,14 +66,41 @@ func init() {
 		log.Fatal(err)
 	}
 
-	go_button_out = gpioreg.ByName("GPIO14")
-	if go_button_out == nil {
-		log.Fatal("Failed to find GPI14")
+	// OUTPUTS (CONTROL) -------------------------------------------------------
+
+	// GO
+	// With init output level 1 (true)
+	go_pin_out = gpioreg.ByName("GPIO26")
+	if go_pin_out == nil {
+		log.Fatal("Failed to find GPI26")
+	}
+	err = go_pin_out.Out(true)
+	if err != nil {
+		log.Fatal(err)
 	}
 
-	// Setup P21 as OUTPUT
+	// LED
 	// With init output level 1 (true)
-	err = go_button_out.Out(true)
+	led_pin_out = gpioreg.ByName("GPIO21")
+	if led_pin_out == nil {
+		log.Fatal("Failed to find GPI21")
+	}
+	err = led_pin_out.Out(true)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// INPUTS (CAPTURE) -------------------------------------------------------
+
+	// TEST
+	// The RasPi has an internal pull down resistor
+	// PULL DOWN - DEFAULTS TO LOW WHEN UNCONNECTED
+	// RISING EDGE - LOW TO HIGH
+	test_pin_in = gpioreg.ByName("GPIO20")
+	if go_pin_out == nil {
+		log.Fatal("Failed to find GPIO20")
+	}
+	err = test_pin_in.In(gpio.PullDown, gpio.RisingEdge)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -71,24 +110,51 @@ func init() {
 func main() {
 
 	var userInputCh = make(chan int)
+	var getTestButtonCh = make(chan int)
+	var testButtonLevelCh = make(chan int)
 	var userInput int
+
+	// OUTPUTS -------------------------------------
+
+	// SET THE GO BUTTON
 	go go_button(userInputCh)
+	fmt.Println("Enter the following")
+	fmt.Println("0 - set LED level LOW")
+	fmt.Println("1 - set LED level HIGH")
+	fmt.Println("2 - get LED level")
+	fmt.Println("3 - get TEST level")
+	fmt.Println("4 - Exit")
 
-	fmt.Println("Enter go button level: 1 or 0")
+	// INPUTS --------------------------------------
 
+	// GET LEVEL FOR TEST BUTTON WHEN ASKED
+	go get_button_in(getTestButtonCh, testButtonLevelCh)
+
+	// CONTROL -------------------------------------
+
+	// LOOP USER INPUT
 	for {
 		fmt.Scanln(&userInput)
 		userInputCh <- userInput
-		if userInput == 3 {
+
+		switch {
+		case (userInput == 0):
+			fmt.Println("You pressed 0 - set LED level LOW")
+			userInputCh <- 0
+		case (userInput == 1):
+			fmt.Println("You pressed 1 - set LED level HIGH")
+			userInputCh <- 1
+		case (userInput == 2):
+			fmt.Println("You pressed 2 - get LED level")
+		case (userInput == 3):
+			fmt.Println("You pressed 3 - get TEST level")
+			getTestButtonCh <- 1
+		case (userInput == 4):
+			fmt.Println("You pressed 4 - Exit")
 			break
+		default:
+			fmt.Println("Try Again")
 		}
 	}
 
-	// Press return to exit
-	//fmt.Scanln()
-	//fmt.Println("done")
-
-	// Press return to exit
-	//fmt.Scanln()
-	//fmt.Println("done")
 }
