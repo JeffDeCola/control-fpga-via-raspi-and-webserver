@@ -30,9 +30,12 @@ This project is sepearted into 3 sections,
 
 1. The FPGA
 2. The Raspberry Pi (go code) to control the I/O of the FPGA
-3. The Webserver to Control the Raspberry Pi
+3. The Webserver to control the Raspberry Pi
 
-This illustration help,
+
+![IMAGE - overview.jpg - IMAGE](docs/pics/overview.jpg)
+
+A little more detail,
 
 ![IMAGE - controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg - IMAGE](docs/pics/controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg)
 
