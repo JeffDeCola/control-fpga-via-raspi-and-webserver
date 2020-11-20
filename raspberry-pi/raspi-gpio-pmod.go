@@ -1,4 +1,13 @@
 // my-go-examples raspi-gpio.go
+//
+// Syntax:
+//
+// OUTPUTS (SET)
+//    pin_out_name
+//    set_name(setNameLevelCh)
+// INPUTS (GET)
+//    pin_in_name
+//    get_name(getNameLevelCh, capturedNameLevelCh)
 
 package main
 
@@ -11,42 +20,44 @@ import (
 	"periph.io/x/periph/host"
 )
 
-// The pins
-var go_pin_out gpio.PinIO
-var led_pin_out gpio.PinIO
-var test_pin_in gpio.PinIO
+// OUTPUT PINS
+var pin_out_go gpio.PinIO
+var pin_out_led gpio.PinIO
 
-// GO BUTTON
-func go_button(userInputCh chan int) {
+// INPUT PINS
+var pin_in_data_out gpio.PinIO
+
+// GO (SET)
+func set_go(setGoLevelCh chan int) {
 
 	// Loop forever
-	// SET OUTPUT BUTTON DEPENDING ON userInputCh
 	for {
 
-		go_button_level := <-userInputCh
+		fmt.Println("set_go() - Waiting to set Go Level...")
+		set_go_level := <-setGoLevelCh
 
-		if go_button_level == 1 {
+		if set_go_level == 1 {
 
-			fmt.Println("- Setting GO button and LED to 1")
+			fmt.Println("set_go() - Setting GO and LED to 1")
 
-			err := go_pin_out.Out(gpio.High)
+			err := pin_out_go.Out(gpio.High)
 			if err != nil {
 				log.Fatal(err)
 			}
-			err = led_pin_out.Out(gpio.High)
+			err = pin_out_led.Out(gpio.High)
 			if err != nil {
 				log.Fatal(err)
 			}
 
-		} else if go_button_level == 0 {
+		} else if set_go_level == 0 {
 
-			fmt.Println("- Setting GO button and LED to 0")
+			fmt.Println("set_go() - Setting GO and LED to 0")
 
-			err := go_pin_out.Out(gpio.Low)
+			err := pin_out_go.Out(gpio.Low)
 			if err != nil {
 				log.Fatal(err)
 			}
-			err = led_pin_out.Out(gpio.Low)
+			err = pin_out_led.Out(gpio.Low)
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -57,12 +68,22 @@ func go_button(userInputCh chan int) {
 
 }
 
-// TEST DATA
-func test_data(getTestDataCh chan int, getTestDataLevelCh chan int) {
+// DATA_OUT (GET)
+func get_data_out(getDataOutLevelCh chan int, capturedDataOutLevelCh chan gpio.Level) {
 
 	// Loop forever
-	// MONITOR TEST DEPENDING WHEN ASKED
 	for {
+
+		fmt.Println("get_data_out() - Waiting to capture data_out...")
+		get_data_out_level := <-getDataOutLevelCh
+
+		fmt.Printf("get_data_out() - Getting data_out Level, %v \n", get_data_out_level)
+
+		// GET THE LEVEL
+		captured_data_out_level := pin_in_data_out.Read()
+
+		fmt.Printf("get_data_out() - Captured data_out level is %v \n", captured_data_out_level)
+		capturedDataOutLevelCh <- captured_data_out_level
 
 	}
 
@@ -70,47 +91,47 @@ func test_data(getTestDataCh chan int, getTestDataLevelCh chan int) {
 
 func init() {
 
-	// Load all the drivers: Initialize the periph host
+	// INIT PERIPH HOST
 	_, err := host.Init()
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// OUTPUTS (CONTROL) -------------------------------------------------------
+	// OUTPUTS (SET) -------------------------------------------------------
 
 	// GO
 	// With init output level 1 (true)
-	go_pin_out = gpioreg.ByName("GPIO26")
-	if go_pin_out == nil {
+	pin_out_go = gpioreg.ByName("GPIO26")
+	if pin_out_go == nil {
 		log.Fatal("Failed to find GPI26")
 	}
-	err = go_pin_out.Out(true)
+	err = pin_out_go.Out(true)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	// LED
 	// With init output level 1 (true)
-	led_pin_out = gpioreg.ByName("GPIO21")
-	if led_pin_out == nil {
+	pin_out_led = gpioreg.ByName("GPIO21")
+	if pin_out_led == nil {
 		log.Fatal("Failed to find GPI21")
 	}
-	err = led_pin_out.Out(true)
+	err = pin_out_led.Out(true)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// INPUTS (CAPTURE) -------------------------------------------------------
+	// INPUTS (GET) -------------------------------------------------------
 
-	// TEST
+	// DATA_OUT
 	// The RasPi has an internal pull down resistor
 	// PULL DOWN - DEFAULTS TO LOW WHEN UNCONNECTED
 	// RISING EDGE - LOW TO HIGH
-	test_pin_in = gpioreg.ByName("GPIO20")
-	if go_pin_out == nil {
+	pin_in_data_out = gpioreg.ByName("GPIO20")
+	if pin_in_data_out == nil {
 		log.Fatal("Failed to find GPIO20")
 	}
-	err = test_pin_in.In(gpio.PullDown, gpio.RisingEdge)
+	err = pin_in_data_out.In(gpio.PullDown, gpio.RisingEdge)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -119,53 +140,63 @@ func init() {
 
 func main() {
 
-	var userInputCh = make(chan int)
+	// OUTPUTS (SET)
+	//    pin_out_name
+	//    set_name(setNameLevelCh)
+	// INPUTS (GET)
+	//    pin_in_name
+	//    get_name(getNameLevelCh, capturedNameLevelCh)
+
+	var setGoLevelCh = make(chan int)
 	var userInput int
-	var getTestDataCh = make(chan int)
-	var getTestDataLevelCh = make(chan int)
+	var getDataOutLevelCh = make(chan int)
+	var capturedDataOutLevelCh = make(chan gpio.Level)
 
 	// OUTPUTS -------------------------------------
 
-	// SET THE GO BUTTON
-	go go_button(userInputCh)
+	// Set go
+	go set_go(setGoLevelCh)
 
 	// INPUTS --------------------------------------
 
-	// GET LEVEL FOR TEST BUTTON WHEN ASKED
-	go test_data(getTestDataCh, getTestDataLevelCh)
+	// Get level for [7:0] DATA_OUT
+	go get_data_out(getDataOutLevelCh, capturedDataOutLevelCh)
 
 	// CONTROL -------------------------------------
 
 	// USER INPUT
-	fmt.Println("Enter the following")
-	fmt.Println("0 - set LED level LOW")
-	fmt.Println("1 - set LED level HIGH")
-	fmt.Println("2 - get LED level")
-	fmt.Println("3 - get TEST level")
-	fmt.Println("4 - Exit")
+	fmt.Println("Enter one of the following:")
+	fmt.Println("    0 - set go and led level LOW")
+	fmt.Println("    1 - set go and led level HIGH")
+	fmt.Println("    2 - get [7:0] DATA_OUT levels")
+	fmt.Println("    3 - Exit")
 
 	for {
+
 		fmt.Scanln(&userInput)
-		userInputCh <- userInput
 
 		switch {
 		case (userInput == 0):
-			fmt.Println("You pressed 0 - set LED level LOW")
-			userInputCh <- 0
+			fmt.Println("You pressed 0 - set go and led level LOW")
+			setGoLevelCh <- 0
 		case (userInput == 1):
-			fmt.Println("You pressed 1 - set LED level HIGH")
-			userInputCh <- 1
+			fmt.Println("You pressed 1 - set go and led level HIGH")
+			setGoLevelCh <- 1
 		case (userInput == 2):
-			fmt.Println("You pressed 2 - get LED level")
+			fmt.Println("You pressed 3 -  get [7:0] DATA_OUT levels")
+			getDataOutLevelCh <- 1
+			capture_data_out_level := <-capturedDataOutLevelCh
+			fmt.Printf("[7:0] DATA_OUT levels are %v\n", capture_data_out_level)
 		case (userInput == 3):
-			fmt.Println("You pressed 3 - get TEST level")
-			getTestDataCh <- 1
-		case (userInput == 4):
-			fmt.Println("You pressed 4 - Exit")
-			break
+			fmt.Println("You pressed 3 - Exit")
 		default:
 			fmt.Println("Try Again")
 		}
+
+		if userInput == 3 {
+			break
+		}
+
 	}
 
 }
