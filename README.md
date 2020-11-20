@@ -76,27 +76,81 @@ The next section will show how to control the I/O via a Raspberry Pi.
 ## SECTION II - THE RASPBERRY PI
 
 The Raspberry Pi shall control the I/O of the FPGA and provide an interface to
-the webserver. The code has been written is go.
+the webserver. The code has been written is go using the
+[google/periph](https://github.com/google/periph)
+go library.
 
 ### GPIO TO PMOD INTERFACE
 
 The GPIO (Input/Output) of the Raspberry Pi is connected to the
 Input/Ouput of the FPGA development board via Pmod connectors.
+On a side note, it may be a good idea to place a 200 Ohm resister in-line.
 
-There will be a total of 31 I/O pins.
+All of the GPIOs have weak internal pull-ups and downs which may be enabled
+or disabled by software. Refer to init file in my go code.
+
+There are a total of 26 I/O pins that you may use in the Raspberry Pi.
+But I have a total of 31 I would like to use.  So I had to compromise
+and hardcode 5 of the bits.
+
 The Raspberry Pi will connect to the processor as follows,
 
-* **OUTPUT (CONTROL)**
+* **OUTPUT (SET)**
   * [3:0] OPCODE
   * GO_BAR
-  * RESET
-  * JAM
-  * [7:0] DATA_IN_A
+  * RESET (N/C)
+  * JAM (N/C)
+  * [7:0] DATA_IN_A (Bits 4,5,6 hardcoded to low)
   * [7:0] DATA_IN_B
-* **INPUT (CAPTURE)**
+* **INPUT (GET)**
   * [7:0] DATA_OUT
 
 A go program is used to control and capture the I/O.
+
+The pin list between the Raspberry Pi and the FPGA development
+board is as follows,
+
+|                 | PMOD Pins         | RasPi GPIO Pin        |
+|----------------:|:-----------------:|:---------------------:|
+| [7:0] DATA_IN_A |  JA PMOD          |                       |
+| [7]             |  1                | 24 (GPIO 08)          |
+| [6] SET TO LOW  |  2                | --- N/C               |
+| [5] SET TO LOW  |  3                | --- N/C               |
+| [4] SET TO LOW  |  4                | --- N/C               |
+| [3]             |  7                | 35 (GPIO 19)          |
+| [2]             |  8                | 40 (GPIO 21)          |
+| [1]             |  9                | 38 (GPIO 20)          |
+| [0]             |  10               | 12 (GPIO 18)          |
+|                 |                   |                       |
+| [7:0] DATA_IN_B |  JB PMOD          |                       |
+| [7]             |  1                | 26 (GPIO 07)          |
+| [6]             |  2                | 19 (GPIO 10)          |
+| [5]             |  3                | 21 (GPIO 09)          |
+| [4]             |  4                | 23 (GPIO 11)          |
+| [3]             |  7                | 37 (GPIO 26)          |
+| [2]             |  8                | 33 (GPIO 13)          |
+| [1]             |  9                | 05 (GPIO 03)          |
+| [0]             |  10               | 03 (GPIO 02)          |
+|                 |                   |                       |
+| [7:0] DATA_OUT  |  JC PMOD          |                       |
+| [7]             |  1                | 36 (GPIO 16)          |
+| [6]             |  2                | 08 (GPIO 14)          |
+| [5]             |  3                | 10 (GPIO 15)          |
+| [4]             |  4                | 11 (GPIO 17)          |
+| [3]             |  7                | 07 (GPIO 04)          |
+| [2]             |  8                | 32 (GPIO 12)          |
+| [1]             |  9                | 29 (GPIO 05)          |
+| [0]             |  10               | 31 (GPIO 06)          |
+|                 |                   |                       |
+| [3:0] OPCODE    |  JD PMOD          |                       |
+| [3]             |  1                | 13 (GPIO 27)          |
+| [2]             |  2                | 15 (GPIO 22)          |
+| [1]             |  3                | 16 (GPIO 23)          |
+| [0]             |  4                | 18 (GPIO 24)          |
+| GO              |  7                | 22 (GPIO 25)          |
+| RESET --- N/C   |  8                | --- N/C               |
+| JAM --- N/C     |  9                | --- N/C               |
+| N/C             |  10               | --- N/C               |
 
 ### RASPBERRY PI TO WEBSERVER INTERFACE
 
