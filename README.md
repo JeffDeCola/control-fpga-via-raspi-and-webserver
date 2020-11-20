@@ -3,7 +3,9 @@
 [![CodeClimate Issues](https://codeclimate.com/github/JeffDeCola/control-fpga-via-raspi-and-webserver/badges/issue_count.svg)](https://codeclimate.com/github/JeffDeCola/control-fpga-via-raspi-and-webserver/issues)
 [![MIT License](http://img.shields.io/:license-mit-blue.svg)](http://jeffdecola.mit-license.org)
 
-_Control a FPGA via Raspberry Pi and a Webserver.  Pay with it at
+_Control a FPGA via a Raspberry Pi and a Webserver. As an example, I burned my
+[programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable-8-bit-microprocessor)
+to an FPGA development board and you can control it at
 [jeffdecola.com/fpga](http://jeffdecola.com/fpga)._
 
 Table of Contents,
@@ -19,55 +21,63 @@ Table of Contents,
 
 Documents and references,
 
-* The FPGA used is my
+* I burned my
   [programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable-8-bit-microprocessor)
+  to a FPGA
 * [raspi-gpio](https://github.com/JeffDeCola/my-go-examples/tree/master/single-board-computers/raspi-gpio)
-is an example of controlling GPIO (Input/Output) on the RasPi using go
+is an example of controlling the GPIO (Input/Output) on the Raspberry Pi using go
 
 [GitHub Webpage](https://jeffdecola.github.io/control-fpga-via-raspi-and-webserver/)
 
 ## OVERVIEW
 
-This project is sepearted into 3 sections,
+This project is separated into 3 sections,
 
 1. The FPGA
 2. The Raspberry Pi (go code) to control the I/O of the FPGA
 3. The Webserver to control the Raspberry Pi
 
+This may help,
 
 ![IMAGE - overview.jpg - IMAGE](docs/pics/overview.jpg)
 
-## MORE DETAIL
+## A LITTLE MORE DETAIL
 
-A little more detail,
+The following figure will be explained in the following three sections,
 
 ![IMAGE - controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg - IMAGE](docs/pics/controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg)
 
 ## SECTION I - THE FPGA
 
-The Hardware I'm using is an 8-bit microprocessor I designed in Verilog (An HDL language)
-and burned to an FPGA. This explanation is out of the scope of this repo but the entire code and implementation can be found in my repo
-[my-systemverilog-examples](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable-8-bit-microprocessor).
+My
+[programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable-8-bit-microprocessor)
+will be used as an example. I designed the processor in Verilog
+(An HDL language) and burned it to a FPGA development board. The entire process
+can be found in that repo.
 
-To operate the microprocessor, set both inputs (DATA_IN_A and DATA_IN_B),
-chose an OPCODE instruction (such as ADD), and observe the resulting DATA_OUT.
+To operate the microprocessor,
 
-This top-level illustration may help,
+* Set both inputs [7:0] DATA_IN_A and [7:0] DATA_IN_B
+* Select an [3:0] OPCODE instruction (such as ADD)
+* Enable the GO_BAR
+* Oserve the resulting [7:0] DATA_OUT
+
+The next section will show how to control the I/O via a Raspberry Pi.
 
 ![IMAGE - Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg - IMAGE](https://github.com/JeffDeCola/my-systemverilog-examples/blob/master/docs/pics/Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg?raw=true)
 
 ## SECTION II - THE RASPBERRY PI
 
-The RasPi shall control the I/O of the FPGA and provide an interface to
-the webserver.  This code has been written is go.
+The Raspberry Pi shall control the I/O of the FPGA and provide an interface to
+the webserver. The code has been written is go.
 
-### GPIO INTERFACE
+### GPIO TO PMOD INTERFACE
 
-The GPIO (Input/Output) of the Raspberry Pi.  It will be connected to the
+The GPIO (Input/Output) of the Raspberry Pi is connected to the
 Input/Ouput of the FPGA development board via Pmod connectors.
 
 There will be a total of 31 I/O pins.
-The RasPi will connect to for the 8-buit processor is as follows,
+The Raspberry Pi will connect to the processor as follows,
 
 * **OUTPUT (CONTROL)**
   * [3:0] OPCODE
@@ -79,7 +89,7 @@ The RasPi will connect to for the 8-buit processor is as follows,
 * **INPUT (CAPTURE)**
   * [7:0] DATA_OUT
 
-### WEBSERVER INTERFACE
+### RASPBERRY PI TO WEBSERVER INTERFACE
 
 tbd
 
