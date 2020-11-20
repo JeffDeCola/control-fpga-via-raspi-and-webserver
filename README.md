@@ -11,11 +11,11 @@ to an FPGA development board and you can control it at
 Table of Contents,
 
 * [OVERVIEW](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#overview)
-* [MORE DETAIL](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#more-detail)
+* [A LITTLE MORE DETAIL](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#a-little-more-detail)
 * [SECTION I - THE FPGA](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-i---the-fpga)
 * [SECTION II - THE RASPBERRY PI](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-ii---the-raspberry-pi)
-  * [GPIO INTERFACE](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#gpio-interface)
-  * [WEBSERVER INTERFACE](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#webserver-interface)
+  * [GPIO TO PMOD INTERFACE](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#gpio-to-pmod-interface)
+  * [RASPBERRY PI TO WEBSERVER INTERFACE](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#raspberry-pi-to-webserver-interface)
 * [SECTION III - THE WEBSERVER](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-iii---the-webserver)
 * [MY GITHUB WEBPAGE IS UPDATED USING CONCOURSE (OPTIONAL)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#my-github-webpage-is-updated-using-concourse-optional)
 
