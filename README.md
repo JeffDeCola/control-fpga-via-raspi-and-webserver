@@ -57,7 +57,8 @@ will be used as an example. In that repo,
   [Verilog](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/development/languages/systemverilog-cheat-sheet)
   (An HDL language)
 * Used the
-  [Xilinx Vivado](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/tools/synthesis/xilinx-vivado-cheat-sheet) IDE to synthesize and burn the FPGA
+  [Xilinx Vivado](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/tools/synthesis/xilinx-vivado-cheat-sheet)
+  IDE to synthesize and burn/flash on boot the FPGA
 * Used a
   [Digilent ARTY-S7](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/tools/synthesis/xilinx-vivado-cheat-sheet)
   FPGA development board 
@@ -79,6 +80,13 @@ The Raspberry Pi shall control the I/O of the FPGA and provide an interface to
 the webserver. The code has been written is go using the
 [google/periph](https://github.com/google/periph)
 go library.
+
+To run the go code,
+
+```
+go get -u periph.io/x/periph/cmd/...
+sh run.go
+```
 
 ### GPIO TO PMOD INTERFACE
 
