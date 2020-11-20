@@ -51,11 +51,18 @@ The following figure will be explained in the following three sections,
 
 My
 [programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable-8-bit-microprocessor)
-will be used as an example. I designed the processor in Verilog
-(An HDL language) and burned it to a FPGA development board. The entire process
-can be found in that repo.
+will be used as an example. In that repo,
 
-To operate the microprocessor,
+* I designed the 8-bit microprocessor in
+  [Verilog](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/development/languages/systemverilog-cheat-sheet)
+  (An HDL language)
+* Used the
+  [Xilinx Vivado](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/tools/synthesis/xilinx-vivado-cheat-sheet) IDE to synthesize and burn the FPGA
+* Used a
+  [Digilent ARTY-S7](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/tools/synthesis/xilinx-vivado-cheat-sheet)
+  FPGA development board 
+
+To operate this microprocessor, the Raspberry Pi will,
 
 * Set both inputs [7:0] DATA_IN_A and [7:0] DATA_IN_B
 * Select an [3:0] OPCODE instruction (such as ADD)
@@ -88,6 +95,8 @@ The Raspberry Pi will connect to the processor as follows,
   * [7:0] DATA_IN_B
 * **INPUT (CAPTURE)**
   * [7:0] DATA_OUT
+
+A go program is used to control and capture the I/O.
 
 ### RASPBERRY PI TO WEBSERVER INTERFACE
 
