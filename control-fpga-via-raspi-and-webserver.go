@@ -13,6 +13,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 
 	"periph.io/x/periph/conn/gpio"
 )
@@ -20,21 +21,40 @@ import (
 // OUTPUT PINS
 var pin_out_go gpio.PinIO
 var pin_out_led gpio.PinIO
+var pin_out_opcode [4]gpio.PinIO
 
 // INPUT PINS
-var pin_in_data_out gpio.PinIO
+var pin_in_data_out [8]gpio.PinIO
 
 func main() {
 
 	var setGoLevelCh = make(chan int)
 	var userInput int
 	var getDataOutLevelCh = make(chan int)
-	var capturedDataOutLevelCh = make(chan gpio.Level)
+	var capturedDataOutLevelCh = make(chan [8]int)
 
 	// OUTPUTS -------------------------------------
 
 	// Set go
 	go set_go(setGoLevelCh)
+
+	// Set [3:0] opcode
+	err := pin_out_opcode[3].Out(gpio.High)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = pin_out_opcode[2].Out(gpio.High)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = pin_out_opcode[1].Out(gpio.Low)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = pin_out_opcode[0].Out(gpio.Low)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	// INPUTS --------------------------------------
 
@@ -62,10 +82,11 @@ func main() {
 			fmt.Println("You pressed 1 - set go and led level HIGH")
 			setGoLevelCh <- 1
 		case (userInput == 2):
-			fmt.Println("You pressed 3 -  get [7:0] DATA_OUT levels")
+			fmt.Println("You pressed 2 -  get [7:0] DATA_OUT levels")
 			getDataOutLevelCh <- 1
 			capture_data_out_level := <-capturedDataOutLevelCh
-			fmt.Printf("[7:0] DATA_OUT levels are %v\n", capture_data_out_level)
+			fmt.Printf("[7:0] DATA_OUT levels are %v  %v  %v  %v  %v  %v  %v  %v\n", capture_data_out_level[7], capture_data_out_level[6], capture_data_out_level[5],
+				capture_data_out_level[4], capture_data_out_level[3], capture_data_out_level[2], capture_data_out_level[1], capture_data_out_level[0])
 		case (userInput == 3):
 			fmt.Println("You pressed 3 - Exit")
 		default:
