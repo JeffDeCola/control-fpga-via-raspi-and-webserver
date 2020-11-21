@@ -67,6 +67,10 @@ To operate this microprocessor, the Raspberry Pi will,
 
 * Set both inputs [7:0] DATA_IN_A and [7:0] DATA_IN_B
 * Select an [3:0] OPCODE instruction (such as ADD)
+  * 0011: ADD
+  * 0111: SUBTRACT
+  * 1100: MULTIPLY
+  * 1110: DIVIDE
 * Enable the GO_BAR
 * Oserve the resulting [7:0] DATA_OUT
 
@@ -121,41 +125,41 @@ board is as follows,
 |                 | PMOD Pins         | RasPi GPIO Pin        |
 |----------------:|:-----------------:|:---------------------:|
 | [7:0] DATA_IN_A |  JA PMOD          |                       |
-| [7]             |  1                | 24 (GPIO 08)          |
+| [7]             |  1                | 24 (GPIO8)            |
 | [6] SET TO LOW  |  2                | --- N/C               |
 | [5] SET TO LOW  |  3                | --- N/C               |
 | [4] SET TO LOW  |  4                | --- N/C               |
-| [3]             |  7                | 35 (GPIO 19)          |
-| [2]             |  8                | 40 (GPIO 21)          |
-| [1]             |  9                | 38 (GPIO 20)          |
-| [0]             |  10               | 12 (GPIO 18)          |
+| [3]             |  7                | 35 (GPIO19)           |
+| [2]             |  8                | 40 (GPIO21)           |
+| [1]             |  9                | 38 (GPIO20)           |
+| [0]             |  10               | 12 (GPIO18)           |
 |                 |                   |                       |
 | [7:0] DATA_IN_B |  JB PMOD          |                       |
-| [7]             |  1                | 26 (GPIO 07)          |
-| [6]             |  2                | 19 (GPIO 10)          |
-| [5]             |  3                | 21 (GPIO 09)          |
-| [4]             |  4                | 23 (GPIO 11)          |
-| [3]             |  7                | 37 (GPIO 26)          |
-| [2]             |  8                | 33 (GPIO 13)          |
-| [1]             |  9                | 05 (GPIO 03)          |
-| [0]             |  10               | 03 (GPIO 02)          |
+| [7]             |  1                | 26 (GPIO7)            |
+| [6]             |  2                | 19 (GPIO10)           |
+| [5]             |  3                | 21 (GPIO9)            |
+| [4]             |  4                | 23 (GPIO11)           |
+| [3]             |  7                | 37 (GPIO26)           |
+| [2]             |  8                | 33 (GPIO13)           |
+| [1]             |  9                | 05 (GPIO3)            |
+| [0]             |  10               | 03 (GPIO2)            |
 |                 |                   |                       |
 | [7:0] DATA_OUT  |  JC PMOD          |                       |
-| [7]             |  1                | 36 (GPIO 16)          |
-| [6]             |  2                | 08 (GPIO 14)          |
-| [5]             |  3                | 10 (GPIO 15)          |
-| [4]             |  4                | 11 (GPIO 17)          |
-| [3]             |  7                | 07 (GPIO 04)          |
-| [2]             |  8                | 32 (GPIO 12)          |
-| [1]             |  9                | 29 (GPIO 05)          |
-| [0]             |  10               | 31 (GPIO 06)          |
+| [7]             |  1                | 36 (GPIO16)           |
+| [6]             |  2                | 08 (GPIO14)           |
+| [5]             |  3                | 10 (GPIO15)           |
+| [4]             |  4                | 11 (GPIO17)           |
+| [3]             |  7                | 07 (GPIO4)            |
+| [2]             |  8                | 32 (GPIO12)           |
+| [1]             |  9                | 29 (GPIO5)            |
+| [0]             |  10               | 31 (GPIO6)            |
 |                 |                   |                       |
 | [3:0] OPCODE    |  JD PMOD          |                       |
-| [3]             |  1                | 13 (GPIO 27)          |
-| [2]             |  2                | 15 (GPIO 22)          |
-| [1]             |  3                | 16 (GPIO 23)          |
-| [0]             |  4                | 18 (GPIO 24)          |
-| GO              |  7                | 22 (GPIO 25)          |
+| [3]             |  1                | 13 (GPIO27)           |
+| [2]             |  2                | 15 (GPIO22)           |
+| [1]             |  3                | 16 (GPIO23)           |
+| [0]             |  4                | 18 (GPIO24)           |
+| GO              |  7                | 22 (GPIO25)           |
 | RESET --- N/C   |  8                | --- N/C               |
 | JAM --- N/C     |  9                | --- N/C               |
 | N/C             |  10               | --- N/C               |
