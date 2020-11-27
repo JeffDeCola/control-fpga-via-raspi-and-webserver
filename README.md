@@ -17,9 +17,8 @@ Table of Contents,
   * [GPIO TO PMOD INTERFACE](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#gpio-to-pmod-interface)
   * [RASPBERRY PI TO WEBSERVER INTERFACE](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#raspberry-pi-to-webserver-interface)
 * [SECTION III - THE WEBSERVER](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-iii---the-webserver)
-* [MY GITHUB WEBPAGE IS UPDATED USING CONCOURSE (OPTIONAL)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#my-github-webpage-is-updated-using-concourse-optional)
 
-Documents and references,
+Documentation and reference,
 
 * I burned my
   [programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable-8-bit-microprocessor)
