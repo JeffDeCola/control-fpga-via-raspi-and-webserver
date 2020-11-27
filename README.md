@@ -24,17 +24,17 @@ Documentation and reference,
   [programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable-8-bit-microprocessor)
   to a FPGA
 * [raspi-gpio](https://github.com/JeffDeCola/my-go-examples/tree/master/single-board-computers/raspi-gpio)
-is an example of controlling the GPIO (Input/Output) on the Raspberry Pi using go
+  is an example of controlling the GPIO (Input/Output) on the Raspberry Pi using go
 
 [GitHub Webpage](https://jeffdecola.github.io/control-fpga-via-raspi-and-webserver/)
 
 ## OVERVIEW
 
-This project is separated into 3 sections,
+This project is separated into 3 main sections,
 
 1. The FPGA
 2. The Raspberry Pi (go code) to control the I/O of the FPGA
-3. The Webserver to control the Raspberry Pi
+3. The Webserver (bluehost) providing a GUI to control the Raspberry Pi
 
 This may help,
 
@@ -42,7 +42,8 @@ This may help,
 
 ## A LITTLE MORE DETAIL
 
-The following figure will be explained in the following three sections,
+The following figure provides more details and will be explained
+in the following three sections,
 
 ![IMAGE - controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg - IMAGE](docs/pics/controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg)
 
@@ -50,7 +51,9 @@ The following figure will be explained in the following three sections,
 
 My
 [programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable-8-bit-microprocessor)
-will be used as an example. In that repo,
+will be used as an example. Plesae refer to that repo on how to burn a FPGA from verilog.
+
+In that repo,
 
 * I designed the 8-bit microprocessor in
   [Verilog](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/development/languages/systemverilog-cheat-sheet)
@@ -70,19 +73,26 @@ To operate this microprocessor, the Raspberry Pi will,
   * 0111: SUBTRACT
   * 1100: MULTIPLY
   * 1110: DIVIDE
-* Enable the GO_BAR
+* Enable the GO_BAR via GO signal
 * Oserve the resulting [7:0] DATA_OUT
 
-The next section will show how to control the I/O via a Raspberry Pi.
+The number of I/O the Raspberry Pi can control is 26 I/O pins.
+But as shown in the following figure, the microprocessor has 31 pins.
+The next section will go over which 5 pins we hardcoded or will be controled by the FPGA
+development board,
 
 ![IMAGE - Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg - IMAGE](https://github.com/JeffDeCola/my-systemverilog-examples/blob/master/docs/pics/Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg?raw=true)
 
 ## SECTION II - THE RASPBERRY PI
 
-The Raspberry Pi shall control the I/O of the FPGA and provide an interface to
-the webserver. The code has been written is go using the
+The Raspberry Pi shall do two things,
+
+* Control 26 pins of the I/O of the FPGA (GPIO to PMOD)
+* Provide an interface to the webserver (REST JSON API)
+
+The code has been written is go using the
 [google/periph](https://github.com/google/periph)
-go library.
+go library and the
 
 To run the go code,
 
@@ -91,18 +101,18 @@ go get -u periph.io/x/periph/cmd/...
 sh run.go
 ```
 
-### GPIO TO PMOD INTERFACE
+### RASPBERRY PI TO FPGA DEV BOARD INTERFACE (GPIO to PMOD)
 
 The GPIO (Input/Output) of the Raspberry Pi is connected to the
 Input/Ouput of the FPGA development board via Pmod connectors.
 On a side note, it may be a good idea to place a 200 Ohm resister in-line.
 
 All of the GPIOs have weak internal pull-ups and downs which may be enabled
-or disabled by software. Refer to init file in my go code.
+or disabled by software. I control this in my go code.
 
 There are a total of 26 I/O pins that you may use in the Raspberry Pi.
 But I have a total of 31 I would like to use.  So I had to compromise
-and hardcode 5 of the bits.
+and hardcoded 5 of the Inputs (????).
 
 The Raspberry Pi will connect to the processor as follows,
 
@@ -163,7 +173,7 @@ board is as follows,
 | JAM --- N/C     |  9                | --- N/C               |
 | N/C             |  10               | --- N/C               |
 
-### RASPBERRY PI TO WEBSERVER INTERFACE
+### RASPBERRY PI TO WEBSERVER INTERFACE (REST JSON API)
 
 tbd
 
