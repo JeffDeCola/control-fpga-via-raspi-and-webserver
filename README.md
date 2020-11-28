@@ -27,6 +27,8 @@ Documentation and reference,
   is an example of controlling the GPIO (Input/Output) on the Raspberry Pi using go
 
 [GitHub Webpage](https://jeffdecola.github.io/control-fpga-via-raspi-and-webserver/)
+_built with
+[concourse ci](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/ci-README.md)_
 
 ## OVERVIEW
 
@@ -51,7 +53,8 @@ in the following three sections,
 
 My
 [programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable-8-bit-microprocessor)
-will be used as an example. Plesae refer to that repo on how to burn a FPGA from verilog.
+will be used as an example. Please refer to that repo on how to burn a
+FPGA from verilog.
 
 In that repo,
 
@@ -180,37 +183,3 @@ tbd
 ## SECTION III - THE WEBSERVER
 
 tbd
-
-## MY GITHUB WEBPAGE IS UPDATED USING CONCOURSE (OPTIONAL)
-
-For fun, I use concourse to automatically update
-[my GitHub Webpage](https://jeffdecola.github.io/control-fpga-via-raspi-and-webserver/) and alert me of
-the changes via repo status and slack.
-
-The update is accomplished this by copying and editing/updating
-this `README.md` file to `/docs/_includes/README.md`.
-
-A pipeline file [pipeline.yml](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/ci/scripts/readme-github-pages.sh)
-shows the entire ci flow. Visually, it looks like,
-
-![IMAGE - control-fpga-via-raspi-and-webserver concourse ci pipeline - IMAGE](docs/pics/control-fpga-via-raspi-and-webserver-pipeline.jpg)
-
-The `jobs` and `tasks` are,
-
-* `job-readme-github-pages` runs task
-  [readme-github-pages.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/ci/scripts/readme-github-pages.sh).
-
-The concourse `resources types` are,
-
-* `control-fpga-via-raspi-and-webserver` uses a resource type
-  [docker-image](https://hub.docker.com/r/concourse/git-resource/)
-  to PULL a repo from github.
-* `resource-slack-alert` uses a resource type
-  [docker image](https://hub.docker.com/r/cfcommunity/slack-notification-resource)
-  that will notify slack on your progress.
-* `resource-repo-status` uses a resource type
-  [docker image](https://hub.docker.com/r/dpb587/github-status-resource)
-  that will update your git status for that particular commit.
-
-For more information on using concourse for continuous integration,
-refer to my cheat sheet on [concourse](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/software/operations-tools/continuous-integration-continuous-deployment/concourse-cheat-sheet).

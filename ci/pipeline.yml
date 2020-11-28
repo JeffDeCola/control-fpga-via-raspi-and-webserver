@@ -1,0 +1,67 @@
+# control-fpga-via-raspi-and-webserver pipeline.yml
+
+jobs:
+
+- name: job-readme-github-pages
+  plan:
+  - get: control-fpga-via-raspi-and-webserver
+    trigger: true
+  - put: resource-slack-alert
+    params:
+      channel: '#jeff-builds'
+      text: "From control-fpga-via-raspi-and-webserver: STARTED job-readme-github-pages in concourse ci."
+  - put: resource-repo-status
+    params: { state: "pending", description: "STARTED job-readme-github-pages in concourse ci.", commit: "control-fpga-via-raspi-and-webserver" }
+  - task: task-readme-github-pages
+    file: control-fpga-via-raspi-and-webserver/ci/tasks/task-readme-github-pages.yml
+    on_success:
+      do:
+      - put: control-fpga-via-raspi-and-webserver
+        params:
+          repository: control-fpga-via-raspi-and-webserver-updated  
+      - put: resource-slack-alert
+        params:
+          channel: '#jeff-builds'
+          text: "From control-fpga-via-raspi-and-webserver: PASSED job-readme-github-pages in concourse ci."
+      - put: resource-repo-status
+        params: { state: "success", description: "PASSED job-readme-github-pages in concourse ci", commit: "control-fpga-via-raspi-and-webserver" }
+    on_failure:
+      do:
+      - put: resource-slack-alert
+        params:
+          channel: '#jeff-builds'
+          text: "From control-fpga-via-raspi-and-webserver: FAILED job-readme-github-pages in concourse ci."
+      - put: resource-repo-status
+        params: { state: "failure", description: "FAILED job-readme-github-pages in concourse ci", commit: "control-fpga-via-raspi-and-webserver" }
+
+resource_types:
+
+- name: slack-notification
+  type: docker-image
+  source:
+    repository: cfcommunity/slack-notification-resource
+    tag: latest
+- name: github-status
+  type: docker-image
+  source:
+    repository: dpb587/github-status-resource
+    tag: master
+
+resources:
+
+- name: control-fpga-via-raspi-and-webserver
+  type: git
+  source:
+    #uri: https://github.com/jeffdecola/control-fpga-via-raspi-and-webserver
+    uri: git@github.com:jeffdecola/control-fpga-via-raspi-and-webserver.git
+    branch: master
+    private_key: {{git_private_key}}
+- name: resource-slack-alert
+  type: slack-notification
+  source:
+    url: {{slack_url}} 
+- name: resource-repo-status 
+  type: github-status
+  source:
+    repository: jeffdecola/control-fpga-via-raspi-and-webserver 
+    access_token: {{repo_github_token}}

@@ -1,0 +1,19 @@
+# control-fpga-via-raspi-and-webserver task-readme-github-pages.yml
+
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: golang
+    tag: 1.7.1
+
+inputs:
+- name: control-fpga-via-raspi-and-webserver
+
+outputs:
+- name: control-fpga-via-raspi-and-webserver-updated
+
+run:
+  path: ./control-fpga-via-raspi-and-webserver/ci/scripts/readme-github-pages.sh
+  # args: [-debug]
