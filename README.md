@@ -6,7 +6,7 @@
 _Control a FPGA via a Raspberry Pi and a Webserver. As an example, I burned my
 [programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable-8-bit-microprocessor)
 to an FPGA development board and you can control it at
-[jeffdecola.com/fpga](http://jeffdecola.com/fpga)._
+[JeffDecola.com/fpga](http://jeffdecola.com/fpga)._
 
 Table of Contents,
 
