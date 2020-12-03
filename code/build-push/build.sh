@@ -1,5 +1,5 @@
 #!/bin/sh -e
-# hello-go-deploy-marathon example-01 build.sh
+# control-fpga-via-raspi-and-webserver build.sh
 
 echo " "
 
@@ -24,19 +24,19 @@ cd ..
 
 echo "Build your docker image using Dockerfile"
 echo "NOTE: The binary is built using this step"
-echo "docker build -f build-push/Dockerfile -t jeffdecola/hello-go-deploy-marathon ."
-docker build -f build-push/Dockerfile -t jeffdecola/hello-go-deploy-marathon .
+echo "docker build -f build-push/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver ."
+docker build -f build-push/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
 echo " "
 
 echo "Check Docker Image size"
-echo "docker images jeffdecola/hello-go-deploy-marathon:latest"
-docker images jeffdecola/hello-go-deploy-marathon:latest
+echo "docker images jeffdecola/control-fpga-via-raspi-and-webserver:latest"
+docker images jeffdecola/control-fpga-via-raspi-and-webserver:latest
 echo " "
 
 echo "Useful commands:"
-echo "     docker run --name hello-go-deploy-marathon -dit jeffdecola/hello-go-deploy-marathon"
-echo "     docker exec -i -t hello-go-deploy-marathon /bin/bash"
-echo "     docker logs hello-go-deploy-marathon"
+echo "     docker run --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver"
+echo "     docker exec -i -t control-fpga-via-raspi-and-webserver /bin/bash"
+echo "     docker logs control-fpga-via-raspi-and-webserver"
 echo " "
 
 echo "************************************************************************"

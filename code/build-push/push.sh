@@ -1,5 +1,5 @@
 #!/bin/sh -e
-# hello-go-deploy-marathon example-01 push.sh
+# control-fpga-via-raspi-and-webserver push.sh
 
 echo " "
 
@@ -21,8 +21,8 @@ fi
 echo "Assuming you are logged in, lets push your built docker image to DockerHub"
 echo "To login to docker use:"
 echo "    docker login"
-echo "docker push jeffdecola/hello-go-deploy-marathon"
-docker push jeffdecola/hello-go-deploy-marathon
+echo "docker push jeffdecola/control-fpga-via-raspi-and-webserver"
+docker push jeffdecola/control-fpga-via-raspi-and-webserver
 echo " "
 
 echo "************************************************************************"
