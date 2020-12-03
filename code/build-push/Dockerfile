@@ -1,4 +1,4 @@
-# hello-go-deploy-marathon example-01 Dockerfile used to build docker image
+# control-fpga-via-raspi-and-webserver Dockerfile used to build docker image
 
 # Multi-stage build to create a small docker image
 
@@ -13,17 +13,18 @@ FROM golang:alpine AS builder
 RUN apk update && apk add --no-cache git
 
 # SET WORKING DIRECTORY AND PLACE YOUR CODE IN
-WORKDIR $GOPATH/src/github.com/jeffdecola/hello-go-deploy-marathon/
+WORKDIR $GOPATH/src/github.com/jeffdecola/control-fpga-via-raspi-and-webserver/
 COPY . .
 
 # CHECK
-RUN ls -lat $GOPATH/src/github.com/jeffdecola/hello-go-deploy-marathon/
+RUN ls -lat $GOPATH/src/github.com/jeffdecola/control-fpga-via-raspi-and-webserver/
 
 # Fetch dependencies using go get
+RUN go get -u periph.io/x/periph/cmd/...
 RUN go get -d -v
 
 # Build the binary
-RUN go build -o /go/bin/hello-go-deploy-marathon main.go
+RUN go build -o /go/bin/control-fpga-via-raspi-and-webserver main.go init.go inputs.go outputs.go
 
 ###############################
 # STAGE 2 build a smaller image
@@ -32,15 +33,15 @@ RUN go build -o /go/bin/hello-go-deploy-marathon main.go
 FROM alpine
 
 # Add my name to it
-LABEL maintainer="Jeff DeCola https://github.com/JeffDeCola/hello-go-deploy-marathon"
+LABEL maintainer="Jeff DeCola https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver"
 
 # Put the binary from previous build into /app
 RUN mkdir /app
-COPY --from=builder /go/bin/hello-go-deploy-marathon /app/hello-go-deploy-marathon
+COPY --from=builder /go/bin/control-fpga-via-raspi-and-webserver /app/control-fpga-via-raspi-and-webserver
 WORKDIR /app
 
 # Add the ailibty to /bin/bash in alpine
 RUN apk add --update bash
 
 # Run the binary
-ENTRYPOINT ["/app/hello-go-deploy-marathon"]
+ENTRYPOINT ["/app/control-fpga-via-raspi-and-webserver"]

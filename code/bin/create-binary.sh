@@ -19,8 +19,8 @@ else
 fi
 
 echo "Create a binary control-fpga in /bin"
-echo "    Kick off executable with ./control-fpga-via-raspi-and-webserver.go"
-go build -o control-fpga ../control-fpga-via-raspi-and-webserver.go
+echo "    Kick off executable with ./control-fpga"
+go build -o control-fpga ../main.go ../init.go ../inputs.go ../outputs.go
 echo " "
 
 echo "************************************************************************"

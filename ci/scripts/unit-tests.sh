@@ -56,8 +56,8 @@ echo "cp -R ./control-fpga-via-raspi-and-webserver src/github.com/JeffDeCola/."
 cp -R ./control-fpga-via-raspi-and-webserver src/github.com/JeffDeCola/.
 echo " "
 
-echo "cd src/github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/example-01"
-cd src/github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/example-01
+echo "cd src/github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/code"
+cd src/github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/code
 echo " "
 
 echo "Check that you are set and everything is in the right place for go:"
@@ -77,7 +77,7 @@ echo "go test -cover ./... | tee test/test_coverage.txt"
 echo "   -cover shows the percentage coverage"
 echo "   Put results in /test/test_coverage.txt file"
 go test -cover ./... | tee test/test_coverage.txt
-# echo "Placeholder to run go tests for my-go-examples" | tee testcode/test_coverage.txt
+# echo "Placeholder to run go tests for control-fpga-via-raspi-and-webserver" | tee testcode/test_coverage.txt
 echo " "
 
 echo "Clean test_coverage.txt file - add some whitespace to the begining of each line"
