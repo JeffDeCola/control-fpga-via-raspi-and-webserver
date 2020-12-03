@@ -74,6 +74,7 @@ echo " "
 
 echo "go get -u periph.io/x/periph/cmd/..."
 go get -u periph.io/x/periph/cmd/...
+echo " "
 
 echo "RUN TESTS -----------------------------------------------------------------------------"
 echo " "
