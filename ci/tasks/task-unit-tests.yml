@@ -1,0 +1,19 @@
+# control-fpga-via-raspi-and-webserver task-unit-tests.yml
+
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: golang
+    tag: 1.15.3
+
+inputs:
+- name: control-fpga-via-raspi-and-webserver
+
+outputs:
+- name: coverage-results
+
+run:
+  path: ./control-fpga-via-raspi-and-webserver/ci/scripts/unit-tests.sh
+  # args: [-debug]
