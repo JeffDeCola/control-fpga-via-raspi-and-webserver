@@ -151,6 +151,128 @@ board is as follows,
 
 tbd
 
+### RUN
+
+The following steps are located in
+[run.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/example-01/run.sh).
+
+To run
+[main.go](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/example-01/main.go)
+from the command line,
+
+```bash
+cd example-01
+go run main.go
+```
+
+Every 2 seconds it will print,
+
+```bash
+Hello everyone, count is: 1
+Hello everyone, count is: 2
+Hello everyone, count is: 3
+etc...
+```
+
+### CREATE BINARY
+
+If you want, you can create a binary, but this will not be used since
+it is created during the docker image build.
+
+The following steps are located in
+[create-binary.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/example-01/bin/create-binary.sh).
+
+```bash
+cd example-01
+go build -o bin/hello-go main.go
+cd bin
+./hello-go
+```
+
+### STEP 1 - TEST
+
+The following steps are located in
+[unit-tests.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/example-01/test/unit-tests.sh).
+
+To unit test the code,
+
+```bash
+cd example-01
+go test -cover ./... | tee test/test_coverage.txt
+cat test/test_coverage.txt
+```
+
+To create `_test` files,
+
+```bash
+gotests -w -all main.go
+```
+
+### STEP 2 - BUILD (DOCKER IMAGE VIA DOCKERFILE)
+
+The following steps are located in
+[build.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/example-01/build-push/build.sh).
+
+We will be using a multi-stage build using a
+[Dockerfile](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/example-01/build-push/Dockerfile).
+The end result will be a very small docker image around 13MB.
+
+```bash
+cd example-01
+docker build -f build-push/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
+```
+
+You can check and test this docker image,
+
+```bash
+docker images jeffdecola/control-fpga-via-raspi-and-webserver:latest
+docker run --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
+docker exec -i -t control-fpga-via-raspi-and-webserver /bin/bash
+docker logs control-fpga-via-raspi-and-webserver
+```
+
+#### Stage 1
+
+In stage 1, rather than copy a binary into a docker image (because
+that can cause issue), **the Dockerfile will build the binary in the
+docker image.**
+
+If you open the DockerFile you can see it will get the dependencies and
+build the binary in go,
+
+```bash
+FROM golang:alpine AS builder
+RUN go get -d -v
+RUN go build -o /go/bin/control-fpga-via-raspi-and-webserver main.go
+```
+
+#### Stage 2
+
+In stage 2, the Dockerfile will copy the binary created in
+stage 1 and place into a smaller docker base image based
+on `alpine`, which is around 13MB.
+
+### STEP 3 - PUSH (TO DOCKERHUB)
+
+The following steps are located in
+[push.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/example-01/build-push/push.sh).
+
+If you are not logged in, you need to login to dockerhub,
+
+```bash
+docker login
+```
+
+Once logged in you can push to DockerHub,
+
+```bash
+docker push jeffdecola/control-fpga-via-raspi-and-webserver
+```
+
+Check the
+[control-fpga-via-raspi-and-webserver](https://hub.docker.com/r/jeffdecola/control-fpga-via-raspi-and-webserver)
+docker image at DockerHub.
+
 ## SECTION III - THE WEBSERVER
 
 tbd
