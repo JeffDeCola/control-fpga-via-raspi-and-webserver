@@ -69,6 +69,12 @@ echo "ls -la"
 ls -la
 echo " "
 
+echo "GET GO PACKAGES -----------------------------------------------------------------------"
+echo " "
+
+echo "go get -u periph.io/x/periph/cmd/..."
+go get -u periph.io/x/periph/cmd/...
+
 echo "RUN TESTS -----------------------------------------------------------------------------"
 echo " "
 
