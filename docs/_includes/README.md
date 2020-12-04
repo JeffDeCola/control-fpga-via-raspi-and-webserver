@@ -276,3 +276,9 @@ docker image at DockerHub.
 ## SECTION III - THE WEBSERVER
 
 tbd
+
+## CONTINUOUS INTEGRATION & DEPLOYMENT
+
+Refer to
+[ci-README.md](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/ci-README.md)
+for how I automated the above process.
