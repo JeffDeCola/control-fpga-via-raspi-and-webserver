@@ -27,8 +27,9 @@ Documentation and reference,
 * I burned my
   [programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable-8-bit-microprocessor)
   to a FPGA
-* The `control-fpga-via-raspi-and-webserver` Docker Image on
-  [DockerHub](https://hub.docker.com/r/jeffdecola/control-fpga-via-raspi-and-webserver)
+* The
+  [control-fpga-via-raspi-and-webserver](https://hub.docker.com/r/jeffdecola/control-fpga-via-raspi-and-webserver)
+  docker image on DockerHub  
 * [raspi-gpio](https://github.com/JeffDeCola/my-go-examples/tree/master/single-board-computers/raspi-gpio)
   is an example of controlling the GPIO (Input/Output) on the Raspberry Pi using go
 
