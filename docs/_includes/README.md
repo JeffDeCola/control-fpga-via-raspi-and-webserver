@@ -188,13 +188,7 @@ board is as follows,
 
 tbd
 
-### TEST, BUILD & PUSH
-
-Refer to
-[ci-README.md](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/ci-README.md)
-on how I automated this process.
-
-#### STEP 1 - TEST
+### STEP 1 - TEST
 
 The following steps are located in
 [unit-tests.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/code/test/unit-tests.sh).
@@ -213,7 +207,7 @@ To create `_test` files,
 gotests -w -all main.go
 ```
 
-#### STEP 2 - BUILD (DOCKER IMAGE VIA DOCKERFILE)
+### STEP 2 - BUILD (DOCKER IMAGE VIA DOCKERFILE)
 
 The following steps are located in
 [build.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/code/build-push/build.sh).
@@ -236,10 +230,8 @@ docker exec -i -t control-fpga-via-raspi-and-webserver /bin/bash
 docker logs control-fpga-via-raspi-and-webserver
 ```
 
-##### Stage 1
-
-In stage 1, rather than copy a binary into a docker image (because
-that can cause issue), **the Dockerfile will build the binary in the
+In **stage 1**, rather than copy a binary into a docker image (because
+that can cause issues), **the Dockerfile will build the binary in the
 docker image.**
 
 If you open the DockerFile you can see it will get the dependencies and
@@ -251,13 +243,11 @@ RUN go get -d -v
 RUN go build -o /go/bin/control-fpga-via-raspi-and-webserver main.go
 ```
 
-##### Stage 2
-
-In stage 2, the Dockerfile will copy the binary created in
+In **stage 2**, the Dockerfile will copy the binary created in
 stage 1 and place into a smaller docker base image based
 on `alpine`, which is around 13MB.
 
-#### STEP 3 - PUSH (TO DOCKERHUB)
+### STEP 3 - PUSH (TO DOCKERHUB)
 
 The following steps are located in
 [push.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/code/build-push/push.sh).
@@ -277,6 +267,12 @@ docker push jeffdecola/control-fpga-via-raspi-and-webserver
 Check the
 [control-fpga-via-raspi-and-webserver](https://hub.docker.com/r/jeffdecola/control-fpga-via-raspi-and-webserver)
 docker image at DockerHub.
+
+### CONTINUOUS INTEGRATION & DEPLOYMENT
+
+Refer to
+[ci-README.md](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/ci-README.md)
+on how I automated the above steps.
 
 ## SECTION III - THE WEBSERVER
 
