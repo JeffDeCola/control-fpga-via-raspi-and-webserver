@@ -134,7 +134,7 @@ from the command line,
 
 ```bash
 cd code
-go run main.go
+go run main.go init.go inputs.go outputs.go
 ```
 
 ### CREATE BINARY
@@ -144,7 +144,7 @@ The following steps are located in
 
 ```bash
 cd code
-go build -o bin/control-fpga main.go
+go build -o bin/control-fpga main.go init.go inputs.go outputs.go
 cd bin
 ./control-fpga
 ```
