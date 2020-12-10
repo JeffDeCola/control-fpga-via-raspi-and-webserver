@@ -18,8 +18,8 @@ else
     echo " "
 fi
 
-echo "go run control-fpga-via-raspi-and-webserver.go init.go inputs.go outputs.go"
-go run control-fpga-via-raspi-and-webserver.go init.go inputs.go outputs.go
+echo "go run main.go init.go inputs.go outputs.go"
+go run main.go init.go inputs.go outputs.go
 echo " "
 
 echo "************************************************************************"
