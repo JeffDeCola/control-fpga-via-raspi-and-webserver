@@ -66,7 +66,7 @@
                 JEFFRY A. DECOLA  </a> </h1>
 
             <h2> <a href="https://jeffdecola.com/control-an-fpga/index.php">
-                CONTROL AN FPGA VIA RASPI and WEB SERVER </a> </h2>
+                CONTROL AN FPGA VIA A RASPI AND WEB SERVER </a> </h2>
             
             <a href="https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver">
                 GITHUB REPO </a>
@@ -88,11 +88,11 @@
 
             <div class="title_container">
 
-                <h2> 8-BIT MICROPROCESSOR </h2>
-                <p> I burned my programable-8-bit-microprocessor to an FPGA development board and you can control it below.  </p>
+                <h2> CONTROL AN 8-BIT MICROPROCESSOR </h2>
+                <p> I burned a programable-8-bit-microprocessor I designed to an FPGA development board and you can control it below.  </p>
                 <p> 
                     <a href="https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver"> Code </a>
-                    written in php, go and verilog
+                    written in php, js, go and verilog
                 </p>                            
 
             </div>
