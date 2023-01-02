@@ -1,0 +1,281 @@
+@charset "utf-8";
+/* CONTAINERS.CSS */
+
+/* SECTION I - COMMON TO ALL PAGES ------------------------------------------- */
+
+/* #### HEADER WRAPPER ######################################## */
+
+#header_wrapper h1 {
+    color: #0048af;
+}
+
+/* #### NAV CONTAINER ######################################### */
+
+.nav_client_type {
+    padding-bottom: 3px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.nav_client_bold {
+    font-weight: 900;
+}
+.nav_client_bold a:visited {
+    color: #0048af;
+}
+
+.dot {
+    height: 3px;
+    width: 13px;
+    background-color: #0048af;
+    /* border-radius: 50%; */
+    display: inline-block;
+    margin-bottom: 4px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+/* SECTION II - COMMON CONTAINERS -------------------------------------------- */
+
+/* #### TITLE CONTAINER ####################################### */
+
+.title_container {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(25,80,158,1) 50%, rgba(255,255,255,1) 100%);
+}
+
+.title_container p {
+    margin-bottom: .8em;
+    color: #FFFFFF;
+}
+
+.title_container h2 {
+    color: #FFFFFF;
+}
+
+.title_container h3 {
+    color: #FFFFFF;
+}
+
+.title_container a:link, .title_container a:visited  {
+    color: #9ebcff;
+}
+
+.title_container a:hover, .title_container a:active  {
+    color: #001074;
+}
+
+/* #### PICTURE CONTAINER ##################################### */
+
+.picture_container {
+    width: 90%;
+    margin:auto;
+}
+
+.picture_container img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* #### COMMENT CONTAINER ##################################### */
+
+.comment_container {
+    text-align: center;
+    margin: 0 auto;
+    height: 100%;
+    width:100%;
+    padding-top: 15px;
+    padding-bottom: 1px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(25,80,158,1) 50%, rgba(255,255,255,1) 100%);
+}
+
+.comment_container h3 {
+    color: #ffffff;
+}
+
+.comment_container p {
+    color: #ffffff;
+}
+
+.comment_container a:visited {
+    color: #9ebcff;
+}
+
+/* #### CODE CONTAINER ######################################## */
+
+.code_container {
+    text-align:left;
+    /* background-color:#ABABAB; */
+    width: 90%;
+    min-width: 200px;
+    max-width: 500px;
+    margin: auto;
+    padding: 5px;
+    font-family: "Courier New", Courier, monospace;
+    font-size:14px;
+    font-weight: 400;
+}
+
+.code_container h3 {
+    color: #000000;
+    text-align: center;
+    font-weight:bold;
+}
+
+/* #### BOX CONTAINER ######################################### */
+/* Will line up you items in a row */
+
+.box_container {
+    text-align: center;
+    overflow: hidden;
+}
+
+.box_items_container{
+    height: inherit;
+    left: 50%;
+    position: relative;
+}
+
+.box_item {
+    display: inline-block;
+    vertical-align: top;
+    left: -50%;
+    position: relative;
+}
+
+/* ------------- COMMON SPACER ITEM -------------------- */
+
+.spacer_item {
+    height: 80px; /* with inline-block does nothing */
+    width: 20px;
+}
+
+/* ------------- COMMON DISPLAY ITEM -------------------- */
+
+.display_item {
+    height: 80px; /* does nothing */
+    width:200px;
+}
+
+.display_title {
+    height: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.display_info {
+    border-width: 3px;
+    border-style: solid;
+    width: 194px;   /* 200px - 6px */
+    height: 40px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.display_info_text {
+    margin-top: 7px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* ------------- COMMON BUTTON ITEM -------------------- */
+
+.button_item {
+    height: 80px; /* does nothing */
+    width:200px;
+}
+
+.button_title {
+    height: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.button_push {
+    border-width: 3px;
+    border-style: solid;
+    width: 194px;   /* 200px - 6px */
+    height: 40px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.button_push_text {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.button_pulse {
+    animation: Pulse infinite alternate ease 1s;  
+}
+
+@keyframes Pulse {
+    0% {
+        opacity: 0.2;
+      }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* ------------- COMMON INPUT ITEM -------------------- */
+
+/* This removes the arrows from input number boxes*/
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+.input_item {
+    height: 80px; /* with inline-block does nothing */
+    width: 200px;
+}
+
+.input_title {
+    height: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.input_enter {
+    border-width: 3px;
+    border-style: solid;
+    width: 194px;   /* 200px - 6px */
+    height: 40px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.input_enter input {
+    margin-top: 7px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    border: none;
+    resize: none;
+    outline: none;
+}
+
+/* SECTION III - PAGE SPECIFIC ----------------------------------------------- */
+
+/* Refer to there specific css */

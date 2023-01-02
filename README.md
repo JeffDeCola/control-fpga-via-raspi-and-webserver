@@ -6,10 +6,11 @@
 _Control a FPGA via a Raspberry Pi and a Webserver. As an example, I burned my
 [programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable-8-bit-microprocessor)
 to an FPGA development board and you can control it at
-[JeffDecola.com/fpga](http://jeffdecola.com/fpga)._
+[jeffdecola.com](https://jeffdecola.com/control-an-fpga)._
 
 Table of Contents,
 
+* [TRY IT](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#try-it)
 * [OVERVIEW](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#overview)
 * [A LITTLE MORE DETAIL](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#a-little-more-detail)
 * [SECTION I - THE FPGA](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-i---the-fpga)
@@ -23,7 +24,8 @@ Table of Contents,
   * [STEP 2 - BUILD (DOCKER IMAGE VIA DOCKERFILE)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#step-2---build-docker-image-via-dockerfile)
   * [STEP 3 - PUSH (TO DOCKERHUB)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#step-3---push-to-dockerhub)
   * [CONTINUOUS INTEGRATION & DEPLOYMENT](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#continuous-integration--deployment)
-* [SECTION III - THE WEBSERVER](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-iii---the-webserver)
+* [SECTION III - THE WEB SERVER](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-iii---the-web-server)
+* [SECTION IV - THE BROWSER](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-iv---the-browser)
 
 Documentation and reference,
 
@@ -34,19 +36,26 @@ Documentation and reference,
   [control-fpga-via-raspi-and-webserver](https://hub.docker.com/r/jeffdecola/control-fpga-via-raspi-and-webserver)
   docker image on DockerHub  
 * [raspi-gpio](https://github.com/JeffDeCola/my-go-examples/tree/master/single-board-computers/raspi-gpio)
-  is an example of controlling the GPIO (Input/Output) on the Raspberry Pi using go
+  is an example of controlling the GPIO (Input/Output)
+  on the Raspberry Pi using go
 
 [GitHub Webpage](https://jeffdecola.github.io/control-fpga-via-raspi-and-webserver/)
 _built with
 [concourse ci](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/ci-README.md)_
 
+## TRY IT
+
+I have a working demo at
+[jeffdecola.com](https://jeffdecola.com/control-an-fpga).
+
 ## OVERVIEW
 
-This project is separated into 3 main sections,
+This project is separated into 4 main sections,
 
 1. The FPGA
-2. The Raspberry Pi (go code) to control the I/O of the FPGA
-3. The Webserver (bluehost) providing a GUI to control the Raspberry Pi
+2. The BACKEND SERVER (Raspberry Pi) to control the I/O of the FPGA
+3. The WEB SERVER (bluehost) providing to control the Raspberry Pi
+4. The BROWSER to provide a GUI
 
 This may help,
 
@@ -55,7 +64,7 @@ This may help,
 ## A LITTLE MORE DETAIL
 
 The following figure provides more details and will be explained
-in the following three sections,
+in the following four sections,
 
 ![IMAGE - controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg - IMAGE](docs/pics/controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg)
 
@@ -313,6 +322,10 @@ Refer to
 [ci-README.md](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/ci-README.md)
 on how I automated the above steps.
 
-## SECTION III - THE WEBSERVER
+## SECTION III - THE WEB SERVER
+
+tbd
+
+## SECTION IV - THE BROWSER
 
 tbd
