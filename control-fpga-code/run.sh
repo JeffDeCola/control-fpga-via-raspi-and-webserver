@@ -1,5 +1,5 @@
 #!/bin/sh -e
-# hello-go-deploy-marathon example-01 run.sh
+# control-fpga-via-raspi-and-webserver example-01 run.sh
 
 echo " "
 
