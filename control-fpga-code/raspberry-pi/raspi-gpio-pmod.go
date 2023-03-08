@@ -1,4 +1,4 @@
-// my-go-examples raspi-gpio.go
+// control-fpga-via-raspi-and-webserver raspi-gpio.go
 //
 // Syntax:
 //

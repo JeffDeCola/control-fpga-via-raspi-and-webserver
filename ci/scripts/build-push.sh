@@ -42,8 +42,8 @@ echo "SETUP THE BUILD IN /dist -------------------------------------------------
 echo " "
 
 echo "Copy what you want to make binary of (i.e. go build) into dist"
-echo "cp -r control-fpga-via-raspi-and-webserver/code/* dist"
-cp -r control-fpga-via-raspi-and-webserver/code/* dist
+echo "cp -r control-fpga-via-raspi-and-webserver/control-fpga-code/* dist"
+cp -r control-fpga-via-raspi-and-webserver/control-fpga-code/* dist
 echo " "
 
 echo "Copy the Dockefile into dist"
