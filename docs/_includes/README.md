@@ -1,13 +1,19 @@
-_built with
-[concourse ci](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/ci-README.md)_
+  _built with
+  [concourse](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/ci-README.md)_
 
-# OVERVIEW
+# TRY IT
 
-This project is separated into 3 main sections,
+I have a working demo at
+[jeffdecola.com/control-an-fpga](https://jeffdecola.com/control-an-fpga).
+
+## OVERVIEW
+
+This project is separated into 4 main sections,
 
 1. The FPGA
-2. The Raspberry Pi (go code) to control the I/O of the FPGA
-3. The Webserver (bluehost) providing a GUI to control the Raspberry Pi
+2. The BACKEND SERVER (Raspberry Pi) to control the I/O of the FPGA
+3. The WEB SERVER (bluehost) providing to control the Raspberry Pi
+4. The BROWSER to provide a GUI
 
 This may help,
 
@@ -16,7 +22,7 @@ This may help,
 ## A LITTLE MORE DETAIL
 
 The following figure provides more details and will be explained
-in the following three sections,
+in the following four sections,
 
 ![IMAGE - controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg - IMAGE](pics/controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg)
 
@@ -30,14 +36,14 @@ FPGA from verilog.
 In that repo,
 
 * I designed the 8-bit microprocessor in
-  [Verilog](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/development/languages/systemverilog-cheat-sheet)
+  [Verilog](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/development/languages/verilog-cheat-sheet)
   (An HDL language)
 * Used the
   [Xilinx Vivado](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/tools/synthesis/xilinx-vivado-cheat-sheet)
   IDE to synthesize and burn/flash on boot the FPGA
 * Used a
-  [Digilent ARTY-S7](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/tools/synthesis/xilinx-vivado-cheat-sheet)
-  FPGA development board 
+  [Digilent ARTY-S7](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/development/fpga-development-boards/digilent-arty-s7-cheat-sheet)
+  FPGA development board
 
 To operate this microprocessor, the Raspberry Pi will,
 
@@ -78,7 +84,7 @@ go get -u periph.io/x/periph/cmd/...
 
 To build a docker image you will need docker on your machine,
 
-* [docker](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/operations-tools/orchestration/builds-deployment-containers/docker-cheat-sheet)
+* [docker](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/operations/orchestration/builds-deployment-containers/docker-cheat-sheet)
 
 To push a docker image you will need,
 
@@ -87,25 +93,25 @@ To push a docker image you will need,
 ### RUN
 
 The following steps are located in
-[run.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/code/run.sh).
+[run.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/run.sh).
 
 To run
-[main.go](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/code/main.go)
+[main.go](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/main.go)
 from the command line,
 
 ```bash
-cd code
-go run main.go
+cd control-fpga-code
+go run main.go init.go inputs.go outputs.go
 ```
 
 ### CREATE BINARY
 
 The following steps are located in
-[create-binary.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/code/bin/create-binary.sh).
+[create-binary.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/bin/create-binary.sh).
 
 ```bash
-cd code
-go build -o bin/control-fpga main.go
+cd control-fpga-code
+go build -o bin/control-fpga main.go init.go inputs.go outputs.go
 cd bin
 ./control-fpga
 ```
@@ -186,17 +192,17 @@ board is as follows,
 
 ### RASPBERRY PI TO WEBSERVER INTERFACE (REST JSON API)
 
-tbd
+tbd.
 
 ### STEP 1 - TEST
 
 The following steps are located in
-[unit-tests.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/code/test/unit-tests.sh).
+[unit-tests.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/control-fpga-code/test/unit-tests.sh).
 
 To unit test the code,
 
 ```bash
-cd code
+cd control-fpga-code
 go test -cover ./... | tee test/test_coverage.txt
 cat test/test_coverage.txt
 ```
@@ -210,14 +216,14 @@ gotests -w -all main.go
 ### STEP 2 - BUILD (DOCKER IMAGE VIA DOCKERFILE)
 
 The following steps are located in
-[build.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/code/build-push/build.sh).
+[build.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/build-push/build.sh).
 
 We will be using a multi-stage build using a
-[Dockerfile](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/code/build-push/Dockerfile).
+[Dockerfile](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/build-push/Dockerfile).
 The end result will be a very small docker image around 13MB.
 
 ```bash
-cd code
+cd control-fpga-code
 docker build -f build-push/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
 ```
 
@@ -250,7 +256,7 @@ on `alpine`, which is around 13MB.
 ### STEP 3 - PUSH (TO DOCKERHUB)
 
 The following steps are located in
-[push.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/code/build-push/push.sh).
+[push.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/build-push/push.sh).
 
 If you are not logged in, you need to login to dockerhub,
 
@@ -274,6 +280,10 @@ Refer to
 [ci-README.md](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/ci-README.md)
 on how I automated the above steps.
 
-## SECTION III - THE WEBSERVER
+## SECTION III - THE WEB SERVER
+
+tbd
+
+## SECTION IV - THE BROWSER
 
 tbd
