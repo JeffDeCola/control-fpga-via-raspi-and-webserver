@@ -1,4 +1,4 @@
-// control-fpga-via-raspi-and-webserver.go
+// control-fpga-via-raspi-and-webserver
 //
 // Syntax:
 //
@@ -13,9 +13,9 @@ package main
 
 import (
 	"fmt"
-	"log"
+	"os"
 
-	"periph.io/x/periph/conn/gpio"
+	"periph.io/x/conn/v3/gpio"
 )
 
 // OUTPUT PINS
@@ -28,7 +28,10 @@ var pin_in_data_out [8]gpio.PinIO
 
 func main() {
 
-	var setGoLevelCh = make(chan int)
+	fmt.Println("hi")
+	os.Exit(0)
+
+	/* var setGoLevelCh = make(chan int)
 	var userInput int
 	var getDataOutLevelCh = make(chan int)
 	var capturedDataOutLevelCh = make(chan [8]int)
@@ -97,6 +100,6 @@ func main() {
 			break
 		}
 
-	}
+	} */
 
 }
