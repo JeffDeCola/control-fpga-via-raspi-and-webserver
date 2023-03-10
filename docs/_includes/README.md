@@ -92,12 +92,7 @@ To push a docker image you will need,
 
 ### RUN
 
-The following steps are located in
-[run.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/run.sh).
-
-To run
-[main.go](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/main.go)
-from the command line,
+To [run.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/run.sh),
 
 ```bash
 cd control-fpga-code
@@ -106,8 +101,8 @@ go run main.go init.go inputs.go outputs.go
 
 ### CREATE BINARY
 
-The following steps are located in
-[create-binary.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/bin/create-binary.sh).
+To 
+[create-binary.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/bin/create-binary.sh),
 
 ```bash
 cd control-fpga-code
@@ -116,7 +111,7 @@ cd bin
 ./control-fpga
 ```
 
-This binary will not be used during a docker build since it creates it’s own.
+This binary will NOT be used during a docker build since it creates it’s own.
 
 ### RASPBERRY PI TO FPGA DEV BOARD INTERFACE (GPIO to PMOD)
 
@@ -196,10 +191,14 @@ tbd.
 
 ### STEP 1 - TEST
 
-The following steps are located in
-[unit-tests.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/control-fpga-code/test/unit-tests.sh).
+To create `_test` files,
 
-To unit test the code,
+```bash
+cd control-fpga-code
+gotests -w -all main.go init.go inputs.go outputs.go
+```
+
+To [unit-tests.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/control-fpga-code/test/unit-tests.sh),
 
 ```bash
 cd control-fpga-code
@@ -207,20 +206,14 @@ go test -cover ./... | tee test/test_coverage.txt
 cat test/test_coverage.txt
 ```
 
-To create `_test` files,
-
-```bash
-gotests -w -all main.go
-```
-
 ### STEP 2 - BUILD (DOCKER IMAGE VIA DOCKERFILE)
-
-The following steps are located in
-[build.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/build-push/build.sh).
 
 We will be using a multi-stage build using a
 [Dockerfile](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/build-push/Dockerfile).
 The end result will be a very small docker image around 13MB.
+
+To
+[build.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/build-push/build.sh),
 
 ```bash
 cd control-fpga-code
@@ -255,16 +248,14 @@ on `alpine`, which is around 13MB.
 
 ### STEP 3 - PUSH (TO DOCKERHUB)
 
-The following steps are located in
-[push.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/build-push/push.sh).
-
-If you are not logged in, you need to login to dockerhub,
+You need to logged in to dockerhub,
 
 ```bash
 docker login
 ```
 
-Once logged in you can push to DockerHub,
+To
+[push.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/build-push/push.sh),
 
 ```bash
 docker push jeffdecola/control-fpga-via-raspi-and-webserver
