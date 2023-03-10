@@ -79,7 +79,7 @@ I used the following language,
 You will need the following go packages,
 
 ```bash
-go get -u periph.io/x/periph/cmd/...
+go get periph.io/x/cmd/...
 ```
 
 To build a docker image you will need docker on your machine,
