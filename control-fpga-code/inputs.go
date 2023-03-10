@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"periph.io/x/periph/conn/gpio"
+	"periph.io/x/conn/v3/gpio"
 )
 
 // GO (SET)

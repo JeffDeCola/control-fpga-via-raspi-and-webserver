@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"periph.io/x/periph/conn/gpio"
+	"periph.io/x/conn/v3/gpio"
 )
 
 // DATA_OUT (GET)

@@ -72,8 +72,8 @@ echo " "
 echo "GET GO PACKAGES -----------------------------------------------------------------------"
 echo " "
 
-echo "go get -u periph.io/x/periph/cmd/..."
-go get -u periph.io/x/periph/cmd/...
+echo "go get periph.io/x/cmd/..."
+go get periph.io/x/cmd/...
 echo "go get -u -v github.com/sirupsen/logrus"
 go get -u -v github.com/sirupsen/logrus
 echo " "
