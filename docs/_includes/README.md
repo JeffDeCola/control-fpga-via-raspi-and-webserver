@@ -11,9 +11,9 @@ I have a working demo at
 This project is separated into 4 main sections,
 
 1. The FPGA
-2. The BACKEND SERVER (Raspberry Pi) to control the I/O of the FPGA
-3. The WEB SERVER (bluehost) providing to control the Raspberry Pi
-4. The BROWSER to provide a GUI
+1. The BACKEND SERVER (Raspberry Pi) to control the I/O of the FPGA
+1. The WEB SERVER (bluehost) providing to control the Raspberry Pi
+1. The BROWSER to provide a GUI
 
 This may help,
 
@@ -24,7 +24,7 @@ This may help,
 The following figure provides more details and will be explained
 in the following four sections,
 
-![IMAGE - controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg - IMAGE](pics/controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg)
+![IMAGE - 8-bit processor - IMAGE](pics/controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg)
 
 ## SECTION I - THE FPGA
 
