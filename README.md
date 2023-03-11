@@ -41,7 +41,7 @@ Documentation and Reference
   to a FPGA
 * The
   [control-fpga-via-raspi-and-webserver](https://hub.docker.com/r/jeffdecola/control-fpga-via-raspi-and-webserver)
-  docker image at dockerhub  
+  docker image at dockerhub
 * [raspi-gpio](https://github.com/JeffDeCola/my-go-examples/tree/master/single-board-computers/raspi-gpio)
   is an example of controlling the GPIO (Input/Output)
   on the Raspberry Pi using go
@@ -60,9 +60,9 @@ I have a working demo at
 This project is separated into 4 main sections,
 
 1. The FPGA
-2. The BACKEND SERVER (Raspberry Pi) to control the I/O of the FPGA
-3. The WEB SERVER (bluehost) providing to control the Raspberry Pi
-4. The BROWSER to provide a GUI
+1. The BACKEND SERVER (Raspberry Pi) to control the I/O of the FPGA
+1. The WEB SERVER (bluehost) providing to control the Raspberry Pi
+1. The BROWSER to provide a GUI
 
 This may help,
 
@@ -73,7 +73,7 @@ This may help,
 The following figure provides more details and will be explained
 in the following four sections,
 
-![IMAGE - controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg - IMAGE](docs/pics/controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg)
+![IMAGE - 8-bit processor - IMAGE](docs/pics/controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg)
 
 ## SECTION I - THE FPGA
 

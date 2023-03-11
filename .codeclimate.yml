@@ -19,6 +19,10 @@ version: "2"
 plugins:
   markdownlint:
     enabled: true
+    checks:
+      # IGNORE LINE LENGTH
+      MD013:
+        enabled: false
   shellcheck:
     enabled: true
   gofmt:
