@@ -92,7 +92,7 @@ jobs:
             channel: '#jeff-builds'
             text: "From control-fpga-via-raspi-and-webserver: PASSED job-build-push in concourse ci."
         - put: resource-repo-status
-          params: { state: "pending", description: "PASSED job-build-push in concourse ci.", commit: "control-fpga-via-raspi-and-webserver" }
+          params: { state: "success", description: "PASSED job-build-push in concourse ci.", commit: "control-fpga-via-raspi-and-webserver" }
       on_failure:
         do:
         - put: resource-slack-alert
