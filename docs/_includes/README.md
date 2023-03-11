@@ -101,7 +101,7 @@ go run main.go init.go inputs.go outputs.go
 
 ### CREATE BINARY
 
-To 
+To
 [create-binary.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/bin/create-binary.sh),
 
 ```bash
@@ -230,8 +230,8 @@ docker logs control-fpga-via-raspi-and-webserver
 ```
 
 In **stage 1**, rather than copy a binary into a docker image (because
-that can cause issues), **the Dockerfile will build the binary in the
-docker image.**
+that can cause issues), the Dockerfile will build the binary in the
+docker image.
 
 If you open the DockerFile you can see it will get the dependencies and
 build the binary in go,
@@ -248,7 +248,7 @@ on `alpine`, which is around 13MB.
 
 ### STEP 3 - PUSH (TO DOCKERHUB)
 
-You need to logged in to dockerhub,
+You need to be logged in to dockerhub,
 
 ```bash
 docker login
@@ -262,8 +262,7 @@ docker push jeffdecola/control-fpga-via-raspi-and-webserver
 ```
 
 Check the
-[control-fpga-via-raspi-and-webserver](https://hub.docker.com/r/jeffdecola/control-fpga-via-raspi-and-webserver)
-docker image at DockerHub.
+[docker image at DockerHub](https://hub.docker.com/r/jeffdecola/control-fpga-via-raspi-and-webserver).
 
 ### CONTINUOUS INTEGRATION & DEPLOYMENT
 
