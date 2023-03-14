@@ -227,6 +227,7 @@ docker images jeffdecola/control-fpga-via-raspi-and-webserver:latest
 docker run --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
 docker exec -i -t control-fpga-via-raspi-and-webserver /bin/bash
 docker logs control-fpga-via-raspi-and-webserver
+docker rm -f control-fpga-via-raspi-and-webserver
 ```
 
 In **stage 1**, rather than copy a binary into a docker image (because
