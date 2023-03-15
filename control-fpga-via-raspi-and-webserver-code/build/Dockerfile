@@ -20,12 +20,11 @@ COPY . .
 RUN ls -lat $GOPATH/src/github.com/jeffdecola/control-fpga-via-raspi-and-webserver/
 
 # Fetch dependencies using go get
-RUN go get periph.io/x/cmd/...
 RUN go get -u github.com/sirupsen/logrus
 RUN go get -d -v
 
 # Build the binary
-RUN go build -o /go/bin/control-fpga-via-raspi-and-webserver main.go init.go inputs.go outputs.go
+RUN go build -o /go/bin/control-fpga-via-raspi-and-webserver main.go
 
 ###############################
 # STAGE 2 build a smaller image

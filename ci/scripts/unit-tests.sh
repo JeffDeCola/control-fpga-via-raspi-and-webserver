@@ -56,8 +56,8 @@ echo "cp -R ./control-fpga-via-raspi-and-webserver src/github.com/JeffDeCola/."
 cp -R ./control-fpga-via-raspi-and-webserver src/github.com/JeffDeCola/.
 echo " "
 
-echo "cd src/github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/control-fpga-code"
-cd src/github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/control-fpga-code
+echo "cd src/github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/control-fpga-via-raspi-and-webserver-code"
+cd src/github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/control-fpga-via-raspi-and-webserver-code
 echo " "
 
 echo "Check that you are set and everything is in the right place for go:"
@@ -72,20 +72,9 @@ echo " "
 echo "GET GO PACKAGES -----------------------------------------------------------------------"
 echo " "
 
-echo "go get periph.io/x/cmd/..."
-go get periph.io/x/cmd/...
 echo "go get -u -v github.com/sirupsen/logrus"
 go get -u -v github.com/sirupsen/logrus
 echo " "
-
-echo "RUN TESTS -----------------------------------------------------------------------------"
-echo " "
-
-echo "Run go tests"
-echo "go test -cover ./... | tee test/test_coverage.txt"
-echo "   -cover shows the percentage coverage"
-echo "   Put results in /test/test_coverage.txt file"
-go test -cover ./... | tee test/test_coverage.txt
 
 echo "RUN TESTS -----------------------------------------------------------------------------"
 echo " "

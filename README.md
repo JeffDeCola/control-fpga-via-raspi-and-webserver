@@ -20,9 +20,10 @@ Table of Contents
 * [TRY IT](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#try-it)
 * [OVERVIEW](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#overview)
 * [A LITTLE MORE DETAIL](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#a-little-more-detail)
+* [PREREQUISITES](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#prerequisites)
+* [SOFTWARE STACK](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#software-stack)
 * [SECTION I - THE FPGA](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-i---the-fpga)
 * [SECTION II - THE RASPBERRY PI](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-ii---the-raspberry-pi)
-  * [PREREQUISITES](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#prerequisites)
   * [RUN](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#run)
   * [CREATE BINARY](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#create-binary)
   * [RASPBERRY PI TO FPGA DEV BOARD INTERFACE (GPIO to PMOD)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#raspberry-pi-to-fpga-dev-board-interface-gpio-to-pmod)
@@ -30,6 +31,7 @@ Table of Contents
   * [STEP 1 - TEST](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#step-1---test)
   * [STEP 2 - BUILD (DOCKER IMAGE VIA DOCKERFILE)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#step-2---build-docker-image-via-dockerfile)
   * [STEP 3 - PUSH (TO DOCKERHUB)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#step-3---push-to-dockerhub)
+  * [STEP 4 - DEPLOY (TO DOCKER)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#step-4---deploy-to-docker)
   * [CONTINUOUS INTEGRATION & DEPLOYMENT](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#continuous-integration--deployment)
 * [SECTION III - THE WEB SERVER](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-iii---the-web-server)
 * [SECTION IV - THE BROWSER](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-iv---the-browser)
@@ -75,6 +77,40 @@ in the following four sections,
 
 ![IMAGE - 8-bit processor - IMAGE](docs/pics/controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg)
 
+## PREREQUISITES
+
+You will need the following go packages,
+
+```bash
+go get -u -v github.com/sirupsen/logrus
+go get -u -v github.com/cweill/gotests/...
+go get periph.io/x/cmd/...
+```
+
+## SOFTWARE STACK
+
+* DEVELOPMENT
+  * [go](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/development/languages/go-cheat-sheet)
+  * gotests
+* OPERATIONS
+  * [concourse/fly](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/operations/continuous-integration-continuous-deployment/concourse-cheat-sheet)
+    (optional)
+  * [docker](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/operations/orchestration/builds-deployment-containers/docker-cheat-sheet)
+* SERVICES
+  * [dockerhub](https://hub.docker.com/)
+  * [github](https://github.com/)
+
+Where,
+
+* **GUI**
+  _golang net/http package and ReactJS_
+* **Routing & REST API framework**
+  _golang gorilla/mux package_
+* **Backend**
+  _golang_
+* **Database**
+  _N/A_
+
 ## SECTION I - THE FPGA
 
 My
@@ -119,48 +155,39 @@ The Raspberry Pi shall do two things,
 * Control 26 pins of the I/O of the FPGA (GPIO to PMOD)
 * Provide an interface to the webserver (REST JSON API)
 
-### PREREQUISITES
-
-I used the following language,
-
-* [go](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/development/languages/go-cheat-sheet)
-
-You will need the following go packages,
-
-```bash
-go get periph.io/x/cmd/...
-```
-
-To build a docker image you will need docker on your machine,
-
-* [docker](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/operations/orchestration/builds-deployment-containers/docker-cheat-sheet)
-
-To push a docker image you will need,
-
-* [DockerHub account](https://hub.docker.com/)
-
 ### RUN
 
-To [run.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/run.sh),
+To
+[run.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-via-raspi-and-webserver-code/run.sh),
 
 ```bash
-cd control-fpga-code
-go run main.go init.go inputs.go outputs.go
+cd control-fpga-via-raspi-and-webserver-code
+go run main.go
+```
+
+As a placeholder, every 2 seconds it will print,
+
+```txt
+    INFO[0000] Let's Start this!
+    Hello everyone, count is: 1
+    Hello everyone, count is: 2
+    Hello everyone, count is: 3
+    etc...
 ```
 
 ### CREATE BINARY
 
 To
-[create-binary.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/bin/create-binary.sh),
+[create-binary.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-via-raspi-and-webserver-code/bin/create-binary.sh),
 
 ```bash
-cd control-fpga-code
-go build -o bin/control-fpga main.go init.go inputs.go outputs.go
-cd bin
-./control-fpga
+cd control-fpga-via-raspi-and-webserver-code/bin
+go build -o control-fpga-via-raspi-and-webserver ../main.go
+./control-fpga-via-raspi-and-webserver
 ```
 
-This binary will NOT be used during a docker build since it creates it’s own.
+This binary will not be used during a docker build
+since it creates it's own.
 
 ### RASPBERRY PI TO FPGA DEV BOARD INTERFACE (GPIO to PMOD)
 
@@ -240,33 +267,31 @@ tbd.
 
 ### STEP 1 - TEST
 
-To create `_test` files,
+To create unit `_test` files,
 
 ```bash
-cd control-fpga-code
-gotests -w -all main.go init.go inputs.go outputs.go
+cd control-fpga-via-raspi-and-webserver-code
+gotests -w -all main.go
 ```
 
-To [unit-tests.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/control-fpga-code/test/unit-tests.sh),
+To run
+[unit-tests.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/control-fpga-via-raspi-and-webserver-code/test/unit-tests.sh),
 
 ```bash
-cd control-fpga-code
 go test -cover ./... | tee test/test_coverage.txt
 cat test/test_coverage.txt
 ```
 
 ### STEP 2 - BUILD (DOCKER IMAGE VIA DOCKERFILE)
 
-We will be using a multi-stage build using a
-[Dockerfile](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/build-push/Dockerfile).
-The end result will be a very small docker image around 13MB.
-
 To
-[build.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/build-push/build.sh),
+[build.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-via-raspi-and-webserver-code/build/build.sh)
+with a
+[Dockerfile](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-via-raspi-and-webserver-code/build/Dockerfile),
 
 ```bash
-cd control-fpga-code
-docker build -f build-push/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
+cd control-fpga-via-raspi-and-webserver-code
+docker build -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
 ```
 
 You can check and test this docker image,
@@ -281,10 +306,7 @@ docker rm -f control-fpga-via-raspi-and-webserver
 
 In **stage 1**, rather than copy a binary into a docker image (because
 that can cause issues), the Dockerfile will build the binary in the
-docker image.
-
-If you open the DockerFile you can see it will get the dependencies and
-build the binary in go,
+docker image,
 
 ```bash
 FROM golang:alpine AS builder
@@ -298,21 +320,35 @@ on `alpine`, which is around 13MB.
 
 ### STEP 3 - PUSH (TO DOCKERHUB)
 
-You need to be logged in to dockerhub,
+You must be logged in to DockerHub,
 
 ```bash
 docker login
 ```
 
 To
-[push.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-code/build-push/push.sh),
+[push.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-via-raspi-and-webserver-code/push/push.sh),
 
 ```bash
 docker push jeffdecola/control-fpga-via-raspi-and-webserver
 ```
 
 Check the
-[docker image at DockerHub](https://hub.docker.com/r/jeffdecola/control-fpga-via-raspi-and-webserver).
+[control-fpga-via-raspi-and-webserver docker image](https://hub.docker.com/r/jeffdecola/control-fpga-via-raspi-and-webserver)
+at DockerHub.
+
+### STEP 4 - DEPLOY (TO DOCKER)
+
+To
+[deploy.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-via-raspi-and-webserver-code/deploy/deploy.sh),
+
+```bash
+cd control-fpga-via-raspi-and-webserver-code
+docker run --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
+docker exec -i -t control-fpga-via-raspi-and-webserver /bin/bash
+docker logs control-fpga-via-raspi-and-webserver
+docker rm -f control-fpga-via-raspi-and-webserver
+```
 
 ### CONTINUOUS INTEGRATION & DEPLOYMENT
 

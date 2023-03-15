@@ -1,0 +1,23 @@
+# control-fpga-via-raspi-and-webserver task-deploy.yml
+
+platform: linux
+
+# DOCKER BASE IMAGE FOR TASKS (BASED ON ALPINE, A SMALLER LINUX DISTRIBUTION)
+image_resource:
+  type: docker-image
+  source:
+    repository: golang
+    tag: 1.20.1
+
+params:
+  DOCKER_HOST_SSH_PRIVATE_KEY_FILE: "will be replaced"
+  DOCKER_HOST_PORT: "will be replaced"
+  DOCKER_HOST_USER: "will be replaced"
+  DOCKER_HOST_IP: "will be replaced"
+
+inputs:
+  - name: control-fpga-via-raspi-and-webserver
+
+run:
+  path: ./control-fpga-via-raspi-and-webserver/ci/scripts/deploy.sh
+  # args: [-debug]
