@@ -8,7 +8,8 @@ then
     echo "************************************************************************"
     echo "* build.sh -debug (START) **********************************************"
     echo "************************************************************************"
-    # set -x enables a mode of the shell where all executed commands are printed to the terminal.
+    # set -x enables a mode of the shell where all executed commands
+    # are printed to the terminal.
     set -x
     echo " "
 else
@@ -21,11 +22,12 @@ fi
 echo "cd to where go code is"
 echo "cd .."
 cd ..
+echo " " 
 
 echo "Build your docker image using Dockerfile"
 echo "NOTE: The binary is built using this step"
-echo "docker build -f build-push/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver ."
-docker build -f build-push/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
+echo "docker build -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver ."
+docker build -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
 echo " "
 
 echo "Check Docker Image size"
