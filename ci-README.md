@@ -3,7 +3,7 @@
 I use concourse ci to,
 
 * Copy and edit `README.md` to `/docs/_includes/README.md` for
-  [GitHub Webpage](https://jeffdecola.github.io/crypto-miner-manager/)
+  [GitHub Webpage](https://jeffdecola.github.io/control-fpga-via-raspi-and-webserver/)
 * TEST code
 * BUILD docker image
 * PUSH to dockerhub
@@ -13,35 +13,35 @@ I use concourse ci to,
 ## PIPELINE
 
 The concourse
-[pipeline.yml](https://github.com/JeffDeCola/crypto-miner-manager/blob/master/ci/pipeline.yml)
+[pipeline.yml](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/ci/pipeline.yml)
 shows the entire ci flow. Visually, it looks like,
 
-![IMAGE - crypto-miner-manager concourse ci pipeline - IMAGE](docs/pics/crypto-miner-manager-pipeline.jpg)
+![IMAGE - control-fpga-via-raspi-and-webserver concourse ci pipeline - IMAGE](docs/pics/control-fpga-via-raspi-and-webserver-pipeline.jpg)
 
 ## JOBS, TASKS AND RESOURCE TYPES
 
 The concourse `jobs` and `tasks` are,
 
 * `job-readme-github-pages` runs task
-  [task-readme-github-pages.yml](https://github.com/JeffDeCola/crypto-miner-manager/blob/master/ci/tasks/task-readme-github-pages.yml)
+  [task-readme-github-pages.yml](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/ci/tasks/task-readme-github-pages.yml)
   that kicks off shell script
-  [readme-github-pages.sh](https://github.com/JeffDeCola/crypto-miner-manager/blob/master/ci/scripts/readme-github-pages.sh)
+  [readme-github-pages.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/ci/scripts/readme-github-pages.sh)
 * `job-unit-tests` runs task
-  [task-unit-tests.yml](https://github.com/JeffDeCola/crypto-miner-manager/blob/master/ci/tasks/task-unit-tests.yml)
+  [task-unit-tests.yml](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/ci/tasks/task-unit-tests.yml)
   that kicks off shell script
-  [unit-tests.sh](https://github.com/JeffDeCola/crypto-miner-manager/tree/master/ci/scripts/unit-tests.sh)
+  [unit-tests.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/ci/scripts/unit-tests.sh)
 * `job-build-push` runs task
-  [task-build-push.yml](https://github.com/JeffDeCola/crypto-miner-manager/blob/master/ci/tasks/task-build-push.yml)
+  [task-build-push.yml](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/ci/tasks/task-build-push.yml)
   that kicks off shell script
-  [build-push.sh](https://github.com/JeffDeCola/crypto-miner-manager/tree/master/ci/scripts/build-push.sh)
+  [build-push.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/ci/scripts/build-push.sh)
 * `job-deploy` runs task
-  [task-deploy.yml](https://github.com/JeffDeCola/crypto-miner-manager/blob/master/ci/tasks/task-deploy.yml)
+  [task-deploy.yml](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/ci/tasks/task-deploy.yml)
   that kicks off shell script
-  [deploy.sh](https://github.com/JeffDeCola/crypto-miner-manager/tree/master/ci/scripts/deploy.sh)
+  [deploy.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/ci/scripts/deploy.sh)
 
 The concourse `resources types` are,
 
-* `crypto-miner-manager` uses a resource type
+* `control-fpga-via-raspi-and-webserver` uses a resource type
   [docker-image](https://hub.docker.com/r/concourse/git-resource/)
   to PULL a repo from github
 * `resource-dump-to-dockerhub` uses a resource type
