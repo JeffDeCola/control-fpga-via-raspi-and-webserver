@@ -14,13 +14,13 @@ coverage.out
 *.jpg:Zone.Identifier
 
 # Ignore binaries
-**/bin/hello-go
+**/bin/control-fpga-via-raspi-and-webserver
 
 # Ignore test coverage
 **/test/test_coverage.txt
 
 # Ignore binary used for docker build
-**/build-push/hello-go
+**/build/control-fpga-via-raspi-and-webserver
 
 # SFTP VS CODE EXTENTION
 sftp.json
