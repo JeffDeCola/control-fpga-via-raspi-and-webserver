@@ -2,7 +2,7 @@
 .credentials.yml
 
 # VSCODE
-.vscode/ 
+.vscode/
 
 # GO
 coverage.out
