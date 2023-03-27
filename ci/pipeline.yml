@@ -218,8 +218,8 @@ resource_types:
   - name: github-status
     type: docker-image
     source:
-      repository: dpb587/github-status-resource
-      tag: master
+      repository: jeffdecola/github-status-resource-clone
+      tag: v0.0.2
 
 #------------------------------------------------------------------------------------------
 resources:
@@ -254,3 +254,4 @@ resources:
     source:
       repository: jeffdecola/control-fpga-via-raspi-and-webserver 
       access_token: ((repo_github_token))
+      branch: master
