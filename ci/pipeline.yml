@@ -176,15 +176,18 @@ jobs:
     # RUN TASK IN REPO USING ALPINE DOCKER IMAGE 
     - task: task-deploy
       file: control-fpga-via-raspi-and-webserver/ci/tasks/task-deploy.yml
-      params:
-        DOCKER_HOST_SSH_PRIVATE_KEY_FILE: {{docker_host_ssh_private_key_file}}
-        DOCKER_HOST_PORT: '22'
-        DOCKER_HOST_USER: 'jeffry'
-        DOCKER_HOST_IP: '192.168.20.122'
 
       # TASK SUCCESS
       on_success:
         do:
+          # DEPLOY DOCKER IMAGE TO DOCKER HOST
+          - put: resource-deploy-docker
+            params:
+              DOCKER_HOST_SSH_PRIVATE_KEY_FILE: {{docker_host_ssh_private_key_file}}
+              DOCKER_HOST_PORT: '22'
+              DOCKER_HOST_USER: 'jeffry'
+              DOCKER_HOST_IP: '192.168.20.122'
+              DOCKER_IMAGE_TO_DEPLOY: 'jeffdecola/control-fpga-via-raspi-and-webserver'
           # SEND SLACK ALERT  
           - put: resource-slack-alert
             params:
@@ -208,6 +211,12 @@ jobs:
 
 #------------------------------------------------------------------------------------------
 resource_types:
+
+  - name: deploy-docker
+    type: docker-image
+    source:
+      repository: jeffdecola/concourse-deploy-docker-resource
+      tag: latest
 
   - name: slack-notification
     type: docker-image
@@ -242,6 +251,13 @@ resources:
       username: jeffdecola
       password: ((dockerhub_password))
 
+  - name: resource-deploy-docker
+    type: deploy-docker
+    icon: docker
+    source:
+      username: jeffdecola
+      password: ((dockerhub_password))
+      
   - name: resource-slack-alert
     type: slack-notification
     icon: slack
