@@ -47,6 +47,9 @@ The concourse `resources types` are,
 * `resource-dump-to-dockerhub` uses a resource type
   [docker-image](https://hub.docker.com/r/concourse/docker-image-resource/)
   to PUSH a docker image to dockerhub.
+* `resource-deploy-docker` uses a resource type
+  [docker-image](https://hub.docker.com/r/jeffdecola/concourse-deploy-docker-resource/)
+  to DEPLOY a docker image to docker.
 * `resource-slack-alert` uses a resource type
   [docker image](https://hub.docker.com/r/cfcommunity/slack-notification-resource)
   that will notify slack on your progress
