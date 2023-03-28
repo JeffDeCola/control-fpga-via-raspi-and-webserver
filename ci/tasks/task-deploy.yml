@@ -9,12 +9,6 @@ image_resource:
     repository: golang
     tag: 1.20.1
 
-params:
-  DOCKER_HOST_SSH_PRIVATE_KEY_FILE: "will be replaced"
-  DOCKER_HOST_PORT: "will be replaced"
-  DOCKER_HOST_USER: "will be replaced"
-  DOCKER_HOST_IP: "will be replaced"
-
 inputs:
   - name: control-fpga-via-raspi-and-webserver
 
