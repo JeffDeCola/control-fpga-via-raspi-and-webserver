@@ -46,15 +46,15 @@ The concourse `resources types` are,
   to PULL a repo from github
 * `resource-dump-to-dockerhub` uses a resource type
   [docker-image](https://hub.docker.com/r/concourse/docker-image-resource/)
-  to PUSH a docker image to dockerhub.
+  to PUSH a docker image to dockerhub
 * `resource-deploy-docker` uses a resource type
   [docker-image](https://hub.docker.com/r/jeffdecola/concourse-deploy-docker-resource/)
-  to DEPLOY a docker image to docker.
+  to DEPLOY a docker image to docker
 * `resource-slack-alert` uses a resource type
   [docker image](https://hub.docker.com/r/cfcommunity/slack-notification-resource)
   that will notify slack on your progress
 * `resource-repo-status` uses a resource type
-  [docker image](https://hub.docker.com/r/dpb587/github-status-resource)
+  [docker image](https://hub.docker.com/r/jeffdecola/github-status-resource-clone)
   that will update your git status for that particular commit
 
 For more information on using concourse for continuous integration,
