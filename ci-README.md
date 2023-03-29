@@ -14,7 +14,7 @@ I use concourse to automate,
 
 The concourse
 [pipeline.yml](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/ci/pipeline.yml)
-shows the entire ci flow. Visually, it looks like,
+shows the entire ci flow,
 
 ![IMAGE - control-fpga-via-raspi-and-webserver concourse ci pipeline - IMAGE](docs/pics/control-fpga-via-raspi-and-webserver-pipeline.jpg)
 
