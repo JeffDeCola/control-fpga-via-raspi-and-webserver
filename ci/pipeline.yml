@@ -185,8 +185,8 @@ jobs:
             params:
               DOCKER_HOST_SSH_PRIVATE_KEY_FILE: {{docker_host_ssh_private_key_file}}
               DOCKER_HOST_PORT: '22'
-              DOCKER_HOST_USER: 'jeffry'
-              DOCKER_HOST_IP: '192.168.20.122'
+              DOCKER_HOST_USER: 'jeffdecola'
+              DOCKER_HOST_IP: '192.168.20.124'
               DOCKER_IMAGE_TO_DEPLOY: 'jeffdecola/control-fpga-via-raspi-and-webserver'
           # SEND SLACK ALERT  
           - put: resource-slack-alert
