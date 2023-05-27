@@ -77,23 +77,13 @@ in the following four sections,
 
 ![IMAGE - 8-bit processor - IMAGE](docs/pics/controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg)
 
-## PREREQUISITES
-
-You will need the following go packages,
-
-```bash
-go get -u -v github.com/sirupsen/logrus
-go get -u -v github.com/cweill/gotests/...
-go get periph.io/x/cmd/...
-```
-
 ## SOFTWARE STACK
 
 * DEVELOPMENT
   * [go](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/development/languages/go-cheat-sheet)
   * gotests
 * OPERATIONS
-  * [concourse/fly](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/operations/continuous-integration-continuous-deployment/concourse-cheat-sheet)
+  * [concourse ci](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/operations/continuous-integration-continuous-deployment/concourse-cheat-sheet)
     (optional)
   * [docker](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/operations/orchestration/builds-deployment-containers/docker-cheat-sheet)
 * SERVICES
@@ -146,7 +136,7 @@ But as shown in the following figure, the microprocessor has 31 pins.
 The next section will go over which 5 pins we hardcoded or will be
 controlled by the FPGA development board,
 
-![IMAGE - Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg - IMAGE](https://github.com/JeffDeCola/my-systemverilog-examples/blob/master/docs/pics/Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg?raw=true)
+![IMAGE - Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg - IMAGE](https://github.com/JeffDeCola/my-verilog-examples/blob/master/docs/pics/systems/Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg?raw=true)
 
 ## SECTION II - THE RASPBERRY PI
 
@@ -259,7 +249,7 @@ board is as follows,
 | [2]                 |  2                | 05 (GPIO3)*            |
 | [1]                 |  3                | 07 (GPIO4)            |
 | [0]                 |  4                | 11 (GPIO17)           |
-| GO_BAR              |  7                | 13 (GPIO27)           |
+| GO                  |  7                | 13 (GPIO27)           |
 | **(GND)** RESET     |  8                | N/C                   |
 | **(GND)** JAM       |  9                | N/C                   |
 | N/C                 |  10               | N/C                   |
