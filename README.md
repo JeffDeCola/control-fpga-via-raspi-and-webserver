@@ -219,47 +219,52 @@ A go program is used to control and capture the I/O.
 The pin list between the Raspberry Pi and the FPGA development
 board is as follows,
 
-|                 | PMOD Pins         | RasPi GPIO Pin        |
-|----------------:|:-----------------:|:---------------------:|
-| [7:0] DATA_IN_A |  JA PMOD          |                       |
-| [7]             |  1                | 24 (GPIO8)            |
-| [6] SET TO LOW  |  2                | --- N/C               |
-| [5] SET TO LOW  |  3                | --- N/C               |
-| [4] SET TO LOW  |  4                | --- N/C               |
-| [3]             |  7                | 35 (GPIO19)           |
-| [2]             |  8                | 40 (GPIO21)           |
-| [1]             |  9                | 38 (GPIO20)           |
-| [0]             |  10               | 12 (GPIO18)           |
-|                 |                   |                       |
-| [7:0] DATA_IN_B |  JB PMOD          |                       |
-| [7]             |  1                | 26 (GPIO7)            |
-| [6]             |  2                | 19 (GPIO10)           |
-| [5]             |  3                | 21 (GPIO9)            |
-| [4]             |  4                | 23 (GPIO11)           |
-| [3]             |  7                | 37 (GPIO26)           |
-| [2]             |  8                | 33 (GPIO13)           |
-| [1]             |  9                | 05 (GPIO3)            |
-| [0]             |  10               | 03 (GPIO2)            |
-|                 |                   |                       |
-| [7:0] DATA_OUT  |  JC PMOD          |                       |
-| [7]             |  1                | 36 (GPIO16)           |
-| [6]             |  2                | 08 (GPIO14)           |
-| [5]             |  3                | 10 (GPIO15)           |
-| [4]             |  4                | 11 (GPIO17)           |
-| [3]             |  7                | 07 (GPIO4)            |
-| [2]             |  8                | 32 (GPIO12)           |
-| [1]             |  9                | 29 (GPIO5)            |
-| [0]             |  10               | 31 (GPIO6)            |
-|                 |                   |                       |
-| [3:0] OPCODE    |  JD PMOD          |                       |
-| [3]             |  1                | 13 (GPIO27)           |
-| [2]             |  2                | 15 (GPIO22)           |
-| [1]             |  3                | 16 (GPIO23)           |
-| [0]             |  4                | 18 (GPIO24)           |
-| GO              |  7                | 22 (GPIO25)           |
-| RESET --- N/C   |  8                | --- N/C               |
-| JAM --- N/C     |  9                | --- N/C               |
-| N/C             |  10               | --- N/C               |
+|                     | PMOD Pins         | RasPi GPIO Pin        |
+|--------------------:|:-----------------:|:---------------------:|
+| **[7:0] DATA_IN_A** |  JA PMOD          |                       |
+| [7]                 |  1                | 18 (GPIO24)           |
+| **(GND)** [6]       |  2                | N/C                   |
+| **(GND)** [5]       |  3                | N/C                   |
+| **(GND)** [4]       |  4                | N/C                   |
+| [3]                 |  7                | 16 (GPIO23)           |
+| [2]                 |  8                | 12 (GPIO18)           |
+| [1]                 |  9                | 10 (GPIO15)           | Disable serial using raspi-config
+| [0]                 |  10               | 08 (GPIO14)           | Disable serial using raspi-config
+|                     |                   |                       |
+| **[7:0] DATA_IN_B** |  JB PMOD          |                       |
+|                     |                   |                       |
+| [7]                 |  1                | 37 (GPIO26)           |
+| [6]                 |  2                | 40 (GPIO21)           |
+| [5]                 |  3                | 38 (GPIO20)           |
+| [4]                 |  4                | 36 (GPIO16)           |
+| [3]                 |  7                | 32 (GPIO12)           |
+| [2]                 |  8                | 26 (GPIO7)            |
+| [1]                 |  9                | 24 (GPIO8)            |
+| [0]                 |  10               | 22 (GPIO25)           |
+|                     |                   |                       |
+| **[7:0] DATA_OUT**  |  JC PMOD          |                       |
+|                     |                   |                       |
+| [7]                 |  1                | 15 (GPIO22)           |
+| [6]                 |  2                | 19 (GPIO10)           |
+| [5]                 |  3                | 21 (GPIO9)            |
+| [4]                 |  4                | 23 (GPIO11)           |
+| [3]                 |  7                | 29 (GPIO5)            |
+| [2]                 |  8                | 31 (GPIO6)            |
+| [1]                 |  9                | 33 (GPIO13)           |
+| [0]                 |  10               | 35 (GPIO19)           |
+|                     |                   |                       |
+| **[3:0] OPCODE**    |  JD PMOD          |                       |
+|                     |                   |                       |
+| [3]                 |  1                | 03 (GPIO2)            |
+| [2]                 |  2                | 05 (GPIO3)            |
+| [1]                 |  3                | 07 (GPIO4)            |
+| [0]                 |  4                | 11 (GPIO17)           |
+| GO_BAR              |  7                | 13 (GPIO27)           |
+| **(GND)** RESET     |  8                | N/C                   |
+| **(GND)** JAM       |  9                | N/C                   |
+| N/C                 |  10               | N/C                   |
+
+![IMAGE - arty-s7-50-pmod-to-raspi-gpio-breadboard-connections.jpg - IMAGE](docs/pics/arty-s7-50-pmod-to-raspi-gpio-breadboard-connections.jpg)
 
 ### RASPBERRY PI TO WEBSERVER INTERFACE (REST JSON API)
 
