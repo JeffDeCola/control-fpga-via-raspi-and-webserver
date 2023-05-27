@@ -273,6 +273,10 @@ Select `Interfacing Options` and then
 
 ![IMAGE - arty-s7-50-pmod-to-raspi-gpio-breadboard-connections.jpg - IMAGE](docs/pics/arty-s7-50-pmod-to-raspi-gpio-breadboard-connections.jpg)
 
+The result,
+
+![IMAGE - breadboard.jpg - IMAGE](docs/pics/breadboard.jpg)
+
 ### RASPBERRY PI TO WEBSERVER INTERFACE (REST JSON API)
 
 tbd.
