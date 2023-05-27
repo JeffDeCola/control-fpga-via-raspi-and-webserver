@@ -228,8 +228,8 @@ board is as follows,
 | **(GND)** [4]       |  4                | N/C                   |
 | [3]                 |  7                | 16 (GPIO23)           |
 | [2]                 |  8                | 12 (GPIO18)           |
-| [1]                 |  9                | 10 (GPIO15)           | Disable serial using raspi-config
-| [0]                 |  10               | 08 (GPIO14)           | Disable serial using raspi-config
+| [1]                 |  9                | 10 (GPIO15)*          |
+| [0]                 |  10               | 08 (GPIO14)*          |
 |                     |                   |                       |
 | **[7:0] DATA_IN_B** |  JB PMOD          |                       |
 |                     |                   |                       |
@@ -255,14 +255,21 @@ board is as follows,
 |                     |                   |                       |
 | **[3:0] OPCODE**    |  JD PMOD          |                       |
 |                     |                   |                       |
-| [3]                 |  1                | 03 (GPIO2)            |
-| [2]                 |  2                | 05 (GPIO3)            |
+| [3]                 |  1                | 03 (GPIO2)*            |
+| [2]                 |  2                | 05 (GPIO3)*            |
 | [1]                 |  3                | 07 (GPIO4)            |
 | [0]                 |  4                | 11 (GPIO17)           |
 | GO_BAR              |  7                | 13 (GPIO27)           |
 | **(GND)** RESET     |  8                | N/C                   |
 | **(GND)** JAM       |  9                | N/C                   |
 | N/C                 |  10               | N/C                   |
+
+**NOTE**: To use pin 3 (GPIO2), pin 5 (GPIO3),
+pin 8 (GPIO14) and pin 10 (GPIO15)
+you must disable
+the serial port using `raspi-config`.
+Select `Interfacing Options` and then
+`Serial` and select `No`.
 
 ![IMAGE - arty-s7-50-pmod-to-raspi-gpio-breadboard-connections.jpg - IMAGE](docs/pics/arty-s7-50-pmod-to-raspi-gpio-breadboard-connections.jpg)
 
