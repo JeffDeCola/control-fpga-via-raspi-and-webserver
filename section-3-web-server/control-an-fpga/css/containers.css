@@ -84,6 +84,16 @@
     height: auto;
 }
 
+.picture_container_2 {
+  width: 70%;
+  margin:auto;
+}
+
+.picture_container_2 img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* #### COMMENT CONTAINER ##################################### */
 /* Part of Jeff's main site */
 

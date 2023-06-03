@@ -135,6 +135,13 @@
 
                         </div>
 
+                        <!-- ------------------------------------------------------------------------------------------------------- -->
+                        <div class="picture_container_2">
+
+                            <img src="images/arty-s7-breadboard-and-raspberry-pi.jpg" alt="arty-s7-breadboard-and-raspberry-pi"/>
+
+                        </div>
+
                     </article>
 
                 </div>
