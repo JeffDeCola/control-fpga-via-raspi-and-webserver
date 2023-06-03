@@ -39,83 +39,59 @@ type opcode_pins struct {
 	opcode_0 gpio.PinIO
 }
 
-func UserPressAB(APin gpio.PinIO, BPin gpio.PinIO) {
+func UserControl(opcode opcode_pins, data_in_a data_a_pins, data_in_b data_pins, GO_BAR_PIN gpio.PinIO, RESET_PIN gpio.PinIO, JAM_PIN gpio.PinIO, data_out data_pins) {
 
-	HighPin := gpio.High
-	LowPin := gpio.Low
-	a := false
-	b := false
 	var userInput string
 
 	for {
 
 		time.Sleep(200 * time.Millisecond)
 
-		fmt.Print("Toggle (type a or b) e for exit: ")
+		fmt.Print("1: add, 2: subtract, 3: multiply, 4: divide, x: exit: ")
 		fmt.Scan(&userInput)
 		//fmt.Printf("\n")
 
 		switch userInput {
-		case "a":
-			if a {
-				err := APin.Out(LowPin)
-				if err != nil {
-					log.Fatal(err)
-				}
-				a = false
-			} else {
-				err := APin.Out(HighPin)
-				if err != nil {
-					log.Fatal(err)
-				}
-				a = true
-			}
-		case "b":
-			if b {
-				err := BPin.Out(LowPin)
-				if err != nil {
-					log.Fatal(err)
-				}
-				b = false
-			} else {
-				err := BPin.Out(HighPin)
-				if err != nil {
-					log.Fatal(err)
-				}
-				b = true
-			}
-		case "e":
+		case "1":
+			// ADD *************************************************************************************
+			fmt.Println("    ADD")
+			fmt.Println("    DATA_IN_A: 10000011")
+			fmt.Println("    DATA_IN_B: 00001100")
+			opcode.write_opcode(0, 0, 1, 1)
+			data_in_a.write_data_in_a(1, 0, 0, 1, 1)
+			data_in_b.write_data_in(0, 0, 0, 0, 1, 1, 0, 0)
+			execute_opcode(GO_BAR_PIN, data_out)
+		case "2":
+			// SUBTRACT ********************************************************************************
+			fmt.Println("    SUBTRACT")
+			fmt.Println("    DATA_IN_A: 00001111")
+			fmt.Println("    DATA_IN_B: 00001100")
+			opcode.write_opcode(0, 1, 1, 1)
+			data_in_a.write_data_in_a(0, 1, 1, 1, 1)
+			data_in_b.write_data_in(0, 0, 0, 0, 1, 1, 0, 0)
+			execute_opcode(GO_BAR_PIN, data_out)
+		case "3":
+			// MULTIPLY ********************************************************************************
+			fmt.Println("    MULTIPLY")
+			fmt.Println("    DATA_IN_A: 00000010")
+			fmt.Println("    DATA_IN_B: 00000100")
+			opcode.write_opcode(1, 1, 0, 0)
+			data_in_a.write_data_in_a(0, 0, 0, 1, 0)
+			data_in_b.write_data_in(0, 0, 0, 0, 0, 1, 0, 0)
+			execute_opcode(GO_BAR_PIN, data_out)
+		case "4":
+			// DIVIDE ********************************************************************************
+			fmt.Println("    DIVIDE")
+			fmt.Println("    DATA_IN_A: 00000100")
+			fmt.Println("    DATA_IN_B: 00000010")
+			opcode.write_opcode(1, 1, 1, 0)
+			data_in_a.write_data_in_a(0, 0, 1, 0, 0)
+			data_in_b.write_data_in(0, 0, 0, 1, 0, 0, 0, 0)
+			execute_opcode(GO_BAR_PIN, data_out)
+		case "x":
 			os.Exit(1)
 		default:
 			fmt.Println("Try again")
-		}
-
-		// SUM UP THINGS
-		fmt.Printf("        A, B is %v, %v\n", APin.Read(), BPin.Read())
-
-	}
-
-}
-
-func YChange(YPin gpio.PinIO) {
-
-	var YPinLevel gpio.Level
-
-	// THE BUTTON MUST GO FROM LOW TO HIGH TO LOW
-	for {
-
-		// WAIT FOR CHANGE - THIS IS BLOCKING
-		// -1 disables the timeout
-		YPin.WaitForEdge(-1)
-		time.Sleep(100 * time.Millisecond)
-
-		// GET BUTTON LEVEL
-		YPinLevel = YPin.Read()
-
-		if YPinLevel == gpio.High {
-			fmt.Println("        Y = 1")
-		} else {
-			fmt.Println("        Y = 0")
 		}
 
 	}
@@ -619,44 +595,6 @@ func main() {
 
 	time.Sleep(1 * time.Microsecond)
 
-	// ADD *************************************************************************************
-	fmt.Println("ADD")
-
-	fmt.Println("    DATA_IN_A: 10000001")
-	fmt.Println("    DATA_IN_B: 00001100")
-	opcode.write_opcode(0, 0, 1, 1)
-	data_in_a.write_data_in_a(1, 0, 0, 0, 1)
-	data_in_b.write_data_in(0, 0, 0, 0, 1, 1, 0, 0)
-	execute_opcode(GO_BAR_PIN, data_out)
-
-	// SUBTRACT ********************************************************************************
-	fmt.Println("SUBTRACT")
-
-	fmt.Println("    DATA_IN_A: 00001111")
-	fmt.Println("    DATA_IN_B: 00001100")
-	opcode.write_opcode(0, 1, 1, 1)
-	data_in_a.write_data_in_a(0, 1, 1, 1, 1)
-	data_in_b.write_data_in(0, 0, 0, 0, 1, 1, 0, 0)
-	execute_opcode(GO_BAR_PIN, data_out)
-
-	// MULTIPLY ********************************************************************************
-	fmt.Println("MULTIPLY")
-
-	fmt.Println("    DATA_IN_A: 00000010")
-	fmt.Println("    DATA_IN_B: 00000100")
-	opcode.write_opcode(1, 1, 0, 0)
-	data_in_a.write_data_in_a(0, 0, 0, 1, 0)
-	data_in_b.write_data_in(0, 0, 0, 0, 0, 1, 0, 0)
-	execute_opcode(GO_BAR_PIN, data_out)
-
-	// DIVIDE ********************************************************************************
-	fmt.Println("DIVIDE")
-
-	fmt.Println("    DATA_IN_A: 00000100")
-	fmt.Println("    DATA_IN_B: 00000010")
-	opcode.write_opcode(1, 1, 1, 0)
-	data_in_a.write_data_in_a(0, 0, 1, 0, 0)
-	data_in_b.write_data_in(0, 0, 0, 1, 0, 0, 0, 0)
-	execute_opcode(GO_BAR_PIN, data_out)
+	UserControl(opcode, data_in_a, data_in_b, GO_BAR_PIN, RESET_PIN, JAM_PIN, data_out)
 
 }
