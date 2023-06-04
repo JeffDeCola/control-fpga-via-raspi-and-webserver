@@ -150,8 +150,12 @@ These function will be written in go and placed in a docker image.
 
 ### BREADBOARD (GPIO to PMOD)
 
-That is a total of 31 pins, but I only have 28 GPIO pins.
-Hence, I tied 3 of the DATA_IN_A pins to gnd.
+To connect to the Raspberry Pi a breadboard was used to
+connect the GPIO pins to the PMOD pins on the FPGA development board.
+
+There are a total of 31 pins used by the microprocessor,
+but there are only 28 GPIO pins. Hence, I tied 3 of the
+DATA_IN_A pins to gnd.
 
 The pin list between the Raspberry Pi and the FPGA development
 board is as follows,
@@ -219,45 +223,75 @@ The result,
 
 ### CONTROL FPGA I/O VIA GO
 
-The Raspberry Pi will control the FPGA via GO.
+The Raspberry Pi will control the FPGA via GO using the
+[periph.io](https://periph.io/)
+go package.
 
-The GO code is located at
-[crypto-miner-manager-code](
+Init Raspberry Pi,
 
+```go
+  // INIT HOST MACHINE (i.e. Raspberry Pi)
+  _, err := host.Init()
+  if err != nil {
+    log.Fatal(err)
+  }
+```
 
-### WEB SERVER INTERFACE (REST JSON API)
+For inputs,
+
+```go
+  // DATA_IN_A -----------------------------------
+  DATA_IN_A7_PIN := gpioreg.ByName("24")
+  if DATA_IN_A7_PIN == nil {
+    log.Fatal("Failed to find DATA_IN_A7_PIN")
+  }
+```
+
+For outputs also set the pulldown resistor,
+
+```go
+  // DATA_OUT -----------------------------------
+  DATA_OUT_7_PIN := gpioreg.ByName("22")
+  if DATA_OUT_7_PIN == nil {
+    log.Fatal("Failed to find DATA_OUT_7_PIN")
+  }
+
+  // SET PULLDOWN RESISTER AND LOOK FOR BOTH EDGES (High->Low or Low->High)
+  err = DATA_OUT_7_PIN.In(gpio.PullDown, gpio.BothEdges)
+  if err != nil {
+    log.Fatal(err)
+  }
+```
+
+### WEB SERVER INTERFACE (gRPC Protobuf)
 
 tbd.
 
 ### RUN
 
 To
-[run.sh](https://github.com/JeffDeCola/crypto-miner-manager/blob/master/crypto-miner-manager-code/run.sh),
+[run.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/run.sh),
 
 ```bash
-cd crypto-miner-manager-code
+cd section-2-backend-server
 go run main.go
 ```
 
 As a placeholder, every 2 seconds it will print,
 
 ```txt
-    INFO[0000] Let's Start this!
-    Hello everyone, count is: 1
-    Hello everyone, count is: 2
-    Hello everyone, count is: 3
-    etc...
+    ????
 ```
 
 ### CREATE BINARY
 
 To
-[create-binary.sh](https://github.com/JeffDeCola/crypto-miner-manager/blob/master/crypto-miner-manager-code/bin/create-binary.sh),
+[create-binary.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/bin/create-binary.sh),
 
 ```bash
-cd crypto-miner-manager-code/bin
-go build -o crypto-miner-manager ../main.go
-./crypto-miner-manager
+cd section-2-backend-server/bin
+go build -o control-fpga-via-raspi-and-webserver ../main.go
+./control-fpga-via-raspi-and-webserver
 ```
 
 This binary will not be used during a docker build
@@ -268,12 +302,12 @@ since it creates it's own.
 To create unit `_test` files,
 
 ```bash
-cd crypto-miner-manager-code
+cd section-2-backend-server
 gotests -w -all main.go
 ```
 
 To run
-[unit-tests.sh](https://github.com/JeffDeCola/crypto-miner-manager/tree/master/crypto-miner-manager-code/test/unit-tests.sh),
+[unit-tests.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/section-2-backend-server/test/unit-tests.sh),
 
 ```bash
 go test -cover ./... | tee test/test_coverage.txt
@@ -283,23 +317,23 @@ cat test/test_coverage.txt
 ### STEP 2 - BUILD (DOCKER IMAGE VIA DOCKERFILE)
 
 To
-[build.sh](https://github.com/JeffDeCola/crypto-miner-manager/blob/master/crypto-miner-manager-code/build/build.sh)
+[build.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/build/build.sh)
 with a
-[Dockerfile](https://github.com/JeffDeCola/crypto-miner-manager/blob/master/crypto-miner-manager-code/build/Dockerfile),
+[Dockerfile](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/build/Dockerfile),
 
 ```bash
-cd crypto-miner-manager-code
-docker build -f build/Dockerfile -t jeffdecola/crypto-miner-manager .
+cd section-2-backend-server
+docker build -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
 ```
 
 You can check and test this docker image,
 
 ```bash
-docker images jeffdecola/crypto-miner-manager:latest
-docker run --name crypto-miner-manager -dit jeffdecola/crypto-miner-manager
-docker exec -i -t crypto-miner-manager /bin/bash
-docker logs crypto-miner-manager
-docker rm -f crypto-miner-manager
+docker images jeffdecola/control-fpga-via-raspi-and-webserver:latest
+docker run --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
+docker exec -i -t control-fpga-via-raspi-and-webserver /bin/bash
+docker logs control-fpga-via-raspi-and-webserver
+docker rm -f control-fpga-via-raspi-and-webserver
 ```
 
 In **stage 1**, rather than copy a binary into a docker image (because
@@ -309,7 +343,7 @@ docker image,
 ```bash
 FROM golang:alpine AS builder
 RUN go get -d -v
-RUN go build -o /go/bin/crypto-miner-manager main.go
+RUN go build -o /go/bin/control-fpga-via-raspi-and-webserver main.go
 ```
 
 In **stage 2**, the Dockerfile will copy the binary created in
@@ -325,33 +359,33 @@ docker login
 ```
 
 To
-[push.sh](https://github.com/JeffDeCola/crypto-miner-manager/blob/master/crypto-miner-manager-code/push/push.sh),
+[push.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/push/push.sh),
 
 ```bash
-docker push jeffdecola/crypto-miner-manager
+docker push jeffdecola/control-fpga-via-raspi-and-webserver
 ```
 
 Check the
-[crypto-miner-manager docker image](https://hub.docker.com/r/jeffdecola/crypto-miner-manager)
+[control-fpga-via-raspi-and-webserver docker image](https://hub.docker.com/r/jeffdecola/control-fpga-via-raspi-and-webserver)
 at DockerHub.
 
 ### STEP 4 - DEPLOY (TO DOCKER ON RASPBERRY PI)
 
 To
-[deploy.sh](https://github.com/JeffDeCola/crypto-miner-manager/blob/master/crypto-miner-manager-code/deploy/deploy.sh),
+[deploy.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/deploy/deploy.sh),
 
 ```bash
-cd crypto-miner-manager-code
-docker run --name crypto-miner-manager -dit jeffdecola/crypto-miner-manager
-docker exec -i -t crypto-miner-manager /bin/bash
-docker logs crypto-miner-manager
-docker rm -f crypto-miner-manager
+cd section-2-backend-server
+docker run --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
+docker exec -i -t control-fpga-via-raspi-and-webserver /bin/bash
+docker logs control-fpga-via-raspi-and-webserver
+docker rm -f control-fpga-via-raspi-and-webserver
 ```
 
 ### CONTINUOUS INTEGRATION & DEPLOYMENT
 
 Refer to
-[ci-README.md](https://github.com/JeffDeCola/crypto-miner-manager/blob/master/ci-README.md)
+[ci-README.md](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/ci-README.md)
 on how I automated the above steps.
 
 ## SECTION III - THE WEB SERVER
