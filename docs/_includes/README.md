@@ -28,77 +28,83 @@ in the following four sections,
 
 ## SOFTWARE STACK
 
-* DEVELOPMENT
+* SECTION 1 - The FPGA
+  * [Verilog](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/development/languages/verilog-cheat-sheet)
+  * [Xilinx Vivado](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/tools/synthesis/xilinx-vivado-cheat-sheet)
+  * [Digilent ARTY-S7](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/development/fpga-development-boards/digilent-arty-s7-cheat-sheet)
+* SECTION 2 - The Raspberry Pi
   * [go](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/development/languages/go-cheat-sheet)
-  * gotests
-* OPERATIONS
-  * [concourse](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/operations/continuous-integration-continuous-deployment/concourse-cheat-sheet)
-    (optional)
   * [docker](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/operations/orchestration/builds-deployment-containers/docker-cheat-sheet)
-* SERVICES
   * [dockerhub](https://hub.docker.com/)
-  * [github](https://github.com/)
-
-Where,
-
-* **GUI**
-  _golang net/http package and ReactJS_
-* **Routing & REST API framework**
-  _golang gorilla/mux package_
-* **Backend**
-  _golang_
-* **Database**
-  _N/A_
+  * [concourse](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/operations/continuous-integration-continuous-deployment/concourse-cheat-sheet)
+* SECTION 3 - The Web Server
+  * php, css, js
+  * [bluehost](https://www.bluehost.com/)
+* SECTION 4 - The Browser
+  * js, html, css
 
 ## SECTION I - THE FPGA
 
 I burned my
 [programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable_8_bit_microprocessor) to an FPGA.
-Refer to that repo on how i did that.
+Refer to that repo on how I did that.
+
+Summary,
 
 * I designed the 8-bit microprocessor in
   [Verilog](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/development/languages/verilog-cheat-sheet)
   (An HDL language)
-* Used the
+* I used the
   [Xilinx Vivado](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/tools/synthesis/xilinx-vivado-cheat-sheet)
   IDE to synthesize and burn/flash the FPGA
-* Used a
+* I used the
   [Digilent ARTY-S7](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/development/fpga-development-boards/digilent-arty-s7-cheat-sheet)
   FPGA development board
 
 ### VERILOG
 
-This is the structural level of the 8-bit microprocessor I designed in verilog,
+This is the high level architecture of the 8-bit microprocessor
+I designed in verilog,
 
 ![IMAGE - Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg - IMAGE](https://github.com/JeffDeCola/my-verilog-examples/blob/master/docs/pics/systems/Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg?raw=true)
 
+### INPUT/OUTPUT
+
+* **INPUT**
+  * SYSTEM_CLK
+  * [3:0] OPCODE
+  * GO_BAR
+  * RESET
+  * JAM
+  * [7:0] DATA_IN_A
+  * [7:0] DATA_IN_B
+* **OUTPUT**
+  * [7:0] DATA_OUT
+
 ### ARTY S7-50 FPGA DEVELOPMENT BOARD
 
-I used an arty S7-50 FPGA development board to burn a Spartan-7 50 FPGA,
+I burned the microprocessor to an FPGA on an
+Arty S7-50 FPGA development board.
 
 ![IMAGE - digilent-arty-s7-50.jpg - IMAGE](https://github.com/JeffDeCola/my-cheat-sheets/blob/master/docs/pics/digilent-arty-s7-50.jpg?raw=true)
 
 ## SECTION II - THE RASPBERRY PI
 
-The Raspberry Pi shall do two things,
+The Raspberry Pi has two main functions,
 
-* Control 28 pins of the I/O of the FPGA (GPIO to PMOD) using GO
+* Controls 28 pins of the I/O of the FPGA (GPIO to PMOD) via GO
 * Provide an interface to the webserver (REST JSON API)
 
-### RASPBERRY PI TO FPGA DEV BOARD INTERFACE (GPIO to PMOD)
+These function will be written in go and placed in a docker image.
 
-That is a total of 31 pins, but I only have 28 GPIO pins.
-Hence, I will tie 3 of the DATA_IN_A pins to gnd.
+### BREADBOARD (GPIO to PMOD)
 
-* **OUTPUT (SET)**
-  * [3:0] OPCODE
-  * GO_BAR
-  * RESET
-  * JAM
-  * [7:0] DATA_IN_A (Bits 4,5,6 hardwired to ground)
-  * [7:0] DATA_IN_B
-* **INPUT (GET)**
-  * [7:0] DATA_OUT
+To connect to the Raspberry Pi a breadboard was used to
+connect the GPIO pins to the PMOD pins on the FPGA development board.
+
+There are a total of 31 pins used by the microprocessor,
+but there are only 28 GPIO pins. Hence, I tied 3 of the
+DATA_IN_A pins to gnd.
 
 The pin list between the Raspberry Pi and the FPGA development
 board is as follows,
@@ -162,10 +168,58 @@ The result,
 
 ![IMAGE - breadboard.jpg - IMAGE](pics/breadboard.jpg)
 
-### CONTROL I/O VIA GOLANG
+![IMAGE - arty-s7-breadboard-and-raspberry-pi.jpg - IMAGE](pics/arty-s7-breadboard-and-raspberry-pi.jpg)
+
+### CONTROL FPGA I/O VIA GO
+
+The Raspberry Pi will control the FPGA via GO using the
+[periph.io](https://periph.io/)
+go package.
+
+Init Raspberry Pi,
+
+```go
+  // INIT HOST MACHINE (i.e. Raspberry Pi)
+  _, err := host.Init()
+  if err != nil {
+    log.Fatal(err)
+  }
+```
+
+For inputs,
+
+```go
+  // DATA_IN_A -----------------------------------
+  DATA_IN_A7_PIN := gpioreg.ByName("24")
+  if DATA_IN_A7_PIN == nil {
+    log.Fatal("Failed to find DATA_IN_A7_PIN")
+  }
+```
+
+For outputs also set the pulldown resistor,
+
+```go
+  // DATA_OUT -----------------------------------
+  DATA_OUT_7_PIN := gpioreg.ByName("22")
+  if DATA_OUT_7_PIN == nil {
+    log.Fatal("Failed to find DATA_OUT_7_PIN")
+  }
+
+  // SET PULLDOWN RESISTER AND LOOK FOR BOTH EDGES (High->Low or Low->High)
+  err = DATA_OUT_7_PIN.In(gpio.PullDown, gpio.BothEdges)
+  if err != nil {
+    log.Fatal(err)
+  }
+```
+
+### WEB SERVER INTERFACE (gRPC Protobuf)
+
+tbd.
+
+### RUN
 
 To
-[run.sh](https://github.com/JeffDeCola/section-2-backend-server/blob/master/section-2-backend-server/run.sh),
+[run.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/run.sh),
 
 ```bash
 cd section-2-backend-server
@@ -175,38 +229,34 @@ go run main.go
 As a placeholder, every 2 seconds it will print,
 
 ```txt
-???????
+    ????
 ```
 
 ### CREATE BINARY
 
 To
-[create-binary.sh](https://github.com/JeffDeCola/section-2-backend-server/blob/master/section-2-backend-server/bin/create-binary.sh),
+[create-binary.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/bin/create-binary.sh),
 
 ```bash
 cd section-2-backend-server/bin
-go build -o section-2-backend-server ../main.go
-./section-2-backend-server
+go build -o control-fpga-via-raspi-and-webserver ../main.go
+./control-fpga-via-raspi-and-webserver
 ```
 
 This binary will not be used during a docker build
 since it creates it's own.
-
-### RASPBERRY PI TO WEBSERVER INTERFACE (REST JSON API)
-
-tbd.
 
 ### STEP 1 - TEST
 
 To create unit `_test` files,
 
 ```bash
-cd control-fpga-via-raspi-and-webserver-code
+cd section-2-backend-server
 gotests -w -all main.go
 ```
 
 To run
-[unit-tests.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/control-fpga-via-raspi-and-webserver-code/test/unit-tests.sh),
+[unit-tests.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/section-2-backend-server/test/unit-tests.sh),
 
 ```bash
 go test -cover ./... | tee test/test_coverage.txt
@@ -216,12 +266,12 @@ cat test/test_coverage.txt
 ### STEP 2 - BUILD (DOCKER IMAGE VIA DOCKERFILE)
 
 To
-[build.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-via-raspi-and-webserver-code/build/build.sh)
+[build.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/build/build.sh)
 with a
-[Dockerfile](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-via-raspi-and-webserver-code/build/Dockerfile),
+[Dockerfile](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/build/Dockerfile),
 
 ```bash
-cd control-fpga-via-raspi-and-webserver-code
+cd section-2-backend-server
 docker build -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
 ```
 
@@ -258,7 +308,7 @@ docker login
 ```
 
 To
-[push.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-via-raspi-and-webserver-code/push/push.sh),
+[push.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/push/push.sh),
 
 ```bash
 docker push jeffdecola/control-fpga-via-raspi-and-webserver
@@ -268,13 +318,13 @@ Check the
 [control-fpga-via-raspi-and-webserver docker image](https://hub.docker.com/r/jeffdecola/control-fpga-via-raspi-and-webserver)
 at DockerHub.
 
-### STEP 4 - DEPLOY (TO DOCKER)
+### STEP 4 - DEPLOY (TO DOCKER ON RASPBERRY PI)
 
 To
-[deploy.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-via-raspi-and-webserver-code/deploy/deploy.sh),
+[deploy.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/deploy/deploy.sh),
 
 ```bash
-cd control-fpga-via-raspi-and-webserver-code
+cd section-2-backend-server
 docker run --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
 docker exec -i -t control-fpga-via-raspi-and-webserver /bin/bash
 docker logs control-fpga-via-raspi-and-webserver
