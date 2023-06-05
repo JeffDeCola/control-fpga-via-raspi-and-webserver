@@ -41,15 +41,22 @@ type opcode_pins struct {
 
 func UserControl(opcode opcode_pins, data_in_a data_a_pins, data_in_b data_pins, GO_BAR_PIN gpio.PinIO, RESET_PIN gpio.PinIO, JAM_PIN gpio.PinIO, data_out data_pins) {
 
+	fmt.Println("UserControl")
+
 	var userInput string
 
 	for {
 
+		fmt.Println("UserControl2")
+
 		time.Sleep(200 * time.Millisecond)
+		fmt.Println("UserControl3")
 
 		fmt.Print("1: add, 2: subtract, 3: multiply, 4: divide, x: exit: ")
 		fmt.Scan(&userInput)
 		//fmt.Printf("\n")
+
+		fmt.Println("UserControl4")
 
 		switch userInput {
 		case "1":
@@ -383,7 +390,7 @@ func execute_opcode(go_bar_pin gpio.PinIO, data_out data_pins) {
 
 func main() {
 
-	fmt.Println("LETS GO 2!!")
+	fmt.Println("LETS GO 5!!")
 
 	// INIT HOST MACHINE (i.e. Raspberry Pi)
 	_, err := host.Init()
@@ -496,10 +503,13 @@ func main() {
 	}
 	data_out := data_pins{DATA_OUT_7_PIN, DATA_OUT_6_PIN, DATA_OUT_5_PIN, DATA_OUT_4_PIN, DATA_OUT_3_PIN, DATA_OUT_2_PIN, DATA_OUT_1_PIN, DATA_OUT_0_PIN}
 	// SET PULLDOWN RESISTER AND LOOK FOR BOTH EDGES (High->Low or Low->High)
+	fmt.Println("Setting up data pins pulldown")
 	err = data_out.data_7.In(gpio.PullDown, gpio.BothEdges)
 	if err != nil {
+		fmt.Println("Error setting up data pin 7")
 		log.Fatal(err)
 	}
+	fmt.Println("Setting up data pins after pulldown")
 	err = data_out.data_6.In(gpio.PullDown, gpio.BothEdges)
 	if err != nil {
 		log.Fatal(err)
@@ -597,6 +607,8 @@ func main() {
 
 	time.Sleep(1 * time.Microsecond)
 
+	fmt.Println("RESET DONE")
 	UserControl(opcode, data_in_a, data_in_b, GO_BAR_PIN, RESET_PIN, JAM_PIN, data_out)
+	fmt.Println("DONE")
 
 }

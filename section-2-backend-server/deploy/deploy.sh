@@ -20,7 +20,7 @@ else
 fi
 
 echo "Deploy to Docker"
-docker run --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
+docker run --privileged  --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
 echo " "
 
 echo "************************************************************************"

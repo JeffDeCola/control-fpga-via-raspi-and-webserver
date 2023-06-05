@@ -20,8 +20,9 @@ COPY . .
 RUN ls -lat $GOPATH/src/github.com/jeffdecola/control-fpga-via-raspi-and-webserver/
 
 # Fetch dependencies using go get
-RUN go get -u github.com/sirupsen/logrus
-RUN go get periph.io/x/conn/v3
+# RUN go get -u github.com/sirupsen/logrus
+RUN go get periph.io/x/conn/
+RUN go get periph.io/x/host/
 RUN go get -d -v
 
 # Build the binary
