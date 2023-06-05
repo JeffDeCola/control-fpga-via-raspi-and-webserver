@@ -279,9 +279,25 @@ You can check and test this docker image,
 
 ```bash
 docker images jeffdecola/control-fpga-via-raspi-and-webserver:latest
-docker run --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
-docker exec -i -t control-fpga-via-raspi-and-webserver /bin/bash
+docker run --privileged --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
+```
+
+Write stdin,
+
+```bash
+echo '1' | socat EXEC:"docker attach control-fpga-via-raspi-and-webserver",pty STDIN
+```
+
+Check stdout,
+
+```bash
 docker logs control-fpga-via-raspi-and-webserver
+```
+
+Other commands,
+
+```bash
+docker exec -i -t control-fpga-via-raspi-and-webserver /bin/bash
 docker rm -f control-fpga-via-raspi-and-webserver
 ```
 
@@ -325,11 +341,10 @@ To
 
 ```bash
 cd section-2-backend-server
-docker run --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
-docker exec -i -t control-fpga-via-raspi-and-webserver /bin/bash
-docker logs control-fpga-via-raspi-and-webserver
-docker rm -f control-fpga-via-raspi-and-webserver
+docker run --privileged --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
 ```
+
+See above for commands to interact.
 
 ### CONTINUOUS INTEGRATION & DEPLOYMENT
 
