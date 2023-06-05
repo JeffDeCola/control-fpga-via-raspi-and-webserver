@@ -63,7 +63,7 @@ This project is separated into 4 main sections,
 
 1. The FPGA
 1. The BACKEND SERVER (Raspberry Pi) to control the I/O of the FPGA
-1. The WEB SERVER (bluehost) providing to control the Raspberry Pi
+1. The WEB SERVER (bluehost) providing the interface between the frontend and backend
 1. The BROWSER to provide a GUI
 
 This may help,
@@ -77,111 +77,219 @@ in the following four sections,
 
 ![IMAGE - 8-bit processor - IMAGE](docs/pics/controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg)
 
-## PREREQUISITES
-
-You will need the following go packages,
-
-```bash
-go get -u -v github.com/sirupsen/logrus
-go get -u -v github.com/cweill/gotests/...
-go get periph.io/x/cmd/...
-```
-
 ## SOFTWARE STACK
 
-* DEVELOPMENT
+* SECTION 1 - The FPGA
+  * [Verilog](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/development/languages/verilog-cheat-sheet)
+  * [Xilinx Vivado](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/tools/synthesis/xilinx-vivado-cheat-sheet)
+  * [Digilent ARTY-S7](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/development/fpga-development-boards/digilent-arty-s7-cheat-sheet)
+* SECTION 2 - The Raspberry Pi
   * [go](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/development/languages/go-cheat-sheet)
-  * gotests
-* OPERATIONS
-  * [concourse/fly](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/operations/continuous-integration-continuous-deployment/concourse-cheat-sheet)
-    (optional)
   * [docker](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/operations/orchestration/builds-deployment-containers/docker-cheat-sheet)
-* SERVICES
   * [dockerhub](https://hub.docker.com/)
-  * [github](https://github.com/)
-
-Where,
-
-* **GUI**
-  _golang net/http package and ReactJS_
-* **Routing & REST API framework**
-  _golang gorilla/mux package_
-* **Backend**
-  _golang_
-* **Database**
-  _N/A_
+  * [concourse](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/operations/continuous-integration-continuous-deployment/concourse-cheat-sheet)
+* SECTION 3 - The Web Server
+  * php, css, js
+  * [bluehost](https://www.bluehost.com/)
+* SECTION 4 - The Browser
+  * js, html, css
 
 ## SECTION I - THE FPGA
 
-My
-[programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable-8-bit-microprocessor)
-will be used as an example. Please refer to that repo on how to burn a
-FPGA from verilog.
+I burned my
+[programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable_8_bit_microprocessor) to an FPGA.
+Refer to that repo on how I did that.
 
-In that repo,
+Summary,
 
 * I designed the 8-bit microprocessor in
   [Verilog](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/development/languages/verilog-cheat-sheet)
   (An HDL language)
-* Used the
+* I used the
   [Xilinx Vivado](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/tools/synthesis/xilinx-vivado-cheat-sheet)
-  IDE to synthesize and burn/flash on boot the FPGA
-* Used a
+  IDE to synthesize and burn/flash the FPGA
+* I used the
   [Digilent ARTY-S7](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/development/fpga-development-boards/digilent-arty-s7-cheat-sheet)
   FPGA development board
 
-To operate this microprocessor, the Raspberry Pi will,
+### VERILOG
 
-* Set both inputs [7:0] DATA_IN_A and [7:0] DATA_IN_B
-* Select an [3:0] OPCODE instruction (such as ADD)
-  * 0011: ADD
-  * 0111: SUBTRACT
-  * 1100: MULTIPLY
-  * 1110: DIVIDE
-* Enable the GO_BAR via GO signal
-* Observe the resulting [7:0] DATA_OUT
+This is the high level architecture of the 8-bit microprocessor
+I designed in verilog,
 
-The number of I/O the Raspberry Pi can control is 26 I/O pins.
-But as shown in the following figure, the microprocessor has 31 pins.
-The next section will go over which 5 pins we hardcoded or will be
-controlled by the FPGA development board,
+![IMAGE - Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg - IMAGE](https://github.com/JeffDeCola/my-verilog-examples/blob/master/docs/pics/systems/Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg?raw=true)
 
-![IMAGE - Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg - IMAGE](https://github.com/JeffDeCola/my-systemverilog-examples/blob/master/docs/pics/Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg?raw=true)
+### INPUT/OUTPUT
+
+* **INPUT**
+  * SYSTEM_CLK
+  * [3:0] OPCODE
+  * GO_BAR
+  * RESET
+  * JAM
+  * [7:0] DATA_IN_A
+  * [7:0] DATA_IN_B
+* **OUTPUT**
+  * [7:0] DATA_OUT
+
+### ARTY S7-50 FPGA DEVELOPMENT BOARD
+
+I burned the microprocessor to an FPGA on an
+Arty S7-50 FPGA development board.
+
+![IMAGE - digilent-arty-s7-50.jpg - IMAGE](https://github.com/JeffDeCola/my-cheat-sheets/blob/master/docs/pics/digilent-arty-s7-50.jpg?raw=true)
 
 ## SECTION II - THE RASPBERRY PI
 
-The Raspberry Pi shall do two things,
+The Raspberry Pi has two main functions,
 
-* Control 26 pins of the I/O of the FPGA (GPIO to PMOD)
+* Controls 28 pins of the I/O of the FPGA (GPIO to PMOD) via GO
 * Provide an interface to the webserver (REST JSON API)
+
+These function will be written in go and placed in a docker image.
+
+### BREADBOARD (GPIO to PMOD)
+
+To connect to the Raspberry Pi a breadboard was used to
+connect the GPIO pins to the PMOD pins on the FPGA development board.
+
+There are a total of 31 pins used by the microprocessor,
+but there are only 28 GPIO pins. Hence, I tied 3 of the
+DATA_IN_A pins to gnd.
+
+The pin list between the Raspberry Pi and the FPGA development
+board is as follows,
+
+|                     | PMOD Pins         | RasPi GPIO Pin        |
+|--------------------:|:-----------------:|:---------------------:|
+| **[7:0] DATA_IN_A** |  JA PMOD          |                       |
+| [7]                 |  1                | 18 (GPIO24)           |
+| **(GND)** [6]       |  2                | N/C                   |
+| **(GND)** [5]       |  3                | N/C                   |
+| **(GND)** [4]       |  4                | N/C                   |
+| [3]                 |  7                | 16 (GPIO23)           |
+| [2]                 |  8                | 12 (GPIO18)           |
+| [1]                 |  9                | 10 (GPIO15)*          |
+| [0]                 |  10               | 08 (GPIO14)*          |
+|                     |                   |                       |
+| **[7:0] DATA_IN_B** |  JB PMOD          |                       |
+|                     |                   |                       |
+| [7]                 |  1                | 37 (GPIO26)           |
+| [6]                 |  2                | 40 (GPIO21)           |
+| [5]                 |  3                | 38 (GPIO20)           |
+| [4]                 |  4                | 36 (GPIO16)           |
+| [3]                 |  7                | 32 (GPIO12)           |
+| [2]                 |  8                | 26 (GPIO7)            |
+| [1]                 |  9                | 24 (GPIO8)            |
+| [0]                 |  10               | 22 (GPIO25)           |
+|                     |                   |                       |
+| **[7:0] DATA_OUT**  |  JC PMOD          |                       |
+|                     |                   |                       |
+| [7]                 |  1                | 15 (GPIO22)           |
+| [6]                 |  2                | 19 (GPIO10)           |
+| [5]                 |  3                | 21 (GPIO9)            |
+| [4]                 |  4                | 23 (GPIO11)           |
+| [3]                 |  7                | 29 (GPIO5)            |
+| [2]                 |  8                | 31 (GPIO6)            |
+| [1]                 |  9                | 33 (GPIO13)           |
+| [0]                 |  10               | 35 (GPIO19)           |
+|                     |                   |                       |
+| **[3:0] OPCODE**    |  JD PMOD          |                       |
+|                     |                   |                       |
+| [3]                 |  1                | 03 (GPIO2)**          |
+| [2]                 |  2                | 05 (GPIO3)**          |
+| [1]                 |  3                | 07 (GPIO4)            |
+| [0]                 |  4                | 11 (GPIO17)           |
+| GO                  |  7                | 13 (GPIO27)           |
+| RESET               |  8                | 27 (GPIO0)            |
+| JAM                 |  9                | 28 (GPIO1)            |
+| N/C                 |  10               | N/C                   |
+
+**NOTE1**: To use pin 8 (GPIO14) and pin 10 (GPIO15)
+you must disable the serial port using `raspi-config`.
+Select `Interfacing Options` and then
+`Serial` and select `No`.
+
+**NOTE2** Pin 3 (GPIO2) and pin 5 (GPIO3) have
+fixed pull-up resistors to 3.3V.
+
+![IMAGE - arty-s7-50-pmod-to-raspi-gpio-breadboard-connections.jpg - IMAGE](docs/pics/arty-s7-50-pmod-to-raspi-gpio-breadboard-connections.jpg)
+
+The result,
+
+![IMAGE - breadboard.jpg - IMAGE](docs/pics/breadboard.jpg)
+
+![IMAGE - arty-s7-breadboard-and-raspberry-pi.jpg - IMAGE](docs/pics/arty-s7-breadboard-and-raspberry-pi.jpg)
+
+### CONTROL FPGA I/O VIA GO
+
+The Raspberry Pi will control the FPGA via GO using the
+[periph.io](https://periph.io/)
+go package.
+
+Init Raspberry Pi,
+
+```go
+  // INIT HOST MACHINE (i.e. Raspberry Pi)
+  _, err := host.Init()
+  if err != nil {
+    log.Fatal(err)
+  }
+```
+
+For inputs,
+
+```go
+  // DATA_IN_A -----------------------------------
+  DATA_IN_A7_PIN := gpioreg.ByName("24")
+  if DATA_IN_A7_PIN == nil {
+    log.Fatal("Failed to find DATA_IN_A7_PIN")
+  }
+```
+
+For outputs also set the pulldown resistor,
+
+```go
+  // DATA_OUT -----------------------------------
+  DATA_OUT_7_PIN := gpioreg.ByName("22")
+  if DATA_OUT_7_PIN == nil {
+    log.Fatal("Failed to find DATA_OUT_7_PIN")
+  }
+
+  // SET PULLDOWN RESISTER AND LOOK FOR BOTH EDGES (High->Low or Low->High)
+  err = DATA_OUT_7_PIN.In(gpio.PullDown, gpio.BothEdges)
+  if err != nil {
+    log.Fatal(err)
+  }
+```
+
+### WEB SERVER INTERFACE (gRPC Protobuf)
+
+tbd.
 
 ### RUN
 
 To
-[run.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-via-raspi-and-webserver-code/run.sh),
+[run.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/run.sh),
 
 ```bash
-cd control-fpga-via-raspi-and-webserver-code
+cd section-2-backend-server
 go run main.go
 ```
 
 As a placeholder, every 2 seconds it will print,
 
 ```txt
-    INFO[0000] Let's Start this!
-    Hello everyone, count is: 1
-    Hello everyone, count is: 2
-    Hello everyone, count is: 3
-    etc...
+    ????
 ```
 
 ### CREATE BINARY
 
 To
-[create-binary.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-via-raspi-and-webserver-code/bin/create-binary.sh),
+[create-binary.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/bin/create-binary.sh),
 
 ```bash
-cd control-fpga-via-raspi-and-webserver-code/bin
+cd section-2-backend-server/bin
 go build -o control-fpga-via-raspi-and-webserver ../main.go
 ./control-fpga-via-raspi-and-webserver
 ```
@@ -189,93 +297,17 @@ go build -o control-fpga-via-raspi-and-webserver ../main.go
 This binary will not be used during a docker build
 since it creates it's own.
 
-### RASPBERRY PI TO FPGA DEV BOARD INTERFACE (GPIO to PMOD)
-
-The GPIO (Input/Output) of the Raspberry Pi is connected to the
-Input/Output of the FPGA development board via Pmod connectors.
-On a side note, it may be a good idea to place a 200 Ohm resister in-line.
-
-All of the GPIOs have weak internal pull-ups and downs which may be enabled
-or disabled by software. I control this in my go code.
-
-There are a total of 26 I/O pins that you may use in the Raspberry Pi.
-But I have a total of 31 I would like to use.  So I had to compromise
-and hardcoded 5 of the Inputs (????).
-
-The Raspberry Pi will connect to the processor as follows,
-
-* **OUTPUT (SET)**
-  * [3:0] OPCODE
-  * GO_BAR
-  * RESET (N/C)
-  * JAM (N/C)
-  * [7:0] DATA_IN_A (Bits 4,5,6 hardcoded to low)
-  * [7:0] DATA_IN_B
-* **INPUT (GET)**
-  * [7:0] DATA_OUT
-
-A go program is used to control and capture the I/O.
-
-The pin list between the Raspberry Pi and the FPGA development
-board is as follows,
-
-|                 | PMOD Pins         | RasPi GPIO Pin        |
-|----------------:|:-----------------:|:---------------------:|
-| [7:0] DATA_IN_A |  JA PMOD          |                       |
-| [7]             |  1                | 24 (GPIO8)            |
-| [6] SET TO LOW  |  2                | --- N/C               |
-| [5] SET TO LOW  |  3                | --- N/C               |
-| [4] SET TO LOW  |  4                | --- N/C               |
-| [3]             |  7                | 35 (GPIO19)           |
-| [2]             |  8                | 40 (GPIO21)           |
-| [1]             |  9                | 38 (GPIO20)           |
-| [0]             |  10               | 12 (GPIO18)           |
-|                 |                   |                       |
-| [7:0] DATA_IN_B |  JB PMOD          |                       |
-| [7]             |  1                | 26 (GPIO7)            |
-| [6]             |  2                | 19 (GPIO10)           |
-| [5]             |  3                | 21 (GPIO9)            |
-| [4]             |  4                | 23 (GPIO11)           |
-| [3]             |  7                | 37 (GPIO26)           |
-| [2]             |  8                | 33 (GPIO13)           |
-| [1]             |  9                | 05 (GPIO3)            |
-| [0]             |  10               | 03 (GPIO2)            |
-|                 |                   |                       |
-| [7:0] DATA_OUT  |  JC PMOD          |                       |
-| [7]             |  1                | 36 (GPIO16)           |
-| [6]             |  2                | 08 (GPIO14)           |
-| [5]             |  3                | 10 (GPIO15)           |
-| [4]             |  4                | 11 (GPIO17)           |
-| [3]             |  7                | 07 (GPIO4)            |
-| [2]             |  8                | 32 (GPIO12)           |
-| [1]             |  9                | 29 (GPIO5)            |
-| [0]             |  10               | 31 (GPIO6)            |
-|                 |                   |                       |
-| [3:0] OPCODE    |  JD PMOD          |                       |
-| [3]             |  1                | 13 (GPIO27)           |
-| [2]             |  2                | 15 (GPIO22)           |
-| [1]             |  3                | 16 (GPIO23)           |
-| [0]             |  4                | 18 (GPIO24)           |
-| GO              |  7                | 22 (GPIO25)           |
-| RESET --- N/C   |  8                | --- N/C               |
-| JAM --- N/C     |  9                | --- N/C               |
-| N/C             |  10               | --- N/C               |
-
-### RASPBERRY PI TO WEBSERVER INTERFACE (REST JSON API)
-
-tbd.
-
 ### STEP 1 - TEST
 
 To create unit `_test` files,
 
 ```bash
-cd control-fpga-via-raspi-and-webserver-code
+cd section-2-backend-server
 gotests -w -all main.go
 ```
 
 To run
-[unit-tests.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/control-fpga-via-raspi-and-webserver-code/test/unit-tests.sh),
+[unit-tests.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/section-2-backend-server/test/unit-tests.sh),
 
 ```bash
 go test -cover ./... | tee test/test_coverage.txt
@@ -285,12 +317,12 @@ cat test/test_coverage.txt
 ### STEP 2 - BUILD (DOCKER IMAGE VIA DOCKERFILE)
 
 To
-[build.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-via-raspi-and-webserver-code/build/build.sh)
+[build.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/build/build.sh)
 with a
-[Dockerfile](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-via-raspi-and-webserver-code/build/Dockerfile),
+[Dockerfile](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/build/Dockerfile),
 
 ```bash
-cd control-fpga-via-raspi-and-webserver-code
+cd section-2-backend-server
 docker build -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
 ```
 
@@ -298,9 +330,25 @@ You can check and test this docker image,
 
 ```bash
 docker images jeffdecola/control-fpga-via-raspi-and-webserver:latest
-docker run --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
-docker exec -i -t control-fpga-via-raspi-and-webserver /bin/bash
+docker run --privileged --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
+```
+
+Write stdin,
+
+```bash
+echo '1' | socat EXEC:"docker attach control-fpga-via-raspi-and-webserver",pty STDIN
+```
+
+Check stdout,
+
+```bash
 docker logs control-fpga-via-raspi-and-webserver
+```
+
+Other commands,
+
+```bash
+docker exec -i -t control-fpga-via-raspi-and-webserver /bin/bash
 docker rm -f control-fpga-via-raspi-and-webserver
 ```
 
@@ -327,7 +375,7 @@ docker login
 ```
 
 To
-[push.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-via-raspi-and-webserver-code/push/push.sh),
+[push.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/push/push.sh),
 
 ```bash
 docker push jeffdecola/control-fpga-via-raspi-and-webserver
@@ -337,18 +385,17 @@ Check the
 [control-fpga-via-raspi-and-webserver docker image](https://hub.docker.com/r/jeffdecola/control-fpga-via-raspi-and-webserver)
 at DockerHub.
 
-### STEP 4 - DEPLOY (TO DOCKER)
+### STEP 4 - DEPLOY (TO DOCKER ON RASPBERRY PI)
 
 To
-[deploy.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/control-fpga-via-raspi-and-webserver-code/deploy/deploy.sh),
+[deploy.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/deploy/deploy.sh),
 
 ```bash
-cd control-fpga-via-raspi-and-webserver-code
-docker run --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
-docker exec -i -t control-fpga-via-raspi-and-webserver /bin/bash
-docker logs control-fpga-via-raspi-and-webserver
-docker rm -f control-fpga-via-raspi-and-webserver
+cd section-2-backend-server
+docker run --privileged --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
 ```
+
+See above for commands to interact.
 
 ### CONTINUOUS INTEGRATION & DEPLOYMENT
 
