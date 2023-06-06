@@ -19,8 +19,6 @@ This may help,
 
 ![IMAGE - overview.jpg - IMAGE](pics/overview.jpg)
 
-## A LITTLE MORE DETAIL
-
 The following figure provides more details and will be explained
 in the following four sections,
 
@@ -344,7 +342,23 @@ cd section-2-backend-server
 docker run --privileged --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
 ```
 
-See above for commands to interact.
+### INTERACT WITH DOCKER CONTAINER
+
+The docker container is running on your raspberry pi.
+As mentioned above, the user may interact with the
+stdin and stdout of the docker container by,
+  
+Write stdin,
+
+```bash
+echo '1' | socat EXEC:"docker attach control-fpga-via-raspi-and-webserver",pty STDIN
+```
+
+Check stdout,
+
+```bash
+docker logs control-fpga-via-raspi-and-webserver
+```
 
 ### CONTINUOUS INTEGRATION & DEPLOYMENT
 
