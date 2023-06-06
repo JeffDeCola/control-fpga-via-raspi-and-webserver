@@ -26,8 +26,10 @@ echo " "
 
 echo "Build your docker image using Dockerfile"
 echo "NOTE: The binary is built using this step"
-echo "docker build -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver ."
-docker build -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
+#echo "docker build -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver ."
+#docker build -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
+#echo "docker buildx build --platform=linux/arm64 --no-cache --output type=docker -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver ."
+docker buildx build --platform=linux/arm64 --no-cache --output type=docker -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
 echo " "
 
 echo "Check Docker Image size"
