@@ -39,7 +39,7 @@ RUN go build -o /go/bin/control-fpga-via-raspi-and-webserver main.go
 # STAGE 2 build a smaller image
 ###############################
 
-FROM --platform=linux/arm64/v8 alpine
+FROM --platform=linux/arm64 alpine
 
 # Add my name to it
 LABEL maintainer="Jeff DeCola https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver"
