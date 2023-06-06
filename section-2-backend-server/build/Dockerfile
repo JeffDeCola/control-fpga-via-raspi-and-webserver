@@ -6,7 +6,7 @@
 # STAGE 1 build executable binary
 #################################
 
-FROM golang:alpine AS builder
+FROM --platform=linux/arm64/v8 golang:alpine AS builder
 
 # Install git
 # Git is required for fetching the dependencies
