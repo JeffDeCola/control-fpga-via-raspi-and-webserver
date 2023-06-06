@@ -19,19 +19,22 @@ Table of Contents
 
 * [TRY IT](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#try-it)
 * [OVERVIEW](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#overview)
-* [A LITTLE MORE DETAIL](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#a-little-more-detail)
-* [PREREQUISITES](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#prerequisites)
 * [SOFTWARE STACK](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#software-stack)
 * [SECTION I - THE FPGA](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-i---the-fpga)
+  * [VERILOG](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#verilog)
+  * [INPUT/OUTPUT](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#inputoutput)
+  * [ARTY S7-50 FPGA DEVELOPMENT BOARD](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#arty-s7-50-fpga-development-board)
 * [SECTION II - THE RASPBERRY PI](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-ii---the-raspberry-pi)
+  * [BREADBOARD (GPIO to PMOD)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#breadboard-gpio-to-pmod)
+  * [CONTROL FPGA I/O VIA GO](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#control-fpga-io-via-go)
+  * [WEB SERVER INTERFACE (gRPC Protobuf)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#web-server-interface-grpc-protobuf)
   * [RUN](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#run)
   * [CREATE BINARY](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#create-binary)
-  * [RASPBERRY PI TO FPGA DEV BOARD INTERFACE (GPIO to PMOD)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#raspberry-pi-to-fpga-dev-board-interface-gpio-to-pmod)
-  * [RASPBERRY PI TO WEBSERVER INTERFACE (REST JSON API)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#raspberry-pi-to-webserver-interface-rest-json-api)
   * [STEP 1 - TEST](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#step-1---test)
   * [STEP 2 - BUILD (DOCKER IMAGE VIA DOCKERFILE)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#step-2---build-docker-image-via-dockerfile)
   * [STEP 3 - PUSH (TO DOCKERHUB)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#step-3---push-to-dockerhub)
-  * [STEP 4 - DEPLOY (TO DOCKER)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#step-4---deploy-to-docker)
+  * [STEP 4 - DEPLOY (TO DOCKER ON RASPBERRY PI)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#step-4---deploy-to-docker-on-raspberry-pi)
+  * [INTERACT WITH DOCKER CONTAINER](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#interact-with-docker-container)
   * [CONTINUOUS INTEGRATION & DEPLOYMENT](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#continuous-integration--deployment)
 * [SECTION III - THE WEB SERVER](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-iii---the-web-server)
 * [SECTION IV - THE BROWSER](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-iv---the-browser)
@@ -69,8 +72,6 @@ This project is separated into 4 main sections,
 This may help,
 
 ![IMAGE - overview.jpg - IMAGE](docs/pics/overview.jpg)
-
-## A LITTLE MORE DETAIL
 
 The following figure provides more details and will be explained
 in the following four sections,
@@ -395,7 +396,23 @@ cd section-2-backend-server
 docker run --privileged --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
 ```
 
-See above for commands to interact.
+### INTERACT WITH DOCKER CONTAINER
+
+The docker container is running on your raspberry pi.
+As mentioned above, the user may interact with the
+stdin and stdout of the docker container by,
+  
+Write stdin,
+
+```bash
+echo '1' | socat EXEC:"docker attach control-fpga-via-raspi-and-webserver",pty STDIN
+```
+
+Check stdout,
+
+```bash
+docker logs control-fpga-via-raspi-and-webserver
+```
 
 ### CONTINUOUS INTEGRATION & DEPLOYMENT
 
