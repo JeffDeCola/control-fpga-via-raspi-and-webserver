@@ -41,22 +41,15 @@ type opcode_pins struct {
 
 func UserControl(opcode opcode_pins, data_in_a data_a_pins, data_in_b data_pins, GO_BAR_PIN gpio.PinIO, RESET_PIN gpio.PinIO, JAM_PIN gpio.PinIO, data_out data_pins) {
 
-	fmt.Println("UserControl")
-
 	var userInput string
 
 	for {
 
-		fmt.Println("UserControl2")
-
 		time.Sleep(200 * time.Millisecond)
-		fmt.Println("UserControl3")
 
 		fmt.Print("1: add, 2: subtract, 3: multiply, 4: divide, x: exit: ")
 		fmt.Scan(&userInput)
 		//fmt.Printf("\n")
-
-		fmt.Println("UserControl4")
 
 		switch userInput {
 		case "1":
