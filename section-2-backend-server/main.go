@@ -383,7 +383,7 @@ func execute_opcode(go_bar_pin gpio.PinIO, data_out data_pins) {
 
 func main() {
 
-	fmt.Println("LETS GO 5!!")
+	fmt.Println("LETS GO 7!!")
 
 	// INIT HOST MACHINE (i.e. Raspberry Pi)
 	_, err := host.Init()
@@ -496,13 +496,11 @@ func main() {
 	}
 	data_out := data_pins{DATA_OUT_7_PIN, DATA_OUT_6_PIN, DATA_OUT_5_PIN, DATA_OUT_4_PIN, DATA_OUT_3_PIN, DATA_OUT_2_PIN, DATA_OUT_1_PIN, DATA_OUT_0_PIN}
 	// SET PULLDOWN RESISTER AND LOOK FOR BOTH EDGES (High->Low or Low->High)
-	fmt.Println("Setting up data pins pulldown")
 	err = data_out.data_7.In(gpio.PullDown, gpio.BothEdges)
 	if err != nil {
 		fmt.Println("Error setting up data pin 7")
 		log.Fatal(err)
 	}
-	fmt.Println("Setting up data pins after pulldown")
 	err = data_out.data_6.In(gpio.PullDown, gpio.BothEdges)
 	if err != nil {
 		log.Fatal(err)
