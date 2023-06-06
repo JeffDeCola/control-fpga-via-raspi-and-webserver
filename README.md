@@ -322,6 +322,12 @@ To
 with a
 [Dockerfile](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/build/Dockerfile),
 
+The Dockerfile has the architecture as arm64,
+
+```dockerfile
+FROM --platform=linux/arm64/v8 golang:alpine AS builder
+```
+
 ```bash
 cd section-2-backend-server
 docker build -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
