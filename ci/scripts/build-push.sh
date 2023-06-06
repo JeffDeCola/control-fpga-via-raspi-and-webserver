@@ -42,8 +42,8 @@ echo "SETUP THE BUILD IN /dist -------------------------------------------------
 echo " "
 
 echo "Copy what you want to make binary of (i.e. go build) into dist"
-echo "cp -r control-fpga-via-raspi-and-webserver/control-fpga-via-raspi-and-webserver-code/* dist"
-cp -r control-fpga-via-raspi-and-webserver/control-fpga-via-raspi-and-webserver-code/* dist
+echo "cp -r control-fpga-via-raspi-and-webserver/section-2-backend-server/* dist"
+cp -r control-fpga-via-raspi-and-webserver/section-2-backend-server/* dist
 echo " "
 
 echo "Copy the Dockefile into dist"
@@ -65,8 +65,8 @@ echo " "
 #cp -R ./control-fpga-via-raspi-and-webserver src/github.com/JeffDeCola/.
 #echo " "
 
-#echo "cd src/github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/control-fpga-via-raspi-and-webserver-code"
-#cd src/github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/control-fpga-via-raspi-and-webserver-code
+#echo "cd src/github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/section-2-backend-server"
+#cd src/github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/section-2-backend-server
 #echo " "
 
 #echo "Check that you are set and everything is in the right place for go:"
@@ -83,11 +83,11 @@ echo " "
 #echo " "
 
 #echo "cp the binary into /dist"
-#cp "$GOPATH/src/github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/control-fpga-via-raspi-and-webserver-code/bin/hello-go" .
+#cp "$GOPATH/src/github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/section-2-backend-server/bin/hello-go" .
 #echo " "
 
 #echo "cp the Dockerfile into /dist"
-#cp "$GOPATH/src/github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/control-fpga-via-raspi-and-webserver-code/build-push/Dockerfile" .
+#cp "$GOPATH/src/github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/section-2-backend-server/build-push/Dockerfile" .
 #echo " "
 
 #echo "Make it executable by all - chmod +x"
