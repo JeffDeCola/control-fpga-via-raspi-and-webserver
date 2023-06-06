@@ -56,8 +56,8 @@ echo "cp -R ./control-fpga-via-raspi-and-webserver src/github.com/JeffDeCola/."
 cp -R ./control-fpga-via-raspi-and-webserver src/github.com/JeffDeCola/.
 echo " "
 
-echo "cd src/github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/control-fpga-via-raspi-and-webserver-code"
-cd src/github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/control-fpga-via-raspi-and-webserver-code
+echo "cd src/github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/section-2-backend-server"
+cd src/github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/section-2-backend-server
 echo " "
 
 echo "Check that you are set and everything is in the right place for go:"

@@ -183,10 +183,10 @@ jobs:
           # DEPLOY DOCKER IMAGE TO DOCKER HOST
           - put: resource-deploy-docker
             params:
-              DOCKER_HOST_SSH_PRIVATE_KEY_FILE: {{docker_host_ssh_private_key_file}}
+              DOCKER_HOST_SSH_PRIVATE_KEY_FILE: {{raspi_4b_docker_host_ssh_private_key}}
               DOCKER_HOST_PORT: '22'
-              DOCKER_HOST_USER: 'jeffdecola'
-              DOCKER_HOST_IP: '192.168.20.124'
+              DOCKER_HOST_USER: 'jeff'
+              DOCKER_HOST_IP: '192.168.20.118'
               DOCKER_IMAGE_TO_DEPLOY: 'jeffdecola/control-fpga-via-raspi-and-webserver'
           # SEND SLACK ALERT  
           - put: resource-slack-alert
@@ -240,7 +240,7 @@ resources:
       #uri: https://github.com/jeffdecola/control-fpga-via-raspi-and-webserver
       uri: git@github.com:jeffdecola/control-fpga-via-raspi-and-webserver.git
       branch: master
-      private_key: ((git_private_key))
+      private_key: ((concourse_git_private_key))
 
   - name: resource-dump-to-dockerhub
     type: docker-image
