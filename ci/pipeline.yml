@@ -28,8 +28,6 @@ jobs:
     - put: resource-dump-to-dockerhub
       params:
         build: "dist"
-        cache: true
-        docker_buildkit: 1
       
       # TASK SUCCESS
       on_success:
