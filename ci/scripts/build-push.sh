@@ -101,10 +101,21 @@ echo " "
 echo "BUILD AND PUSH DONE IN PIPELINE -------------------------------------------------------"
 echo " "
 
+echo "The pipeline will build and push the docker image to DockerHub via a DockerFile"
+whoami
+
+echo "docker version"
+docker version
+
+echo "docker info"
+docker info
+
+echo "docker buildx version"
+docker buildx version
+
 docker buildx build --platform=linux/arm64 --no-cache --output type=docker -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
 
 docker push jeffdecola/control-fpga-via-raspi-and-webserver
-
 
 echo "build-push.sh (END)"
 echo " "
