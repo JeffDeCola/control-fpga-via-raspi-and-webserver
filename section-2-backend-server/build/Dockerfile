@@ -11,9 +11,6 @@
 #################################
 
 FROM --platform=linux/arm64 golang:alpine AS builder
-ARG TARGETPLATFORM
-ARG BUILDPLATFORM
-RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM"
 
 # Install git
 # Git is required for fetching the dependencies
