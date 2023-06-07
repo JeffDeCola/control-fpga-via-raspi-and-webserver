@@ -45,7 +45,7 @@ FROM --platform=linux/arm64 alpine
 LABEL maintainer="Jeff DeCola https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver"
 
 # Put the binary from previous build into /app
-RUN mkdir /app
+RUN mkdir -p /app
 COPY --from=builder /go/bin/control-fpga-via-raspi-and-webserver /app/control-fpga-via-raspi-and-webserver
 WORKDIR /app
 
