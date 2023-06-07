@@ -104,6 +104,9 @@ echo " "
 echo "The pipeline will build and push the docker image to DockerHub via a DockerFile"
 whoami
 
+systemctl start docker
+systemctl enable docker
+
 echo "docker version"
 docker version
 
