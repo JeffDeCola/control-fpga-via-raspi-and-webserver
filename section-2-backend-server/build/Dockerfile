@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # control-fpga-via-raspi-and-webserver Dockerfile used to build docker image
 
 # Multi-stage build to create a small docker image
