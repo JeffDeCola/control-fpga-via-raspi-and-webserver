@@ -2,7 +2,7 @@
 
 # Multi-stage build to create a small docker image
 
-#FROM docker
+#FROM docker as builder4
 #COPY --from=docker/buildx-bin /buildx /usr/libexec/docker/cli-plugins/docker-buildx
 #RUN docker buildx version
 
@@ -10,8 +10,8 @@
 # STAGE 1 build executable binary
 #################################
 
-#FROM --platform=linux/arm64 golang:alpine AS builder
-FROM golang:alpine AS builder
+FROM --platform=linux/arm64 golang:alpine AS builder
+#FROM golang:alpine AS builder
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
 RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM"
