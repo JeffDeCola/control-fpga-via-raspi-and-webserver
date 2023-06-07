@@ -101,14 +101,14 @@ echo " "
 echo "BUILD AND PUSH DONE IN PIPELINE -------------------------------------------------------"
 echo " "
 
-echo "docker version"
-docker version
+#echo "docker version"
+#docker version
 
-echo "docker info"
-docker info
+#echo "docker info"
+#docker info
 
-echo "docker buildx version"
-docker buildx version
+#echo "docker buildx version"
+#docker buildx version
 
 # docker buildx build --platform=linux/arm64 --no-cache --output type=docker -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
 
