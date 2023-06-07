@@ -5,7 +5,7 @@
 # Multi-stage build to create a small docker image
 
 FROM docker as builder4
-COPY --from=builder4 /buildx /usr/libexec/docker/cli-plugins/docker-buildx
+COPY --from=docker/buildx-bin /buildx /usr/libexec/docker/cli-plugins/docker-buildx
 RUN docker buildx version
 
 #################################
