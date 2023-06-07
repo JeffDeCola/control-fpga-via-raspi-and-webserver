@@ -128,8 +128,8 @@ jobs:
       file: control-fpga-via-raspi-and-webserver/ci/tasks/task-build-push.yml
 
     # PUSH DOCKER IMAGE TO DOCKERHUB  
-    - put: resource-dump-to-dockerhub
-      params: { build: "dist"}
+    #- put: resource-dump-to-dockerhub
+    #  params: { build: "dist"}
       
       # TASK SUCCESS
       on_success:
@@ -243,14 +243,14 @@ resources:
       branch: master
       private_key: ((concourse_git_private_key))
 
-  - name: resource-dump-to-dockerhub
-    type: docker-image
-    icon: docker
-    source:
-      repository: jeffdecola/control-fpga-via-raspi-and-webserver
-      tag: latest
-      username: jeffdecola
-      password: ((dockerhub_password))
+  #- name: resource-dump-to-dockerhub
+  #  type: docker-image
+  #  icon: docker
+  #  source:
+  #    repository: jeffdecola/control-fpga-via-raspi-and-webserver
+  #    tag: latest
+  #    username: jeffdecola
+  #    password: ((dockerhub_password))
 
   - name: resource-deploy-docker
     type: deploy-docker
