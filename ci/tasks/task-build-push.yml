@@ -6,7 +6,7 @@ platform: linux
 image_resource:
   type: docker-image
   source:
-    repository: docker
+    repository: amidos/dcind
 
 inputs:
   - name: control-fpga-via-raspi-and-webserver
@@ -16,4 +16,10 @@ outputs:
 
 run:
   path: ./control-fpga-via-raspi-and-webserver/ci/scripts/build-push.sh
-  # args: [-debug]
+  args:
+   - -exc
+   - |
+     source /docker-lib.sh
+     start_docker
+     docker ps
+     echo "docker started !!!!!!"
