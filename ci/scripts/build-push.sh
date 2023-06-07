@@ -101,10 +101,10 @@ echo " "
 echo "BUILD AND PUSH DONE IN PIPELINE -------------------------------------------------------"
 echo " "
 
-echo "The concourse pipeline will build and push the docker image to DockerHub"
-echo "Its funny because you are in a docker image (on concourse) that will build a docker image"
-echo "Its like the movie inception"
-echo " "
+docker buildx build --platform=linux/arm64 --no-cache --output type=docker -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
+
+docker push jeffdecola/control-fpga-via-raspi-and-webserver
+
 
 echo "build-push.sh (END)"
 echo " "
