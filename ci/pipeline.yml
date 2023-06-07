@@ -26,7 +26,7 @@ jobs:
 
     # PUSH DOCKER IMAGE TO DOCKERHUB  
     - put: resource-dump-to-dockerhub
-      params: { build: "dist", docker_buildkit: "1"}
+      params: { build: "dist", docker_buildkit: "true"}
       
       # TASK SUCCESS
       on_success:
