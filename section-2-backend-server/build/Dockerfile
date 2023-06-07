@@ -40,19 +40,19 @@ RUN go build -o /go/bin/control-fpga-via-raspi-and-webserver main.go
 ###############################
 
 # Must be root USER 0 is root
-FROM --platform=linux/arm64 alpine
-USER 0
+#FROM --platform=linux/arm64 alpine
+#USER 0
 
 # Add my name to it
-LABEL maintainer="Jeff DeCola https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver"
+#LABEL maintainer="Jeff DeCola https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver"
 
 # Put the binary from previous build into /app
-#RUN mkdir -p /app
-#COPY --from=builder /go/bin/control-fpga-via-raspi-and-webserver /app/control-fpga-via-raspi-and-webserver
-#WORKDIR /app
+RUN mkdir -p /app
+COPY --from=builder /go/bin/control-fpga-via-raspi-and-webserver /app/control-fpga-via-raspi-and-webserver
+WORKDIR /app
 
 # Add the ailibty to /bin/bash in alpine
-#RUN apk add --update bash
+RUN apk add --update bash
 
 # Run the binary
-#ENTRYPOINT ["/app/control-fpga-via-raspi-and-webserver"]
+ENTRYPOINT ["/app/control-fpga-via-raspi-and-webserver"]
