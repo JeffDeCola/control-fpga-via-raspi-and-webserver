@@ -40,9 +40,7 @@ RUN go build -o /go/bin/control-fpga-via-raspi-and-webserver main.go
 ###############################
 
 # Must be root USER 0 is root
-#FROM --platform=linux/arm64 alpine
-FROM --platform=linux/arm64 golang:alpine AS builder2
-
+FROM --platform=linux/arm64 alpine
 USER 0
 
 # Add my name to it
