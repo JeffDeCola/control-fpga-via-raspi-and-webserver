@@ -4,6 +4,108 @@
 jobs:
 
 #**********************************************
+- name: job-readme-github-pages
+#**********************************************
+  plan:
+
+    # GET REPO FROM GITHUB
+    - get: control-fpga-via-raspi-and-webserver
+      trigger: true
+    # SEND SLACK ALERT  
+    - put: resource-slack-alert
+      params:
+        channel: '#jeff-builds'
+        text: "From control-fpga-via-raspi-and-webserver: STARTED job-readme-github-pages in concourse ci."
+    # SEND GITHUB STATUS
+    - put: resource-repo-status
+      params: { state: "pending", description: "STARTED job-readme-github-pages in concourse ci.", commit: "control-fpga-via-raspi-and-webserver" }    
+    
+    # RUN TASK IN REPO USING ALPINE DOCKER IMAGE
+    - task: task-readme-github-pages
+      file: control-fpga-via-raspi-and-webserver/ci/tasks/task-readme-github-pages.yml
+      
+      # TASK SUCCESS
+      on_success:
+        do:
+          # PUSH NEW REPO TO GITHUB
+          - put: control-fpga-via-raspi-and-webserver
+            params:
+              repository: control-fpga-via-raspi-and-webserver-updated  
+          # SEND SLACK ALERT  
+          - put: resource-slack-alert
+            params:
+              channel: '#jeff-builds'
+              text: "From control-fpga-via-raspi-and-webserver: PASSED job-readme-github-pages in concourse ci."
+          # SEND GITHUB STATUS
+          - put: resource-repo-status
+            params: { state: "success", description: "PASSED job-readme-github-pages in concourse ci", commit: "control-fpga-via-raspi-and-webserver" }
+      
+      # TASK FAILURE   
+      on_failure:
+        do:
+          # SEND SLACK ALERT  
+          - put: resource-slack-alert
+            params:
+              channel: '#jeff-builds'
+              text: "From control-fpga-via-raspi-and-webserver: FAILED job-readme-github-pages in concourse ci."
+          # SEND GITHUB STATUS
+          - put: resource-repo-status
+            params: { state: "failure", description: "FAILED job-readme-github-pages in concourse ci", commit: "control-fpga-via-raspi-and-webserver" }
+
+#**********************************************
+- name: job-unit-tests
+#**********************************************
+  plan:
+
+    # GET REPO FROM GITHUB
+    - get: control-fpga-via-raspi-and-webserver
+      trigger: true
+      passed: [job-readme-github-pages]
+    # SEND SLACK ALERT  
+    - put: resource-slack-alert
+      params:
+        channel: '#jeff-builds'
+        text: "From control-fpga-via-raspi-and-webserver: STARTED job-unit-tests in concourse ci."
+    # SEND GITHUB STATUS
+    - put: resource-repo-status
+      params: { state: "pending", description: "STARTED job-unit-tests in concourse ci.", commit: "control-fpga-via-raspi-and-webserver" }
+
+    # RUN TASK IN REPO USING ALPINE DOCKER IMAGE 
+    - task: task-unit-tests
+      file: control-fpga-via-raspi-and-webserver/ci/tasks/task-unit-tests.yml
+
+      # TASK SUCCESS
+      on_success:
+        do:
+          # PUSH NEW REPO TO GITHUB
+          - put: control-fpga-via-raspi-and-webserver
+            params:
+              repository: control-fpga-via-raspi-and-webserver  
+          # SEND SLACK ALERT  
+          - put: resource-slack-alert
+            params:
+              channel: '#jeff-builds'
+              text_file: coverage-results/test_coverage.txt
+              text: |
+                From control-fpga-via-raspi-and-webserver: PASSED job-unit-tests in concourse ci. 
+                $TEXT_FILE_CONTENT
+          # SEND GITHUB STATUS
+          - put: resource-repo-status
+            params: { state: "success", description: "PASSED job-unit-tests in concourse ci", commit: "control-fpga-via-raspi-and-webserver" }
+      
+      # TASK FAILURE
+      on_failure:
+        do:
+          # SEND SLACK ALERT  
+          - put: resource-slack-alert
+            params:
+              channel: '#jeff-builds'
+              text: "From control-fpga-via-raspi-and-webserver: FAILED job-unit-tests in concourse ci."
+          # SEND GITHUB STATUS
+          - put: resource-repo-status
+            params: { state: "failure", description: "FAILED job-unit-tests in concourse ci.", commit: "control-fpga-via-raspi-and-webserver" }
+
+#**********************************************
 - name: job-build-push
 #**********************************************
   plan:
@@ -11,6 +113,7 @@ jobs:
     # GET REPO FROM GITHUB
     - get: control-fpga-via-raspi-and-webserver
       trigger: true
+      passed: [job-unit-tests]
     # SEND SLACK ALERT  
     - put: resource-slack-alert
       params:
