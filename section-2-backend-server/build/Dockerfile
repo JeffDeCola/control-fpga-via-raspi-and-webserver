@@ -52,7 +52,7 @@ LABEL maintainer="Jeff DeCola https://github.com/JeffDeCola/control-fpga-via-ras
 #WORKDIR /app
 
 # Add the ailibty to /bin/bash in alpine
-RUN apk add --update bash
+#RUN apk add --update bash
 
 # Run the binary
 #ENTRYPOINT ["/app/control-fpga-via-raspi-and-webserver"]
