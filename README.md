@@ -1,4 +1,4 @@
-vbd11 vbu22
+vbd11 vbu22 mac
 
 # CONTROL FPGA VIA RASPI AND WEBSERVER
 
