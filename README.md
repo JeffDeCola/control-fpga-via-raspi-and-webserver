@@ -1,4 +1,4 @@
-vbd11 vbu22 mac addie
+vbd11 vbu22 mac addie 4b
 
 # CONTROL FPGA VIA RASPI AND WEBSERVER
 
