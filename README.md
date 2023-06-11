@@ -1,5 +1,3 @@
-vbd11 vbu22 mac addie 4b 3b 3b 1b hb crap
-
 # CONTROL FPGA VIA RASPI AND WEBSERVER
 
 [![Tag Latest](https://img.shields.io/github/v/tag/jeffdecola/control-fpga-via-raspi-and-webserver)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tags)
