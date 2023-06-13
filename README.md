@@ -278,10 +278,15 @@ cd section-2-backend-server
 go run main.go
 ```
 
-As a placeholder, every 2 seconds it will print,
+Currently, it will ask you if you want to add, subtract, multiply or divide.
+It will look like,
 
 ```txt
-    ????
+1: add, 2: subtract, 3: multiply, 4: divide, x: exit: 1
+    ADD
+    DATA_IN_A: 10000011
+    DATA_IN_B: 00001100
+    DATA_OUT:  10001111 
 ```
 
 ### CREATE BINARY
