@@ -330,13 +330,12 @@ with a
 The Dockerfile has the architecture as arm64,
 
 ```dockerfile
-FROM --platform=linux/arm64/v8 golang:alpine AS builder
+FROM --platform=linux/arm64 golang:alpine AS builder
 ```
 
 ```bash
 cd section-2-backend-server
-docker build -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
-docker buildx build --platform=linux/arm64 --no-cache --output type=docker -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
+docker build --platform=linux/arm64 -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
 ```
 
 You can check and test this docker image,
