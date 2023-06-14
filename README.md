@@ -333,6 +333,13 @@ The Dockerfile has the architecture as arm64,
 FROM --platform=linux/arm64 golang:alpine AS builder
 ```
 
+You may have to get some libraries,
+
+```bash
+sudo apt-get install -y qemu qemu-user-static
+docker buildx ls
+```
+
 ```bash
 cd section-2-backend-server
 docker build --platform=linux/arm64 -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
