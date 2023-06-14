@@ -26,8 +26,8 @@ echo " "
 
 echo "Build your docker image using Dockerfile"
 echo "NOTE: The binary is built using this step"
-echo "DOCKER_BUILDKIT=0 docker build --output type=docker --platform=linux/arm64 --no-cache -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver ."
-DOCKER_BUILDKIT=0 docker build --output type=docker --platform=linux/arm64 --no-cache -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
+echo "docker build --output type=docker --platform=linux/arm64 --no-cache -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver ."
+docker build --output type=docker --platform=linux/arm64 --no-cache -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
 echo " "
 
 echo "Check Docker Image size"
