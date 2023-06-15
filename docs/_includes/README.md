@@ -224,10 +224,15 @@ cd section-2-backend-server
 go run main.go
 ```
 
-As a placeholder, every 2 seconds it will print,
+Currently, it will ask you if you want to add, subtract, multiply or divide.
+It will look like,
 
 ```txt
-    ????
+1: add, 2: subtract, 3: multiply, 4: divide, x: exit: 1
+    ADD
+    DATA_IN_A: 10000011
+    DATA_IN_B: 00001100
+    DATA_OUT:  10001111 
 ```
 
 ### CREATE BINARY
@@ -271,20 +276,32 @@ with a
 The Dockerfile has the architecture as arm64,
 
 ```dockerfile
-FROM --platform=linux/arm64/v8 golang:alpine AS builder
+FROM --platform=linux/arm64 golang:alpine AS builder
+```
+
+You may have to get some libraries,
+
+```bash
+sudo apt-get install -y qemu qemu-user-static
+docker buildx ls
 ```
 
 ```bash
 cd section-2-backend-server
-docker build -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
-docker buildx build --platform=linux/arm64 --no-cache --output type=docker -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
+docker build --output type=docker\
+             --platform=linux/arm64\
+             --no-cache\
+             -f build/Dockerfile\
+             -t jeffdecola/control-fpga-via-raspi-and-webserver .
 ```
 
-You can check and test this docker image,
+If you are on an ARM64, you can check and test this docker image,
 
 ```bash
 docker images jeffdecola/control-fpga-via-raspi-and-webserver:latest
-docker run --privileged --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
+docker run --privileged\
+           --name control-fpga-via-raspi-and-webserver\
+           -dit jeffdecola/control-fpga-via-raspi-and-webserver
 ```
 
 Write stdin,
@@ -346,7 +363,20 @@ To
 
 ```bash
 cd section-2-backend-server
-docker run --privileged --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
+docker run --privileged\
+           --pull=always\
+           --name control-fpga-via-raspi-and-webserver\
+            -dit jeffdecola/control-fpga-via-raspi-and-webserver
+```
+
+Using --privileged allows complete access to raspberry pi.
+
+If doing it over the network, you can do something like,
+
+```bash
+ssh -o StrictHostKeyChecking=no\
+    -p 22 jeff@192.168.20.118\
+    'export PATH=$PATH:/usr/local/bin; docker run --privileged --pull=always --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver'
 ```
 
 ### INTERACT WITH DOCKER CONTAINER
