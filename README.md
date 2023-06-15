@@ -342,14 +342,20 @@ docker buildx ls
 
 ```bash
 cd section-2-backend-server
-docker build --platform=linux/arm64 -f build/Dockerfile -t jeffdecola/control-fpga-via-raspi-and-webserver .
+docker build --output type=docker\
+             --platform=linux/arm64\
+             --no-cache\
+             -f build/Dockerfile\
+             -t jeffdecola/control-fpga-via-raspi-and-webserver .
 ```
 
 You can check and test this docker image,
 
 ```bash
 docker images jeffdecola/control-fpga-via-raspi-and-webserver:latest
-docker run --privileged --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
+docker run --privileged\
+           --name control-fpga-via-raspi-and-webserver\
+           -dit jeffdecola/control-fpga-via-raspi-and-webserver
 ```
 
 Write stdin,

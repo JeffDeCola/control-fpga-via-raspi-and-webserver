@@ -383,7 +383,7 @@ func execute_opcode(go_bar_pin gpio.PinIO, data_out data_pins) {
 
 func main() {
 
-	fmt.Println("LETS GO 4b!")
+	fmt.Println("LETS GO 4b test!")
 
 	// INIT HOST MACHINE (i.e. Raspberry Pi)
 	_, err := host.Init()
