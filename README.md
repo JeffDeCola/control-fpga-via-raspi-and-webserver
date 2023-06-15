@@ -349,7 +349,7 @@ docker build --output type=docker\
              -t jeffdecola/control-fpga-via-raspi-and-webserver .
 ```
 
-You can check and test this docker image,
+If you are on an ARM64, you can check and test this docker image,
 
 ```bash
 docker images jeffdecola/control-fpga-via-raspi-and-webserver:latest
@@ -417,7 +417,20 @@ To
 
 ```bash
 cd section-2-backend-server
-docker run --privileged --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver
+docker run --privileged\
+           --pull=always\
+           --name control-fpga-via-raspi-and-webserver\
+            -dit jeffdecola/control-fpga-via-raspi-and-webserver
+```
+
+Using --privileged allows complete access to raspberry pi.
+
+If doing it over the network, you can do something like,
+
+```bash
+ssh -o StrictHostKeyChecking=no\
+    -p 22 jeff@192.168.20.118\
+    'export PATH=$PATH:/usr/local/bin; docker run --privileged --pull=always --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver'
 ```
 
 ### INTERACT WITH DOCKER CONTAINER
