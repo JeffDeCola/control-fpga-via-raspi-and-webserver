@@ -116,11 +116,21 @@
                         <!-- ------------------------------------------------------------------------------------------------------- -->
                         <div class="comment_container">
 
-                            <h3> TRY IT </h3>
-                            <p>
-                                Enter an Operands and chose your operation.
-                                Then click the button to send the command to the FPGA.
-                            </p>
+                            <h3> TRY IT LIVE </h3>
+
+                        </div>
+
+                        <!-- ------------------------------------------------------------------------------------------------------- -->
+                        <div class="picture_container">
+
+                            <img src="images/concept-of-webpage.jpg" alt="concept"/>
+
+                        </div>
+
+                        <!-- ------------------------------------------------------------------------------------------------------- -->
+                        <div class="comment_container">
+
+                            <h3> WHAT IT LOOKS LIKES </h3>
 
                         </div>
 
@@ -129,13 +139,9 @@
 
                             </br>
                             </br>
-                            <p> Coming Soon </p>
-                            </br>
                             </br>
 
                         </div>
-
-                        <!-- ------------------------------------------------------------------------------------------------------- -->
                         <div class="picture_container_2">
 
                             <img src="images/arty-s7-breadboard-and-raspberry-pi.jpg" alt="arty-s7-breadboard-and-raspberry-pi"/>

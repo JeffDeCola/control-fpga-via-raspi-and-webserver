@@ -463,4 +463,9 @@ tbd
 
 ## SECTION IV - THE BROWSER
 
-tbd
+I have a working demo at
+[jeffdecola.com/control-an-fpga](https://jeffdecola.com/control-an-fpga).
+
+I designed the frontend to look like,
+
+![IMAGE - concept-of-webpage.jpg - IMAGE](docs/pics/concept-of-webpage.jpg)
