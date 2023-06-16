@@ -45,7 +45,6 @@ in the following four sections,
 
 I burned my
 [programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable_8_bit_microprocessor) to an FPGA.
-Refer to that repo on how I did that.
 
 Summary,
 
@@ -59,14 +58,19 @@ Summary,
   [Digilent ARTY-S7](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/development/fpga-development-boards/digilent-arty-s7-cheat-sheet)
   FPGA development board
 
-### VERILOG
+Refer to that repo on how I accomplished this. I will provide a
+high level overview.
+
+### FPGA (8-BIT MICROPROCESSOR)
+
+#### VERILOG
 
 This is the high level architecture of the 8-bit microprocessor
 I designed in verilog,
 
 ![IMAGE - Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg - IMAGE](https://github.com/JeffDeCola/my-verilog-examples/blob/master/docs/pics/systems/Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg?raw=true)
 
-### INPUT/OUTPUT
+#### INPUT/OUTPUT
 
 * **INPUT**
   * SYSTEM_CLK
@@ -79,23 +83,32 @@ I designed in verilog,
 * **OUTPUT**
   * [7:0] DATA_OUT
 
-### ARTY S7-50 FPGA DEVELOPMENT BOARD
+#### ARTY S7-50 FPGA DEVELOPMENT BOARD
 
 I burned the microprocessor to an FPGA on an
 Arty S7-50 FPGA development board.
 
 ![IMAGE - digilent-arty-s7-50.jpg - IMAGE](https://github.com/JeffDeCola/my-cheat-sheets/blob/master/docs/pics/digilent-arty-s7-50.jpg?raw=true)
 
+### AS A SERVER (CONNECTION TO RASPBERRY PI)
+
+The FPGA is connected to the Raspberry Pi via the PMOD pins.
+This will be shown in the following section.
+
 ## SECTION II - THE RASPBERRY PI
 
 The Raspberry Pi has two main functions,
 
-* Controls 28 pins of the I/O of the FPGA (GPIO to PMOD) via GO
-* Provide an interface to the webserver (REST JSON API)
+* AS A CLIENT - Controls 28 pins of the I/O of the FPGA (GPIO to PMOD) via GO
+* AS A SERVER - Provide an interface to the webserver (gRPC)
 
-These function will be written in go and placed in a docker image.
+### AS A CLIENT (FPGA CONNECTION)
 
-### BREADBOARD (GPIO to PMOD)
+The Raspberry Pi will control the I/O of the FPGA via the
+GPIO pins. The Raspberry Pi will be the client and the FPGA
+will be the server.
+
+#### BREADBOARD (GPIO to PMOD)
 
 To connect to the Raspberry Pi a breadboard was used to
 connect the GPIO pins to the PMOD pins on the FPGA development board.
@@ -168,7 +181,7 @@ The result,
 
 ![IMAGE - arty-s7-breadboard-and-raspberry-pi.jpg - IMAGE](pics/arty-s7-breadboard-and-raspberry-pi.jpg)
 
-### CONTROL FPGA I/O VIA GO
+#### CONTROL FPGA I/O VIA GO
 
 The Raspberry Pi will control the FPGA via GO using the
 [periph.io](https://periph.io/)
@@ -210,11 +223,24 @@ For outputs also set the pulldown resistor,
   }
 ```
 
-### WEB SERVER INTERFACE (gRPC Protobuf)
+### AS A SERVER (WEB SERVER CONNECTION)
 
-tbd.
+The Raspberry Pi will also be a server using gRPC.
+It will accept requests from a web server client and
+return the results.
 
-### RUN
+#### GO AND gRPC
+
+tbd
+
+### GO INTEGRATION AND DEPLOYMENT
+
+A go program will interface with both the FPGA and web server.
+It will placed in a
+[docker image](https://hub.docker.com/r/jeffdecola/control-fpga-via-raspi-and-webserver)
+and deployed to a Raspberry Pi 4B.
+
+#### RUN
 
 To
 [run.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/run.sh),
@@ -235,7 +261,7 @@ It will look like,
     DATA_OUT:  10001111 
 ```
 
-### CREATE BINARY
+#### CREATE BINARY
 
 To
 [create-binary.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/bin/create-binary.sh),
@@ -249,7 +275,7 @@ go build -o control-fpga-via-raspi-and-webserver ../main.go
 This binary will not be used during a docker build
 since it creates it's own.
 
-### STEP 1 - TEST
+#### STEP 1 - TEST
 
 To create unit `_test` files,
 
@@ -266,7 +292,7 @@ go test -cover ./... | tee test/test_coverage.txt
 cat test/test_coverage.txt
 ```
 
-### STEP 2 - BUILD (DOCKER IMAGE VIA DOCKERFILE)
+#### STEP 2 - BUILD (DOCKER IMAGE VIA DOCKERFILE)
 
 To
 [build.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/build/build.sh)
@@ -337,7 +363,7 @@ In **stage 2**, the Dockerfile will copy the binary created in
 stage 1 and place into a smaller docker base image based
 on `alpine`, which is around 13MB.
 
-### STEP 3 - PUSH (TO DOCKERHUB)
+#### STEP 3 - PUSH (TO DOCKERHUB)
 
 You must be logged in to DockerHub,
 
@@ -356,7 +382,7 @@ Check the
 [control-fpga-via-raspi-and-webserver docker image](https://hub.docker.com/r/jeffdecola/control-fpga-via-raspi-and-webserver)
 at DockerHub.
 
-### STEP 4 - DEPLOY (TO DOCKER ON RASPBERRY PI)
+#### STEP 4 - DEPLOY (TO DOCKER ON RASPBERRY PI)
 
 To
 [deploy.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/deploy/deploy.sh),
@@ -379,7 +405,7 @@ ssh -o StrictHostKeyChecking=no\
     'export PATH=$PATH:/usr/local/bin; docker run --privileged --pull=always --name control-fpga-via-raspi-and-webserver -dit jeffdecola/control-fpga-via-raspi-and-webserver'
 ```
 
-### INTERACT WITH DOCKER CONTAINER
+#### INTERACT WITH DOCKER CONTAINER
 
 The docker container is running on your raspberry pi.
 As mentioned above, the user may interact with the
@@ -397,13 +423,27 @@ Check stdout,
 docker logs control-fpga-via-raspi-and-webserver
 ```
 
-### CONTINUOUS INTEGRATION & DEPLOYMENT
+#### CONTINUOUS INTEGRATION & DEPLOYMENT
 
 Refer to
 [ci-README.md](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/ci-README.md)
 on how I automated the above steps.
 
 ## SECTION III - THE WEB SERVER
+
+The web server will handle a request from the browser and forward
+those requests to the Raspberry Pi.
+
+It will also receive data from the Raspberry Pi and forward
+that data to the browser.
+
+Hence, the web server is both a server and a client.
+
+### AS A SERVER (BROWSER CONNECTION)
+
+tbd
+
+### AS A CLIENT (RASPBERRY PI CONNECTION)
 
 tbd
 
@@ -412,6 +452,56 @@ tbd
 I have a working demo at
 [jeffdecola.com/control-an-fpga](https://jeffdecola.com/control-an-fpga).
 
-I designed the frontend to look like,
+### AJAX XHR POST CALL
+
+To connect with the webserver, I'm using javascript client side
+programming. It will send a ajax XHR POST call to the web server.
+
+On the browser side,
+
+```js
+        // PHP FILE LOCATION
+        var url = 'path to file/filename.php';
+
+        // CREATE A NEW REQUEST
+        postRequest = new XMLHttpRequest();
+        
+        // CONVERT JSON TO STRING
+        var attributesJSONString = JSON.stringify({
+            "operand1": operand1,
+            "operand2": operand2
+        });
+
+        // OPEN CONNECTION - CREATE POST REQUEST
+        postRequest.open  'POST' , url, true);
+
+        // SEND JSON FORMAT
+        postRequest.setRequestHeader('Content-Type', 'application/json');
+        postRequest.send(attributesJSONString);
+
+        // LISTEN AND KICK OFF FUNCTION WHEN READY
+        postRequest.onreadystatechange = function() {
+            ...see code...
+        }
+```
+
+On the webserver side,
+
+```php
+        // GET THE JSON DATA FROM THE USER
+        header("Content-Type: application/json");
+        $attributesJSON = json_decode(file_get_contents("php://input"));
+
+        // UN PARSE IT
+        $operand1 = $attributesJSON->operand1;
+        $operand2 = $attributesJSON->operand2;
+
+        // DO SOMETHING
+        ... 
+```
+
+### WEBSITE
+
+The end result will look as follows,
 
 ![IMAGE - concept-of-webpage.jpg - IMAGE](pics/concept-of-webpage.jpg)
