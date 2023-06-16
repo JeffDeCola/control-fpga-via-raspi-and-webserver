@@ -116,14 +116,14 @@
                         <!-- ------------------------------------------------------------------------------------------------------- -->
                         <div class="comment_container">
 
-                            <h3> TRY IT LIVE </h3>
+                            <h3> TRY IT (LIVE) </h3>
 
                         </div>
 
                         <!-- ------------------------------------------------------------------------------------------------------- -->
-                        <div class="picture_container">
+                        <div class="try_it_container">
 
-                            <img src="images/concept-of-webpage.jpg" alt="concept"/>
+                            include("try-it/try-it.php");
 
                         </div>
 
