@@ -8,7 +8,7 @@ console.log("STARTING ajax_xhr_calls_post.js JAVASCRIPT");
 
 // -----------------------------------------------------------------------------------------------------------------------
 // SEND DATA TO WEB SERVER
-function send_data_to_web_server(operand1, operand2) {
+function send_data_to_web_server(opcode, data_in_a, data_in_b, go) {
 
     // CREATE A NEW REQUEST
     postRequest = new XMLHttpRequest();
@@ -18,8 +18,10 @@ function send_data_to_web_server(operand1, operand2) {
     
     // CONVERT JSON TO STRING
     var attributesJSONString = JSON.stringify({
+        "opcode": opcode,
         "operand1": operand1,
-        "operand2": operand2
+        "operand2": operand2,
+        "go": go
     });
 
     // OPEN CONNECTION - CREATE POST REQUEST
@@ -42,8 +44,8 @@ function send_data_to_web_server(operand1, operand2) {
 
                     // THE MAGIC HAPPENS HERE *******************************************
                     // RECEIVE JSON FORMAT
-                    serverData = JSON.parse(postRequest.responseText);
-                    show_data(serverData);
+                    data_out_from_web_server = JSON.parse(postRequest.responseText);
+                    show_data_out(data_out_from_web_server);
 
                 } else {
                     console.warn("There was an issue getting data to the server");

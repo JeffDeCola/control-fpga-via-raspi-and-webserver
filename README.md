@@ -15,29 +15,22 @@ _Control a FPGA via a Raspberry Pi and a Webserver. As an example, I burned my
 to an FPGA development board and you can control it at
 [jeffdecola.com/control-an-fpga](https://jeffdecola.com/control-an-fpga)._
 
-Table of Contents
-
 * [TRY IT](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#try-it)
 * [OVERVIEW](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#overview)
 * [SOFTWARE STACK](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#software-stack)
 * [SECTION I - THE FPGA](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-i---the-fpga)
-  * [VERILOG](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#verilog)
-  * [INPUT/OUTPUT](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#inputoutput)
-  * [ARTY S7-50 FPGA DEVELOPMENT BOARD](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#arty-s7-50-fpga-development-board)
+  * [FPGA (8-BIT MICROPROCESSOR)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#fpga-8-bit-microprocessor)
+  * [AS A SERVER (CONNECTION TO RASPBERRY PI)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#as-a-server-connection-to-raspberry-pi)
 * [SECTION II - THE RASPBERRY PI](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-ii---the-raspberry-pi)
-  * [BREADBOARD (GPIO to PMOD)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#breadboard-gpio-to-pmod)
-  * [CONTROL FPGA I/O VIA GO](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#control-fpga-io-via-go)
-  * [WEB SERVER INTERFACE (gRPC Protobuf)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#web-server-interface-grpc-protobuf)
-  * [RUN](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#run)
-  * [CREATE BINARY](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#create-binary)
-  * [STEP 1 - TEST](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#step-1---test)
-  * [STEP 2 - BUILD (DOCKER IMAGE VIA DOCKERFILE)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#step-2---build-docker-image-via-dockerfile)
-  * [STEP 3 - PUSH (TO DOCKERHUB)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#step-3---push-to-dockerhub)
-  * [STEP 4 - DEPLOY (TO DOCKER ON RASPBERRY PI)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#step-4---deploy-to-docker-on-raspberry-pi)
-  * [INTERACT WITH DOCKER CONTAINER](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#interact-with-docker-container)
-  * [CONTINUOUS INTEGRATION & DEPLOYMENT](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#continuous-integration--deployment)
+  * [AS A CLIENT (FPGA CONNECTION)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#as-a-client-fpga-connection)
+  * [AS A SERVER (WEB SERVER CONNECTION)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#as-a-server-web-server-connection)
+  * [GO INTEGRATION AND DEPLOYMENT](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#go-integration-and-deployment)
 * [SECTION III - THE WEB SERVER](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-iii---the-web-server)
+  * [AS A SERVER (BROWSER CONNECTION)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#as-a-server-browser-connection)
+  * [AS A CLIENT (RASPBERRY PI CONNECTION)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#as-a-client-raspberry-pi-connection)
 * [SECTION IV - THE BROWSER](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-iv---the-browser)
+  * [AJAX XHR POST CALL](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#ajax-xhr-post-call)
+  * [WEBSITE](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#website)
 
 Documentation and Reference
 

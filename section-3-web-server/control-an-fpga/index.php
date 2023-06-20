@@ -1,4 +1,3 @@
-
 <?php
     session_start();
 ?>
@@ -88,8 +87,8 @@
 
             <div class="title_container">
 
-                <h2> CONTROL AN 8-BIT MICROPROCESSOR </h2>
-                <p> I burned a programable-8-bit-microprocessor I designed to an FPGA development board and you can control it below.  </p>
+                <h2> CONTROL MY 8-BIT MICROPROCESSOR </h2>
+                <p> I burned to an FPGA.  </p>
                 <p> 
                     <a href="https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver"> Code </a>
                     written in php, js, go and verilog
@@ -106,47 +105,7 @@
 
                         <h2 class="hidden"> ARTICLE - HOME PAGE </h2>
 
-                        <!-- ------------------------------------------------------------------------------------------------------- -->
-                        <div class="picture_container">
-
-                            <img src="images/overview.jpg" alt="overview"/>
-
-                        </div>
-
-                        <!-- ------------------------------------------------------------------------------------------------------- -->
-                        <div class="comment_container">
-
-                            <h3> TRY IT (LIVE) </h3>
-
-                        </div>
-
-                        <!-- ------------------------------------------------------------------------------------------------------- -->
-                        <div class="try_it_container">
-
-                            include("try-it/try-it.php");
-
-                        </div>
-
-                        <!-- ------------------------------------------------------------------------------------------------------- -->
-                        <div class="comment_container">
-
-                            <h3> WHAT IT LOOKS LIKES </h3>
-
-                        </div>
-
-                        <!-- ------------------------------------------------------------------------------------------------------- -->
-                        <div class="just_text">
-
-                            </br>
-                            </br>
-                            </br>
-
-                        </div>
-                        <div class="picture_container_2">
-
-                            <img src="images/arty-s7-breadboard-and-raspberry-pi.jpg" alt="arty-s7-breadboard-and-raspberry-pi"/>
-
-                        </div>
+                        <?php include("try-it/try-it.php"); ?>
 
                     </article>
 
