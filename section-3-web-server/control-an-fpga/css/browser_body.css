@@ -1,0 +1,402 @@
+@charset "utf-8";
+/* browser_body.css */
+
+#browser_item {
+    background-color: #fce5cd;
+}
+
+#browser_device {
+    height: 40px;
+}
+
+#browser_body {
+    height: 370px;
+}
+
+/* ------------- COMMON SWITCHES ITEMS -------------------- */
+
+.binary_8_bit_switch {
+    margin: auto;
+    width: 144px; /* 8x18 */
+}
+
+.binary_4_bit_switch {
+    margin: auto;
+    width: 72px; /* 8x18 */
+}
+
+.binary_one_switches_container {
+    margin: auto;
+    display: flex;  /* How to make things line up in a row */
+    flex-direction: row;
+    height: 12px;
+}
+
+.binary_one_switch {
+    border: 1px solid #000000;
+    width: 18px;
+    height: 11px;
+    margin-right: 3px;
+    margin-left: 3px;
+}
+
+.binary_values_container {
+    margin: auto;
+    border: 2px solid #000000;
+    display: flex;  /* How to make things line up in a row */
+    flex-direction: row;
+    align-items: center; /* Center using flex */
+    height: 30px;
+    background-color: white;
+}
+
+.binary_value {
+    width: 18px;
+    height: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    text-align: center;
+    color: black;
+}
+
+.binary_zero_switches_container {
+    margin: auto;
+    display: flex;  /* How to make things line up in a row */
+    flex-direction: row;
+    height: 12px;
+}
+
+.binary_zero_switch {
+    border: 1px solid #000000;
+    width: 18px;
+    height: 11px;
+    margin-right: 3px;
+    margin-left: 3px;
+    margin-top: -1px;
+}
+
+.binary_8_bit_display {
+}
+
+.binary_display_container {
+    margin: auto;
+    border: 2px solid #000000;
+    display: flex;  /* How to make things line up in a row */
+    flex-direction: row;
+    align-items: center; /* Center using flex */
+    width: 144px; /* 8x18 */
+    height: 30px;
+    background-color: white;
+}
+
+.binary_display {
+    width: 18px;
+    height: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    text-align: center;
+    color: black;
+}
+
+/* #### OPCODE ############################# */
+
+#opcode {
+}
+
+#opcode_one_3 {
+    background-color: #6aa84f;
+}
+
+#opcode_one_2 {
+    background-color: #ffffff;
+}
+
+#opcode_one_1 {
+    background-color: #6aa84f;
+}
+
+#opcode_one_0 {
+    background-color: #6aa84f;
+}
+
+#opcode_value_3 {
+}
+
+#opcode_value_2 {
+}
+
+#opcode_value_1 {
+}
+
+#opcode_value_0 {
+}
+
+#opcode_zero_3 {
+    background-color: #ffffff;
+}
+
+#opcode_zero_2 {
+    background-color: #6aa84f;
+}
+
+#opcode_zero_1 {
+    background-color: #ffffff;
+}
+
+#opcode_zero_0 {
+    background-color: #ffffff;
+}
+
+/* #### DATA_IN_A ############################ */
+
+#data_in_a {
+    margin-top: 22px;
+}
+
+#data_in_a_one_7 {
+    background-color: #ffffff;
+}
+
+#data_in_a_one_6 {
+    background-color: #ffffff;
+    visibility: hidden;
+}
+
+#data_in_a_one_5 {
+    background-color: #6aa84f;
+    visibility: hidden;
+}
+
+#data_in_a_one_4 {
+    background-color: #6aa84f;
+    visibility: hidden;
+}
+
+#data_in_a_one_3 {
+    background-color: #6aa84f;
+}
+
+#data_in_a_one_2 {
+    background-color: #ffffff;
+}
+
+#data_in_a_one_1 {
+    background-color: #6aa84f;
+}
+
+#data_in_a_one_0 {
+    background-color: #6aa84f;
+}
+
+#data_in_a_value_7 {
+}
+
+#data_in_a_value_7 {
+}
+
+#data_in_a_value_6 {
+}
+
+#data_in_a_value_5 {
+}
+
+#data_in_a_value_4 {
+}
+
+#data_in_a_value_3 {
+}
+
+#data_in_a_value_2 {
+}
+
+#data_in_a_value_1 {
+}
+
+#data_in_a_value_0 {
+}
+
+#data_in_a_zero_7 {
+    background-color: #6aa84f;
+}
+
+#data_in_a_zero_6 {
+    background-color: #6aa84f;
+    visibility: hidden;
+}
+
+#data_in_a_zero_5 {
+    background-color: #ffffff;
+    visibility: hidden;
+}
+
+#data_in_a_zero_4 {
+    background-color: #ffffff;
+    visibility: hidden;
+}
+
+#data_in_a_zero_3 {
+    background-color: #ffffff;
+}
+
+#data_in_a_zero_2 {
+    background-color: #6aa84f;
+}
+
+#data_in_a_zero_1 {
+    background-color: #ffffff;
+}
+
+#data_in_a_zero_0 {
+    background-color: #ffffff;
+}
+
+/* #### DATA_IN_B ############################ */
+
+#data_in_b {
+    margin-top: 22px;
+}
+
+#data_in_b_one_7 {
+    background-color: #ffffff;
+}
+
+#data_in_b_one_6 {
+    background-color: #ffffff;
+}
+
+#data_in_b_one_5 {
+    background-color: #6aa84f;
+}
+
+#data_in_b_one_4 {
+    background-color: #6aa84f;
+}
+
+#data_in_b_one_3 {
+    background-color: #6aa84f;
+}
+
+#data_in_b_one_2 {
+    background-color: #ffffff;
+}
+
+#data_in_b_one_1 {
+    background-color: #6aa84f;
+}
+
+#data_in_b_one_0 {
+    background-color: #6aa84f;
+}
+
+#data_in_b_value_7 {
+}
+
+#data_in_b_value_7 {
+}
+
+#data_in_b_value_6 {
+}
+
+#data_in_b_value_5 {
+}
+
+#data_in_b_value_4 {
+}
+
+#data_in_b_value_3 {
+}
+
+#data_in_b_value_2 {
+}
+
+#data_in_b_value_1 {
+}
+
+#data_in_b_value_0 {
+}
+
+#data_in_b_zero_7 {
+    background-color: #6aa84f;
+}
+
+#data_in_b_zero_6 {
+    background-color: #6aa84f;
+}
+
+#data_in_b_zero_5 {
+    background-color: #ffffff;
+}
+
+#data_in_b_zero_4 {
+    background-color: #ffffff;
+}
+
+#data_in_b_zero_3 {
+    background-color: #ffffff;
+}
+
+#data_in_b_zero_2 {
+    background-color: #6aa84f;
+}
+
+#data_in_b_zero_1 {
+    background-color: #ffffff;
+}
+
+#data_in_b_zero_0 {
+    background-color: #ffffff;
+}
+
+/* #### COMPUTE_GO_BUTTON #################### */
+
+#compute_go_button_item {
+    margin-top: 24px;
+}
+
+#compute_go_button_push {
+    margin-left: 18px;
+    border-color: #000000;
+    background-color: #ffffff;
+}
+
+#compute_go_button_text {
+    color: #000000;
+}
+
+/* #### DATA_OUT ############################# */
+
+#data_out {
+  margin-top: 20px;
+}
+
+#data_out_7 {
+  background-color: #ffffff;
+}
+
+#data_out_6 {
+  background-color: #ffffff;
+}
+
+#data_out_5 {
+  background-color: #ffffff;
+}
+
+#data_out_4 {
+  background-color: #ffffff;
+}
+
+#data_out_3 {
+  background-color: #ffffff;
+}
+
+#data_out_2 {
+  background-color: #ffffff;
+}
+
+#data_out_1 {
+  background-color: #ffffff;
+}
+
+#data_out_0 {
+  background-color: #ffffff;
+}
