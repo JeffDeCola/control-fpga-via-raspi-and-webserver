@@ -39,7 +39,7 @@
       'data_out'=>$data_out,
     ];
 
-    // SEND IT TO THE BROWSER
+    // SEND RESPONSE TO THE BROWSER
     echo json_encode($array);
 
     // CLOSE FILE

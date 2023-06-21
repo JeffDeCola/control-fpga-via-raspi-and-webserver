@@ -189,7 +189,7 @@
                     </div>
                 </div>
                 <div class="section_footer">
-                    PHP/CSS/JS
+                    PHP
                 </div>
             </div>
 
@@ -222,7 +222,7 @@
                     </div>
                 </div>
                 <div class="section_footer">
-                    GO
+                    GO (ON DOCKER)
                 </div>
             </div>
 

@@ -10,33 +10,36 @@
 *** THE REPO IS UNDER CONSTRUCTION - CHECK BACK SOON ***
 ```
 
-_Control a FPGA via a Raspberry Pi and a Webserver. As an example, I burned my
+_Control an FPGA via a Raspberry Pi and a Webserver. As an example, I burned my
 [programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable-8-bit-microprocessor)
 to an FPGA development board and you can control it at
 [jeffdecola.com/control-an-fpga](https://jeffdecola.com/control-an-fpga)._
 
+Table of Contents
+
 * [TRY IT](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#try-it)
 * [OVERVIEW](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#overview)
-* [SOFTWARE STACK](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#software-stack)
+* [SOFTWARE/HARDWARE STACK](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#softwarehardware-stack)
 * [SECTION I - THE FPGA](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-i---the-fpga)
-  * [FPGA (8-BIT MICROPROCESSOR)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#fpga-8-bit-microprocessor)
-  * [AS A SERVER (CONNECTION TO RASPBERRY PI)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#as-a-server-connection-to-raspberry-pi)
-* [SECTION II - THE RASPBERRY PI](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-ii---the-raspberry-pi)
-  * [AS A CLIENT (FPGA CONNECTION)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#as-a-client-fpga-connection)
-  * [AS A SERVER (WEB SERVER CONNECTION)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#as-a-server-web-server-connection)
-  * [GO INTEGRATION AND DEPLOYMENT](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#go-integration-and-deployment)
-* [SECTION III - THE WEB SERVER](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-iii---the-web-server)
-  * [AS A SERVER (BROWSER CONNECTION)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#as-a-server-browser-connection)
-  * [AS A CLIENT (RASPBERRY PI CONNECTION)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#as-a-client-raspberry-pi-connection)
-* [SECTION IV - THE BROWSER](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-iv---the-browser)
-  * [AJAX XHR POST CALL](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#ajax-xhr-post-call)
+  * [FPGA (MY 8-BIT MICROPROCESSOR)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#fpga-my-8-bit-microprocessor)
+  * [SERVER SIDE (CONNECTION TO RASPBERRY PI)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#server-side-connection-to-raspberry-pi)
+* [SECTION II - THE BREADBOARD](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-ii---the-breadboard)
+* [SECTION III - THE RASPBERRY PI](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-iii---the-raspberry-pi)
+  * [CLIENT SIDE (CONNECTION TO FPGA)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#client-side-connection-to-fpga)
+  * [SERVER SIDE (CONNECTION TO WEB SERVER)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#server-side-connection-to-web-server)
+  * [DOCKER (GO INTEGRATION AND DEPLOYMENT)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#docker-go-integration-and-deployment)
+* [SECTION IV - THE WEB SERVER](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-iv---the-web-server)
+  * [CLIENT SIDE (CONNECTION TO RASPBERRY PI)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#client-side-connection-to-raspberry-pi)
+  * [SERVER SIDE (CONNECTION TO BROWSER)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#server-side-connection-to-browser)
+* [SECTION V - THE BROWSER](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-v---the-browser)
+  * [CLIENT SIDE (CONNECTION TO WEB SERVER)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#client-side-connection-to-web-server)
   * [WEBSITE](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#website)
 
 Documentation and Reference
 
 * I burned my
-  [programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable-8-bit-microprocessor)
-  to a FPGA
+  [programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable_8_bit_microprocessor)
+  to an FPGA
 * The
   [control-fpga-via-raspi-and-webserver](https://hub.docker.com/r/jeffdecola/control-fpga-via-raspi-and-webserver)
   docker image at dockerhub
@@ -55,12 +58,13 @@ I have a working demo at
 
 ## OVERVIEW
 
-This project is separated into 4 main sections,
+This project is separated into 5 main sections,
 
-1. The FPGA
-1. The BACKEND SERVER (Raspberry Pi) to control the I/O of the FPGA
-1. The WEB SERVER (bluehost) providing the interface between the frontend and backend
-1. The BROWSER to provide a GUI
+1. The FPGA (ARTY S7-50)
+1. The BREADBOARD
+1. The BACKEND SERVER (Raspberry Pi 4B)
+1. The WEB SERVER (bluehost)
+1. The BROWSER
 
 This may help,
 
@@ -71,22 +75,27 @@ in the following four sections,
 
 ![IMAGE - 8-bit processor - IMAGE](docs/pics/controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg)
 
-## SOFTWARE STACK
+## SOFTWARE/HARDWARE STACK
 
-* SECTION 1 - The FPGA
+* SECTION I - The FPGA
   * [Verilog](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/development/languages/verilog-cheat-sheet)
   * [Xilinx Vivado](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/tools/synthesis/xilinx-vivado-cheat-sheet)
   * [Digilent ARTY-S7](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/development/fpga-development-boards/digilent-arty-s7-cheat-sheet)
-* SECTION 2 - The Raspberry Pi
+* SECTION II - The Breadboard
+  * Connectors, resistors and wires
+* SECTION III - The Backend Server
+  * [Raspberry pi 4B](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/other/stem/technology/single-board-computers/raspberry-pi/specifications-cheat-sheet)
   * [go](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/development/languages/go-cheat-sheet)
   * [docker](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/operations/orchestration/builds-deployment-containers/docker-cheat-sheet)
   * [dockerhub](https://hub.docker.com/)
   * [concourse](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/software/operations/continuous-integration-continuous-deployment/concourse-cheat-sheet)
-* SECTION 3 - The Web Server
-  * php, css, js
+* SECTION IV - The Web Server
+  * php
   * [bluehost](https://www.bluehost.com/)
-* SECTION 4 - The Browser
-  * js, html, css
+* SECTION V - The Browser
+  * js
+  * html
+  * css
 
 ## SECTION I - THE FPGA
 
@@ -108,7 +117,11 @@ Summary,
 Refer to that repo on how I accomplished this. I will provide a
 high level overview.
 
-### FPGA (8-BIT MICROPROCESSOR)
+### FPGA (MY 8-BIT MICROPROCESSOR)
+
+I designed a
+[programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable-8-bit-microprocessor)
+in verilog and burned to an FPGA.  Refer to that repo on how I accomplished this.
 
 #### VERILOG
 
@@ -137,28 +150,15 @@ Arty S7-50 FPGA development board.
 
 ![IMAGE - digilent-arty-s7-50.jpg - IMAGE](https://github.com/JeffDeCola/my-cheat-sheets/blob/master/docs/pics/digilent-arty-s7-50.jpg?raw=true)
 
-### AS A SERVER (CONNECTION TO RASPBERRY PI)
+### SERVER SIDE (CONNECTION TO RASPBERRY PI)
 
 The FPGA is connected to the Raspberry Pi via the PMOD pins.
-This will be shown in the following section.
 
-## SECTION II - THE RASPBERRY PI
+## SECTION II - THE BREADBOARD
 
-The Raspberry Pi has two main functions,
-
-* AS A CLIENT - Controls 28 pins of the I/O of the FPGA (GPIO to PMOD) via GO
-* AS A SERVER - Provide an interface to the webserver (gRPC)
-
-### AS A CLIENT (FPGA CONNECTION)
-
-The Raspberry Pi will control the I/O of the FPGA via the
-GPIO pins. The Raspberry Pi will be the client and the FPGA
-will be the server.
-
-#### BREADBOARD (GPIO to PMOD)
-
-To connect to the Raspberry Pi a breadboard was used to
-connect the GPIO pins to the PMOD pins on the FPGA development board.
+To connect the Raspberry Pi to the FPGA dev board, I used a breadboard.
+I connected the GPIO pins on the Raspberry Pi 4B
+to the PMOD pins on the FPGA development board.
 
 There are a total of 31 pins used by the microprocessor,
 but there are only 28 GPIO pins. Hence, I tied 3 of the
@@ -228,6 +228,19 @@ The result,
 
 ![IMAGE - arty-s7-breadboard-and-raspberry-pi.jpg - IMAGE](docs/pics/arty-s7-breadboard-and-raspberry-pi.jpg)
 
+## SECTION III - THE RASPBERRY PI
+
+The Raspberry Pi has two main functions,
+
+* AS A CLIENT - Controls 28 pins of the I/O of the FPGA (GPIO to PMOD) via GO
+* AS A SERVER - Provide an interface to the webserver (gRPC)
+
+### CLIENT SIDE (CONNECTION TO FPGA)
+
+The Raspberry Pi will control the I/O of the FPGA via the
+GPIO pins. The Raspberry Pi will be the client and the FPGA
+will be the server.
+
 #### CONTROL FPGA I/O VIA GO
 
 The Raspberry Pi will control the FPGA via GO using the
@@ -270,7 +283,7 @@ For outputs also set the pulldown resistor,
   }
 ```
 
-### AS A SERVER (WEB SERVER CONNECTION)
+### SERVER SIDE (CONNECTION TO WEB SERVER)
 
 The Raspberry Pi will also be a server using gRPC.
 It will accept requests from a web server client and
@@ -280,7 +293,7 @@ return the results.
 
 tbd
 
-### GO INTEGRATION AND DEPLOYMENT
+### DOCKER (GO INTEGRATION AND DEPLOYMENT)
 
 A go program will interface with both the FPGA and web server.
 It will placed in a
@@ -476,35 +489,60 @@ Refer to
 [ci-README.md](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/ci-README.md)
 on how I automated the above steps.
 
-## SECTION III - THE WEB SERVER
+## SECTION IV - THE WEB SERVER
 
-The web server will handle a request from the browser and forward
-those requests to the Raspberry Pi.
+The web server has two main functions,
 
-It will also receive data from the Raspberry Pi and forward
-that data to the browser.
+* AS A CLIENT - It will also receive data from the Raspberry Pi via gRPC
+* AS A SERVER - It will handle a request from the browser
 
-Hence, the web server is both a server and a client.
-
-### AS A SERVER (BROWSER CONNECTION)
+### CLIENT SIDE (CONNECTION TO RASPBERRY PI)
 
 tbd
 
-### AS A CLIENT (RASPBERRY PI CONNECTION)
+### SERVER SIDE (CONNECTION TO BROWSER)
 
-tbd
+php is used to handle the ajax XHR POST call
+request from the browser.
 
-## SECTION IV - THE BROWSER
+This is a high level overview of the process,
+
+```php
+        // GET THE JSON DATA FROM THE USER
+        header("Content-Type: application/json");
+        $attributesJSON = json_decode(file_get_contents("php://input"));
+
+        // UN PARSE IT
+        $opcode = $attributesJSON->opcode;
+        $data_in_a = $attributesJSON->data_in_a;
+        $data_in_b = $attributesJSON->data_in_b;
+        $go = $attributesJSON->go;
+
+        // DO SOMETHING - THIS IS WHERE YOU WOULD SEND DATA TO THE FPGA
+        ...
+
+        // BUILD ARRAY
+        $array = [
+          'data_out'=>$data_out,
+        ];
+
+        // SEND RESPONSE TO THE BROWSER
+        echo json_encode($array);
+```
+
+## SECTION V - THE BROWSER
 
 I have a working demo at
 [jeffdecola.com/control-an-fpga](https://jeffdecola.com/control-an-fpga).
 
-### AJAX XHR POST CALL
+### CLIENT SIDE (CONNECTION TO WEB SERVER)
 
 To connect with the webserver, I'm using javascript client side
 programming. It will send a ajax XHR POST call to the web server.
 
-On the browser side,
+#### AJAX XHR POST CALL
+
+On the browser side using javascript, an ajax XHR POST call is made to the web server,
 
 ```js
         // PHP FILE LOCATION
@@ -515,8 +553,10 @@ On the browser side,
         
         // CONVERT JSON TO STRING
         var attributesJSONString = JSON.stringify({
-            "operand1": operand1,
-            "operand2": operand2
+            "opcode": opcode,
+            "data_in_a": data_in_a,
+            "data_in_b": data_in_b,
+            "go": go
         });
 
         // OPEN CONNECTION - CREATE POST REQUEST
@@ -530,21 +570,6 @@ On the browser side,
         postRequest.onreadystatechange = function() {
             ...see code...
         }
-```
-
-On the webserver side,
-
-```php
-        // GET THE JSON DATA FROM THE USER
-        header("Content-Type: application/json");
-        $attributesJSON = json_decode(file_get_contents("php://input"));
-
-        // UN PARSE IT
-        $operand1 = $attributesJSON->operand1;
-        $operand2 = $attributesJSON->operand2;
-
-        // DO SOMETHING
-        ... 
 ```
 
 ### WEBSITE
