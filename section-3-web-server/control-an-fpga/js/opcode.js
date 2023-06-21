@@ -1326,7 +1326,7 @@ function compute_go_button_onclick() {
 
 function compute() {
     
-    console.log("STEP 4 - SEND OPCODE, DATA_IN_A AND DATA_IN_B TO WEB SERVER");
+    console.log("STEP 4 - SEND OPCODE, DATA_IN_A, DATA_IN_B AND GO TO WEB SERVER");
     document.getElementById("data_out_7").innerHTML=" ";
     document.getElementById("data_out_6").innerHTML="W";
     document.getElementById("data_out_5").innerHTML="A";
@@ -1374,14 +1374,18 @@ function compute() {
     data_in_b0 = document.getElementById('data_in_b_value_0').innerHTML;
     data_in_b = data_in_b7 + data_in_b6 + data_in_b5 + data_in_b4 + data_in_b3 + data_in_b2 + data_in_b1 + data_in_b0;
     
+    // GET GO
+    go = "1"
+
     // CONSOLE MESSAGE
     console.log("opcode = " + opcode);
     console.log("data_in_a = " + data_in_a);
     console.log("data_in_b = " + data_in_b);
+    console.log("go = " + go);
 
     // SEND ATTRIBUTES TO SERVER
     // "POST"/SEND DATA TO SERVER - RUN PHP FILE ON SERVER - GET RESPONSE
-    send_data_to_web_server(opcode, data_in_a, data_in_b);
+    send_data_to_web_server(opcode, data_in_a, data_in_b, go);
 
 }
 

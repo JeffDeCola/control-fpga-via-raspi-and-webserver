@@ -20,7 +20,7 @@ function send_data_to_web_server(opcode, data_in_a, data_in_b, go) {
     var attributesJSONString = JSON.stringify({
         "opcode": opcode,
         "data_in_a": data_in_a,
-        "data_in_a": data_in_b,
+        "data_in_b": data_in_b,
         "go": go
     });
 
