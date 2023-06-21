@@ -551,4 +551,4 @@ On the webserver side,
 
 The end result will look as follows,
 
-![IMAGE - concept-of-webpage.jpg - IMAGE](docs/pics/concept-of-webpage.jpg)
+![IMAGE - screenshot-of-website.jpg - IMAGE](docs/pics/screenshot-of-website.jpg)

@@ -14,7 +14,7 @@
             <!-- LABELS ***************************************************************************************- -->
             <div id ="label_item" class = "box_item">
                 <div id="label_opcode_choices" class="label_name">
-                    ADD - 0011 <br />
+                    ADD 0011 <br />
                     SUBTRACT 0011 <br />
                     DIVIDE 0110 <br />     
                     MULTIPLY 1100

@@ -87,11 +87,10 @@
 
             <div class="title_container">
 
-                <h2> CONTROL MY 8-BIT MICROPROCESSOR </h2>
-                <p> I burned to an FPGA.  </p>
+                <h2> CONTROL AN 8-BIT MICROPROCESSOR I DESIGNED </h2>
                 <p> 
                     <a href="https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver"> Code </a>
-                    written in php, js, go and verilog
+                    written in php, js, go & verilog
                 </p>                            
 
             </div>
