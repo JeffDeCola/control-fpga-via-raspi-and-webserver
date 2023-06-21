@@ -11,9 +11,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    /<!-- THE PAGE TITLE -->
-    <title> CONTAINERS - Jeff DeCola </title>
-    <meta name='Description' content='CONTAINERS - Jeff DeCola' />
+    <!-- THE PAGE TITLE -->
+    <title> CONTROL AN FPGA - Jeff DeCola </title>
+    <meta name='Description' content='CONTROL AN FPGA - Jeff DeCola' />
            
     <!-- TAGS FOR GOOGLE, YAHOO, BING, AND ALEXA, IN THAT ORDER -->
     <!-- <meta name="y_key" content="????" > -->

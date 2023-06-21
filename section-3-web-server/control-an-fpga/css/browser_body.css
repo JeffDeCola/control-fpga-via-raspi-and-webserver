@@ -38,6 +38,7 @@
     height: 11px;
     margin-right: 3px;
     margin-left: 3px;
+    cursor: pointer;
 }
 
 .binary_values_container {
@@ -73,6 +74,7 @@
     margin-right: 3px;
     margin-left: 3px;
     margin-top: -1px;
+    cursor: pointer;
 }
 
 .binary_8_bit_display {
@@ -104,7 +106,7 @@
 }
 
 #opcode_one_3 {
-    background-color: #6aa84f;
+    background-color: #ffffff;
 }
 
 #opcode_one_2 {
@@ -132,7 +134,7 @@
 }
 
 #opcode_zero_3 {
-    background-color: #ffffff;
+    background-color: #6aa84f;
 }
 
 #opcode_zero_2 {
@@ -154,7 +156,7 @@
 }
 
 #data_in_a_one_7 {
-    background-color: #ffffff;
+    background-color: #6aa84f;
 }
 
 #data_in_a_one_6 {
@@ -173,7 +175,7 @@
 }
 
 #data_in_a_one_3 {
-    background-color: #6aa84f;
+    background-color: #ffffff;
 }
 
 #data_in_a_one_2 {
@@ -216,7 +218,7 @@
 }
 
 #data_in_a_zero_7 {
-    background-color: #6aa84f;
+    background-color: #ffffff;
 }
 
 #data_in_a_zero_6 {
@@ -235,7 +237,7 @@
 }
 
 #data_in_a_zero_3 {
-    background-color: #ffffff;
+    background-color: #6aa84f;
 }
 
 #data_in_a_zero_2 {
@@ -269,7 +271,7 @@
 }
 
 #data_in_b_one_4 {
-    background-color: #6aa84f;
+    background-color: #ffffff;
 }
 
 #data_in_b_one_3 {
@@ -281,11 +283,11 @@
 }
 
 #data_in_b_one_1 {
-    background-color: #6aa84f;
+    background-color: #ffffff;
 }
 
 #data_in_b_one_0 {
-    background-color: #6aa84f;
+    background-color: #ffffff;
 }
 
 #data_in_b_value_7 {
@@ -328,7 +330,7 @@
 }
 
 #data_in_b_zero_4 {
-    background-color: #ffffff;
+    background-color: #6aa84f;
 }
 
 #data_in_b_zero_3 {
@@ -340,11 +342,11 @@
 }
 
 #data_in_b_zero_1 {
-    background-color: #ffffff;
+    background-color: #6aa84f;
 }
 
 #data_in_b_zero_0 {
-    background-color: #ffffff;
+    background-color: #6aa84f;
 }
 
 /* #### COMPUTE_GO_BUTTON #################### */
@@ -354,9 +356,10 @@
 }
 
 #compute_go_button_push {
+    border-width: 3px;
     margin-left: 18px;
-    border-color: #000000;
-    background-color: #ffffff;
+    border-color: black;
+    background-color: #6aa84f;
 }
 
 #compute_go_button_text {

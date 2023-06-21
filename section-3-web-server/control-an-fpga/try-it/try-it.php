@@ -13,6 +13,12 @@
             
             <!-- LABELS ***************************************************************************************- -->
             <div id ="label_item" class = "box_item">
+                <div id="label_opcode_choices" class="label_name">
+                    ADD - 0011 <br />
+                    SUBTRACT 0011 <br />
+                    DIVIDE 0110 <br />     
+                    MULTIPLY 1100
+                </div>
                 <div id="label_opcode_name" class="label_name">
                     OPCODE
                 </div>
@@ -30,97 +36,97 @@
             <!-- BROWSER **************************************************************************************- -->
             <div id ="browser_item" class = "section_item box_item">
                 <div class="section_section">
-                    SECTION IV
+                    BROWSER
                 </div>
                 <div id ="browser_device" class="section_device">
-                    BROWSER
+                    CHROME
                 </div>
                 <div id="browser_body" class="section_body">
 
                     <div id="opcode" class="binary_4_bit_switch">
                         <div class="binary_one_switches_container">
-                            <div id="opcode_one_3" class="binary_one_switch"></div>
-                            <div id="opcode_one_2" class="binary_one_switch"></div>
-                            <div id="opcode_one_1" class="binary_one_switch"></div>
-                            <div id="opcode_one_0" class="binary_one_switch"></div>
+                            <div id="opcode_one_3" class="binary_one_switch" onmouseover="opcode_one_3_onmouseover()" onmouseout="opcode_one_3_onmouseout()" onclick="opcode_one_3_onclick()"> </div>
+                            <div id="opcode_one_2" class="binary_one_switch" onmouseover="opcode_one_2_onmouseover()" onmouseout="opcode_one_2_onmouseout()" onclick="opcode_one_2_onclick()"> </div>
+                            <div id="opcode_one_1" class="binary_one_switch" onmouseover="opcode_one_1_onmouseover()" onmouseout="opcode_one_1_onmouseout()" onclick="opcode_one_1_onclick()"> </div>
+                            <div id="opcode_one_0" class="binary_one_switch" onmouseover="opcode_one_0_onmouseover()" onmouseout="opcode_one_0_onmouseout()" onclick="opcode_one_0_onclick()"> </div>
                         </div>
                         <div class="binary_values_container">
-                            <div id="opcode_value_3" class="binary_value">1</div>
+                            <div id="opcode_value_3" class="binary_value">0</div>
                             <div id="opcode_value_2" class="binary_value">0</div>
                             <div id="opcode_value_1" class="binary_value">1</div>
                             <div id="opcode_value_0" class="binary_value">1</div>
                         </div>
                         <div class="binary_zero_switches_container">
-                            <div id="opcode_zero_3" class="binary_zero_switch"></div>
-                            <div id="opcode_zero_2" class="binary_zero_switch"></div>
-                            <div id="opcode_zero_1" class="binary_zero_switch"></div>
-                            <div id="opcode_zero_0" class="binary_zero_switch"></div>
+                            <div id="opcode_zero_3" class="binary_zero_switch" onmouseover="opcode_zero_3_onmouseover()" onmouseout="opcode_zero_3_onmouseout()" onclick="opcode_zero_3_onclick()"> </div>
+                            <div id="opcode_zero_2" class="binary_zero_switch" onmouseover="opcode_zero_2_onmouseover()" onmouseout="opcode_zero_2_onmouseout()" onclick="opcode_zero_2_onclick()"> </div>
+                            <div id="opcode_zero_1" class="binary_zero_switch" onmouseover="opcode_zero_1_onmouseover()" onmouseout="opcode_zero_1_onmouseout()" onclick="opcode_zero_1_onclick()"> </div>
+                            <div id="opcode_zero_0" class="binary_zero_switch" onmouseover="opcode_zero_0_onmouseover()" onmouseout="opcode_zero_0_onmouseout()" onclick="opcode_zero_0_onclick()"> </div>
                         </div>
                     </div>
 
                     <div id="data_in_a" class="binary_8_bit_switch">
                         <div class="binary_one_switches_container">
-                            <div id="data_in_a_one_7" class="binary_one_switch"></div>
-                            <div id="data_in_a_one_6" class="binary_one_switch"></div>
-                            <div id="data_in_a_one_5" class="binary_one_switch"></div>
-                            <div id="data_in_a_one_4" class="binary_one_switch"></div>
-                            <div id="data_in_a_one_3" class="binary_one_switch"></div>
-                            <div id="data_in_a_one_2" class="binary_one_switch"></div>
-                            <div id="data_in_a_one_1" class="binary_one_switch"></div>
-                            <div id="data_in_a_one_0" class="binary_one_switch"></div>
+                            <div id="data_in_a_one_7" class="binary_one_switch" onmouseover="data_in_a_one_7_onmouseover()" onmouseout="data_in_a_one_7_onmouseout()" onclick="data_in_a_one_7_onclick()"> </div>
+                            <div id="data_in_a_one_6" class="binary_one_switch" onmouseover="data_in_a_one_6_onmouseover()" onmouseout="data_in_a_one_6_onmouseout()" onclick="data_in_a_one_6_onclick()"> </div>
+                            <div id="data_in_a_one_5" class="binary_one_switch" onmouseover="data_in_a_one_5_onmouseover()" onmouseout="data_in_a_one_5_onmouseout()" onclick="data_in_a_one_5_onclick()"> </div>
+                            <div id="data_in_a_one_4" class="binary_one_switch" onmouseover="data_in_a_one_4_onmouseover()" onmouseout="data_in_a_one_4_onmouseout()" onclick="data_in_a_one_4_onclick()"> </div>
+                            <div id="data_in_a_one_3" class="binary_one_switch" onmouseover="data_in_a_one_3_onmouseover()" onmouseout="data_in_a_one_3_onmouseout()" onclick="data_in_a_one_3_onclick()"> </div>
+                            <div id="data_in_a_one_2" class="binary_one_switch" onmouseover="data_in_a_one_2_onmouseover()" onmouseout="data_in_a_one_2_onmouseout()" onclick="data_in_a_one_2_onclick()"> </div>
+                            <div id="data_in_a_one_1" class="binary_one_switch" onmouseover="data_in_a_one_1_onmouseover()" onmouseout="data_in_a_one_1_onmouseout()" onclick="data_in_a_one_1_onclick()"> </div>
+                            <div id="data_in_a_one_0" class="binary_one_switch" onmouseover="data_in_a_one_0_onmouseover()" onmouseout="data_in_a_one_0_onmouseout()" onclick="data_in_a_one_0_onclick()"> </div>
                         </div>
                         <div class="binary_values_container">
-                            <div id="data_in_a_value_7" class="binary_value">0</div>
+                            <div id="data_in_a_value_7" class="binary_value">1</div>
                             <div id="data_in_a_value_6" class="binary_value">0</div>
                             <div id="data_in_a_value_5" class="binary_value">0</div>
                             <div id="data_in_a_value_4" class="binary_value">0</div>
-                            <div id="data_in_a_value_3" class="binary_value">1</div>
+                            <div id="data_in_a_value_3" class="binary_value">0</div>
                             <div id="data_in_a_value_2" class="binary_value">0</div>
                             <div id="data_in_a_value_1" class="binary_value">1</div>
                             <div id="data_in_a_value_0" class="binary_value">1</div>
                         </div>
                         <div class="binary_zero_switches_container">
-                            <div id="data_in_a_zero_7" class="binary_zero_switch"></div>
-                            <div id="data_in_a_zero_6" class="binary_zero_switch"></div>
-                            <div id="data_in_a_zero_5" class="binary_zero_switch"></div>
-                            <div id="data_in_a_zero_4" class="binary_zero_switch"></div>
-                            <div id="data_in_a_zero_3" class="binary_zero_switch"></div>
-                            <div id="data_in_a_zero_2" class="binary_zero_switch"></div>
-                            <div id="data_in_a_zero_1" class="binary_zero_switch"></div>
-                            <div id="data_in_a_zero_0" class="binary_zero_switch"></div>
+                            <div id="data_in_a_zero_7" class="binary_zero_switch" onmouseover="data_in_a_zero_7_onmouseover()" onmouseout="data_in_a_zero_7_onmouseout()" onclick="data_in_a_zero_7_onclick()"> </div>
+                            <div id="data_in_a_zero_6" class="binary_zero_switch" onmouseover="data_in_a_zero_6_onmouseover()" onmouseout="data_in_a_zero_6_onmouseout()" onclick="data_in_a_zero_6_onclick()"> </div>
+                            <div id="data_in_a_zero_5" class="binary_zero_switch" onmouseover="data_in_a_zero_5_onmouseover()" onmouseout="data_in_a_zero_5_onmouseout()" onclick="data_in_a_zero_5_onclick()"> </div>
+                            <div id="data_in_a_zero_4" class="binary_zero_switch" onmouseover="data_in_a_zero_4_onmouseover()" onmouseout="data_in_a_zero_4_onmouseout()" onclick="data_in_a_zero_4_onclick()"> </div>
+                            <div id="data_in_a_zero_3" class="binary_zero_switch" onmouseover="data_in_a_zero_3_onmouseover()" onmouseout="data_in_a_zero_3_onmouseout()" onclick="data_in_a_zero_3_onclick()"> </div>
+                            <div id="data_in_a_zero_2" class="binary_zero_switch" onmouseover="data_in_a_zero_2_onmouseover()" onmouseout="data_in_a_zero_2_onmouseout()" onclick="data_in_a_zero_2_onclick()"> </div>
+                            <div id="data_in_a_zero_1" class="binary_zero_switch" onmouseover="data_in_a_zero_1_onmouseover()" onmouseout="data_in_a_zero_1_onmouseout()" onclick="data_in_a_zero_1_onclick()"> </div>
+                            <div id="data_in_a_zero_0" class="binary_zero_switch" onmouseover="data_in_a_zero_0_onmouseover()" onmouseout="data_in_a_zero_0_onmouseout()" onclick="data_in_a_zero_0_onclick()"> </div>
                         </div>
                     </div>
 
                     <div id="data_in_b" class="binary_8_bit_switch">
                         <div class="binary_one_switches_container">
-                            <div id="data_in_b_one_7" class="binary_one_switch"></div>
-                            <div id="data_in_b_one_6" class="binary_one_switch"></div>
-                            <div id="data_in_b_one_5" class="binary_one_switch"></div>
-                            <div id="data_in_b_one_4" class="binary_one_switch"></div>
-                            <div id="data_in_b_one_3" class="binary_one_switch"></div>
-                            <div id="data_in_b_one_2" class="binary_one_switch"></div>
-                            <div id="data_in_b_one_1" class="binary_one_switch"></div>
-                            <div id="data_in_b_one_0" class="binary_one_switch"></div>
+                            <div id="data_in_b_one_7" class="binary_one_switch" onmouseover="data_in_b_one_7_onmouseover()" onmouseout="data_in_b_one_7_onmouseout()" onclick="data_in_b_one_7_onclick()"> </div>
+                            <div id="data_in_b_one_6" class="binary_one_switch" onmouseover="data_in_b_one_6_onmouseover()" onmouseout="data_in_b_one_6_onmouseout()" onclick="data_in_b_one_6_onclick()"> </div>
+                            <div id="data_in_b_one_5" class="binary_one_switch" onmouseover="data_in_b_one_5_onmouseover()" onmouseout="data_in_b_one_5_onmouseout()" onclick="data_in_b_one_5_onclick()"> </div>
+                            <div id="data_in_b_one_4" class="binary_one_switch" onmouseover="data_in_b_one_4_onmouseover()" onmouseout="data_in_b_one_4_onmouseout()" onclick="data_in_b_one_4_onclick()"> </div>
+                            <div id="data_in_b_one_3" class="binary_one_switch" onmouseover="data_in_b_one_3_onmouseover()" onmouseout="data_in_b_one_3_onmouseout()" onclick="data_in_b_one_3_onclick()"> </div>
+                            <div id="data_in_b_one_2" class="binary_one_switch" onmouseover="data_in_b_one_2_onmouseover()" onmouseout="data_in_b_one_2_onmouseout()" onclick="data_in_b_one_2_onclick()"> </div>
+                            <div id="data_in_b_one_1" class="binary_one_switch" onmouseover="data_in_b_one_1_onmouseover()" onmouseout="data_in_b_one_1_onmouseout()" onclick="data_in_b_one_1_onclick()"> </div>
+                            <div id="data_in_b_one_0" class="binary_one_switch" onmouseover="data_in_b_one_0_onmouseover()" onmouseout="data_in_b_one_0_onmouseout()" onclick="data_in_b_one_0_onclick()"> </div>
                         </div>
                         <div class="binary_values_container">
                             <div id="data_in_b_value_7" class="binary_value">0</div>
                             <div id="data_in_b_value_6" class="binary_value">0</div>
                             <div id="data_in_b_value_5" class="binary_value">1</div>
-                            <div id="data_in_b_value_4" class="binary_value">1</div>
+                            <div id="data_in_b_value_4" class="binary_value">0</div>
                             <div id="data_in_b_value_3" class="binary_value">1</div>
                             <div id="data_in_b_value_2" class="binary_value">0</div>
-                            <div id="data_in_b_value_1" class="binary_value">1</div>
-                            <div id="data_in_b_value_0" class="binary_value">1</div>
+                            <div id="data_in_b_value_1" class="binary_value">0</div>
+                            <div id="data_in_b_value_0" class="binary_value">0</div>
                         </div>
                         <div class="binary_zero_switches_container">
-                            <div id="data_in_b_zero_7" class="binary_zero_switch"></div>
-                            <div id="data_in_b_zero_6" class="binary_zero_switch"></div>
-                            <div id="data_in_b_zero_5" class="binary_zero_switch"></div>
-                            <div id="data_in_b_zero_4" class="binary_zero_switch"></div>
-                            <div id="data_in_b_zero_3" class="binary_zero_switch"></div>
-                            <div id="data_in_b_zero_2" class="binary_zero_switch"></div>
-                            <div id="data_in_b_zero_1" class="binary_zero_switch"></div>
-                            <div id="data_in_b_zero_0" class="binary_zero_switch"></div>
+                            <div id="data_in_b_zero_7" class="binary_zero_switch" onmouseover="data_in_b_zero_7_onmouseover()" onmouseout="data_in_b_zero_7_onmouseout()" onclick="data_in_b_zero_7_onclick()"> </div>
+                            <div id="data_in_b_zero_6" class="binary_zero_switch" onmouseover="data_in_b_zero_6_onmouseover()" onmouseout="data_in_b_zero_6_onmouseout()" onclick="data_in_b_zero_6_onclick()"> </div>
+                            <div id="data_in_b_zero_5" class="binary_zero_switch" onmouseover="data_in_b_zero_5_onmouseover()" onmouseout="data_in_b_zero_5_onmouseout()" onclick="data_in_b_zero_5_onclick()"> </div>
+                            <div id="data_in_b_zero_4" class="binary_zero_switch" onmouseover="data_in_b_zero_4_onmouseover()" onmouseout="data_in_b_zero_4_onmouseout()" onclick="data_in_b_zero_4_onclick()"> </div>
+                            <div id="data_in_b_zero_3" class="binary_zero_switch" onmouseover="data_in_b_zero_3_onmouseover()" onmouseout="data_in_b_zero_3_onmouseout()" onclick="data_in_b_zero_3_onclick()"> </div>
+                            <div id="data_in_b_zero_2" class="binary_zero_switch" onmouseover="data_in_b_zero_2_onmouseover()" onmouseout="data_in_b_zero_2_onmouseout()" onclick="data_in_b_zero_2_onclick()"> </div>
+                            <div id="data_in_b_zero_1" class="binary_zero_switch" onmouseover="data_in_b_zero_1_onmouseover()" onmouseout="data_in_b_zero_1_onmouseout()" onclick="data_in_b_zero_1_onclick()"> </div>
+                            <div id="data_in_b_zero_0" class="binary_zero_switch" onmouseover="data_in_b_zero_0_onmouseover()" onmouseout="data_in_b_zero_0_onmouseout()" onclick="data_in_b_zero_0_onclick()"> </div>
                         </div>
                     </div>
 
@@ -159,11 +165,11 @@
                 <div class="interface_title">
                     HTML
                 </div>
-                <div class="interface_arrow_right">
+                <div id="html_interface_arrow_right" class="interface_arrow_right">
                     <div id="html_interface_arrow_right_line" class="interface_arrow_right_line"></div>
                     <div id="html_interface_arrow_right_point" class="interface_arrow_right_point"></div>
                 </div>
-                <div class="interface_arrow_left">
+                <div id="html_interface_arrow_left" class="interface_arrow_left">
                     <div id="html_interface_arrow_left_line" class="interface_arrow_left_line"></div>
                     <div id="html_interface_arrow_left_point" class="interface_arrow_left_point"></div>
                 </div>
@@ -172,12 +178,10 @@
             <!-- WEB SERVER ***********************************************************************************- -->
             <div id ="web_server_item" class = "section_item box_item">
                 <div class="section_section">
-                    SECTION III
+                    WEB SERVER
                 </div>
                 <div class="section_device">
-                    WEB SERVER
-                    <br />
-                    (Bluehost)                    
+                    BLUEHOST      
                 </div>
                 <div id="web_server_body" class="section_body">
                     <div id="web_server_picture">
@@ -194,11 +198,11 @@
                 <div class="interface_title">
                     gRPC
                 </div>
-                <div class="interface_arrow_right">
+                <div id="grpc_interface_arrow_right" class="interface_arrow_right">
                     <div id="grpc_interface_arrow_right_line" class="interface_arrow_right_line"></div>
                     <div id="grpc_interface_arrow_right_point" class="interface_arrow_right_point"></div>
                 </div>
-                <div class="interface_arrow_left">
+                <div id="grpc_interface_arrow_left" class="interface_arrow_left">
                     <div id="grpc_interface_arrow_left_line" class="interface_arrow_left_line"></div>
                     <div id="grpc_interface_arrow_left_point" class="interface_arrow_left_point"></div>
                 </div>
@@ -207,12 +211,10 @@
             <!-- BACKEND SERVER *******************************************************************************- -->
             <div id ="backend_server_item" class = "section_item box_item">
                 <div class="section_section">
-                    SECTION II
+                    BACKEND SERVER
                 </div>
                 <div class="section_device">
-                    BACKEND SERVER
-                    <br />
-                    (Raspberry Pi 4B)       
+                    RASPBERRY PI 4B
                 </div>
                 <div id="backend_server_body" class="section_body">
                     <div id="backend_server_picture">
@@ -229,11 +231,11 @@
                 <div class="interface_title">
                     GPIO
                 </div>
-                <div class="interface_arrow_right">
+                <div id="gpio_interface_arrow_right" class="interface_arrow_right">
                     <div id="gpio_interface_arrow_right_line" class="interface_arrow_right_line"></div>
                     <div id="gpio_interface_arrow_right_point" class="interface_arrow_right_point"></div>
                 </div>
-                <div class="interface_arrow_left">
+                <div id="gpio_interface_arrow_left" class="interface_arrow_left">
                     <div id="gpio_interface_arrow_left_line" class="interface_arrow_left_line"></div>
                     <div id="gpio_interface_arrow_left_point" class="interface_arrow_left_point"></div>
                 </div>
@@ -242,12 +244,10 @@
             <!-- BREADBOARD ***********************************************************************************- -->
             <div id ="breadboard_item" class = "section_item box_item">
                 <div class="section_section">
-                    SECTION II
+                    BREADBOARD
                 </div>
                 <div class="section_device">
-                    BREADBOARD            
-                    <br />
-                    (Interconnections)    
+                    INTERCONNECTIONS
                 </div>
                 <div id="breadboard_body" class="section_body">
                     <div id="breadboard_picture">
@@ -264,11 +264,11 @@
                 <div class="interface_title">
                     PMOD
                 </div>
-                <div class="interface_arrow_right">
+                <div id="pmod_interface_arrow_right" class="interface_arrow_right">
                     <div id="pmod_interface_arrow_right_line" class="interface_arrow_right_line"></div>
                     <div id="pmod_interface_arrow_right_point" class="interface_arrow_right_point"></div>
                 </div>
-                <div class="interface_arrow_left">
+                <div id="pmod_interface_arrow_left" class="interface_arrow_left">
                     <div id="pmod_interface_arrow_left_line" class="interface_arrow_left_line"></div>
                     <div id="pmod_interface_arrow_left_point" class="interface_arrow_left_point"></div>
                 </div>
@@ -277,12 +277,12 @@
             <!-- FPGA DEV BOARD *******************************************************************************- -->
             <div id ="fpga_dev_board_item" class = "section_item box_item">
                 <div class="section_section">
-                    SECTION I
+                    FPGA DEV BOARD
                 </div>
                 <div class="section_device">
-                    FPGA DEV BOARD
+                    ARTY S7-50
                     <br />
-                    (Arty S7-50)
+                    (SPARTAN FPGA)
                 </div>
                 <div id="fpga_dev_board_body" class="section_body">
                     <div id="fpga_dev_board_picture">

@@ -11,16 +11,18 @@
     $attributesJSON = json_decode(file_get_contents("php://input"));
 
     // UN PARSE IT
-    $operand1 = $attributesJSON->operand1;
-    $operand2 = $attributesJSON->operand2;
+    $opcode = $attributesJSON->opcode;
+    $data_in_a = $attributesJSON->data_in_a;
+    $data_in_b = $attributesJSON->data_in_b;
+    $go = $attributesJSON->go;
 
     // DO SOMETHING
-    $sum = (float)$operand1 + (float)$operand2;
-    sleep(1);
+    $data_out = "10101011";
+    sleep(5);
 
     // BUILD ARRAY
     $array = [
-        'sum'=>$sum
+      'data_out'=>$data_out,
     ];
 
     // SEND IT TO THE BROWSER
