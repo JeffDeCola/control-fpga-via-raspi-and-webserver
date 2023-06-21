@@ -96,15 +96,7 @@
   width:200px;
 }
 
-.button_title {
-  height: 20px;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 700;
-}
-
 .button_push {
-  border-width: 3px;
   border-style: solid;
   width: 154px;   /* 160px - 6px */
   height: 40px;
@@ -120,8 +112,10 @@
   font-family: 'Roboto Mono', monospace;
 }
 
-.button_pulse {
-  animation: Pulse infinite alternate ease 1s;  
+/* ------------- COMMON PULSE ------------------------ */
+
+.pulse {
+  animation: Pulse infinite alternate ease .85s;  
 }
 
 @keyframes Pulse {

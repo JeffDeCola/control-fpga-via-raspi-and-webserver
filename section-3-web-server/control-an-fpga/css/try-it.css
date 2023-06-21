@@ -116,7 +116,6 @@
     width: 70px;
 }
 
-
 .interface_arrow_right_point {
     margin-top: -11px;
     margin-left: 61px;
@@ -133,7 +132,7 @@
 .interface_arrow_left_line {
     background: #000000;
     height: 5px;
-    width: 70px;
+    width: 65px;
     margin-left: 10px;
 }
 
@@ -155,8 +154,13 @@
     width: 90px;
 }
 
+#label_opcode_choices {
+    margin-top: 73px;
+    font-size: 10px;
+}
+
 #label_opcode_name {
-    margin-top: 126px;
+    margin-top: 11px;
 }
 
 #label_data_in_a_name {

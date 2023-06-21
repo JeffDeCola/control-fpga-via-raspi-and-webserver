@@ -19,8 +19,8 @@ function send_data_to_web_server(opcode, data_in_a, data_in_b, go) {
     // CONVERT JSON TO STRING
     var attributesJSONString = JSON.stringify({
         "opcode": opcode,
-        "operand1": operand1,
-        "operand2": operand2,
+        "data_in_a": data_in_a,
+        "data_in_a": data_in_b,
         "go": go
     });
 
