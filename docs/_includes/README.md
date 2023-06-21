@@ -502,6 +502,8 @@ On the webserver side,
 
 ### WEBSITE
 
-The end result will look as follows,
+The end result
+[jeffdecola.com/control-an-fpga](https://jeffdecola.com/control-an-fpga)
+looks as follows,
 
 ![IMAGE - screenshot-of-website.jpg - IMAGE](pics/screenshot-of-website.jpg)
