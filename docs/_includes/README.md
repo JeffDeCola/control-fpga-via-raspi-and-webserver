@@ -10,11 +10,11 @@ I have a working demo at
 
 This project is separated into 5 main sections,
 
-1. The FPGA (ARTY S7-50)
-1. The BREADBOARD
-1. The BACKEND SERVER (Raspberry Pi 4B)
-1. The WEB SERVER (bluehost)
-1. The BROWSER
+* **I** The FPGA (ARTY S7-50)
+* **II**  The BREADBOARD
+* **III** The BACKEND SERVER (Raspberry Pi 4B)
+* **IV** The WEB SERVER (bluehost)
+* **V** The BROWSER
 
 This may help,
 
