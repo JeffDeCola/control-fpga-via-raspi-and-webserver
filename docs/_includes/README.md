@@ -10,10 +10,10 @@ to an FPGA development board and you can control it at
 
 This project is separated into 5 main sections,
 
-* **I** The FPGA (ARTY S7-50)
+* **I** The FPGA (Digilent ARTY S7-50)
 * **II**  The BREADBOARD
 * **III** The BACKEND SERVER (Raspberry Pi 4B)
-* **IV** The WEB SERVER (bluehost)
+* **IV** The WEB SERVER (Bluehost)
 * **V** The BROWSER
 
 This may help,
