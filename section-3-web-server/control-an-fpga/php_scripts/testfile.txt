@@ -1,4 +1,0 @@
-opcode: 1011
-data_in_a: 10000011
-data_in_b: 01111000
-go: 1
