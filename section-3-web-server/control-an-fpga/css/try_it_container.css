@@ -1,0 +1,116 @@
+@charset "utf-8";
+/* try-it.css */
+
+/* #### WRAPPER ############################################### */
+
+#try-it_wrapper {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+/* #### EQUATION CONTAINER #################################### */
+
+#equation_container {
+    padding-top: 30px;
+    text-align: center;
+    margin: 0 auto;
+    height: 80px;
+    width:100%;
+}
+
+/* ITEMS  ------------------------------------------------ */
+
+.operation_item {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    height: 80px; /* does nothing */
+    width:20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#operand_1_item {
+    background-color: #ffffff;
+}
+
+#operand_1_input {
+    color: #000000;
+}
+
+#operand_1_input_field {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+#operation_1_item {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+#operand_2_item {
+    background-color: #ffffff;
+}
+
+#operand_2_input {
+    color: #000000;
+}
+
+#operand_2_input_field {
+    background-color: #ffffff;
+    color: #000000;
+}
+#operation_2_item {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+#sum_item {
+    background-color: #ffffff;
+}
+
+#sum_display {
+    background-color: #ffffff;
+}
+
+#sum_display_text {
+    color: #000000;
+}
+
+/* #### PROCESS CONTAINER ##################################### */
+
+#process_container {
+    padding-top: 40px;
+    text-align: center;
+    margin: 0 auto;
+    height: 80px;
+    width:100%;
+}
+
+/* ITEMS  ------------------------------------------------ */
+
+#add_button_item {
+    background-color: #ffffff;
+}
+
+#add_button_push {
+    border-color: #000000;
+    background-color: #ffffff;
+}
+
+#add_button_text {
+    color: #000000;
+}
+
+#reset_button_item {
+    background-color: #ffffff;
+}
+
+#reset_button_push {
+    border-color: #000000;
+    background-color: #ffffff;
+}
+
+#reset_button_text {
+    color: #000000;
+}
