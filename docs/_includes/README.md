@@ -1,12 +1,12 @@
   _built with
   [concourse](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/ci-README.md)_
 
-# TRY IT
+# OVERVIEW
 
-I have a working demo at
-[jeffdecola.com/control-an-fpga](https://jeffdecola.com/control-an-fpga).
-
-## OVERVIEW
+I burned my
+[programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable-8-bit-microprocessor)
+to an FPGA development board and you can control it at
+[jeffdecola.com/control-an-fpga](https://jeffdecola.com/control-an-fpga)._
 
 This project is separated into 5 main sections,
 
@@ -17,11 +17,6 @@ This project is separated into 5 main sections,
 * **V** The BROWSER
 
 This may help,
-
-![IMAGE - overview.jpg - IMAGE](pics/overview.jpg)
-
-The following figure provides more details and will be explained
-in the following four sections,
 
 ![IMAGE - 8-bit processor - IMAGE](pics/controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg)
 
@@ -49,12 +44,11 @@ in the following four sections,
 
 ## SECTION I - THE FPGA
 
-I burned my
-[programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable_8_bit_microprocessor) to an FPGA.
-
 Summary,
 
-* I designed the 8-bit microprocessor in
+* I designed my
+  [8-bit microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable_8_bit_microprocessor)
+  in
   [Verilog](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/development/languages/verilog-cheat-sheet)
   (An HDL language)
 * I used the
@@ -63,9 +57,6 @@ Summary,
 * I used the
   [Digilent ARTY-S7](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/development/fpga-development-boards/digilent-arty-s7-cheat-sheet)
   FPGA development board
-
-Refer to that repo on how I accomplished this. I will provide a
-high level overview.
 
 ### FPGA (MY 8-BIT MICROPROCESSOR)
 
