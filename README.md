@@ -7,7 +7,7 @@
 [![jeffdecola.com](https://img.shields.io/badge/website-jeffdecola.com-blue)](https://jeffdecola.com)
 
 ```text
-*** THE REPO IS UNDER CONSTRUCTION - CHECK BACK SOON ***
+*** THE REPO IS UNDER CONSTRUCTION - SHOULD BE DONE JULY 1st, 2023 - FINISHING UP API FROM WEBSERVER TO BACKEND SERVER***
 ```
 
 _Control an FPGA via a Raspberry Pi and a Webserver. As an example, I burned my
