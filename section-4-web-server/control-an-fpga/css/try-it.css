@@ -1,0 +1,326 @@
+@charset "utf-8";
+/* try-it.css */
+
+/* #### WRAPPER ###################################### */
+
+#try_it_wrapper {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+/* #### TRY IT CONTAINER ############################# */
+
+#try_it_container {
+    padding-top: 0px;
+    text-align: center;
+    margin: 0 auto;
+    width:100%;
+    padding-bottom: 50px;
+}
+
+/* ------------- COMMON LABEL ITEMS ---------------------- */
+
+.label_name {
+    text-align: right;
+    font-size: 12px;
+    font-weight: 900;
+    height: 40px;
+    width: 80px;
+    color: #50823a;
+}
+
+/* ------------- COMMON SECTION ITEMS -------------------- */
+
+.section_item {
+    margin-top: 20px;
+    text-align: center;
+    width:200px;
+    background-color: white;
+}
+
+.section_section {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    height: 40px;
+    width:200px;
+    background-color: white;
+}
+
+.section_device {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 140%;
+    height: 120px;
+    width:196px;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-top: 2px solid black;
+    padding-top: 20px;
+}
+
+.section_body {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    height: 290px;
+    width:196px;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+}
+
+.section_footer {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    height: 40px; /* does nothing */
+    width:196px;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+/* ------------- COMMON INTERFACE ITEMS -------------------- */
+
+.interface_item { 
+    margin-top: 65px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    height: 450px;
+    width:75px;
+    background: repeating-linear-gradient(to bottom,transparent 0 4px,black 4px 8px) 50%/2px 100% no-repeat;
+}
+
+.interface_title {
+    margin-top: 0px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    height: 25px;
+    width:75px;
+    background-color: white;
+}
+
+.interface_arrow_right {
+    margin-top: 160px;
+}
+
+.interface_arrow_right_line {
+    background: #000000;
+    height: 5px;
+    width: 70px;
+}
+
+.interface_arrow_right_point {
+    margin-top: -11px;
+    margin-left: 61px;
+    width: 0;
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    border-left: 15px solid #000000;
+}
+
+.interface_arrow_left {
+    margin-top: 80px;
+}
+
+.interface_arrow_left_line {
+    background: #000000;
+    height: 5px;
+    width: 65px;
+    margin-left: 10px;
+}
+
+.interface_arrow_left_point {
+    margin-top: -11px;
+    margin-left: 0px;
+    width: 0;
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    border-right: 15px solid #000000;
+}
+
+/* #### LABEL ######################################## */
+
+#label_item {
+    margin-top: 20px;
+    text-align: center;
+    height: 400px;
+    width: 90px;
+}
+
+#label_opcode_choices {
+    margin-top: 73px;
+    font-size: 10px;
+    color: #000000;
+}
+
+#label_opcode_name {
+    margin-top: 11px;
+}
+
+#label_data_in_a_name {
+    margin-top: 38px;
+}
+
+#label_data_in_b_name {
+    margin-top: 42px;
+}
+
+#label_data_out_name {
+  margin-top: 94px;
+}
+
+/* #### BROWSER ###################################### */
+
+/* Refer to browser_body.css */
+
+/* #### HTML INTERFACE ############################### */
+
+#html_interface_item {
+}
+
+html_interface_arrow_right_line {
+}
+
+html_interface_arrow_right_point {
+}
+
+html_interface_arrow_left_line {
+}
+
+html_interface_arrow_left_point {
+}
+
+/* #### WEB SERVER ################################### */
+
+#web_server_item {
+  background-color: #cfe2f3;
+}
+
+#web_server_body {
+}
+
+#web_server_picture {
+  width: 80%;
+  margin:auto;
+}
+
+#web_server_picture img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* #### gRPC INTERFACE ############################### */
+
+#grpc_interface_item {
+}
+
+grpc_interface_arrow_right_line {
+}
+
+grpc_interface_arrow_right_point {
+}
+
+grpc_interface_arrow_left_line {
+}
+
+grpc_interface_arrow_left_point {
+}
+
+/* #### BACKEND SERVER ############################### */
+
+#backend_server_item {
+  background-color: #f4cccc;
+}
+
+#backend_server_body {
+}
+
+#backend_server_picture {
+  width: 80%;
+  margin:auto;
+}
+
+#backend_server_picture img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* #### GPIO INTERFACE ############################### */
+
+#gpio_interface_item {
+}
+
+gpio_interface_arrow_right_line {
+}
+
+gpio_interface_arrow_right_point {
+}
+
+gpio_interface_arrow_left_line {
+}
+
+gpio_interface_arrow_left_point {
+}
+
+/* #### BREADBOARD ################################### */
+
+#breadboard_item {
+  background-color: #b6b6b6;
+}
+
+#breadboard_body {
+}
+
+#breadboard_picture {
+  width: 80%;
+  margin:auto;
+}
+
+#breadboard_picture img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* #### PMOD INTERFACE ############################### */
+
+#pmod_interface_item {
+}
+
+pmod_interface_arrow_right_line {
+}
+
+pmod_interface_arrow_right_point {
+}
+
+pmod_interface_arrow_left_line {
+}
+
+pmod_interface_arrow_left_point {
+}
+
+/* #### FPGA DEV BOARD ############################### */
+
+#fpga_dev_board_item {
+  background-color: #dad2e9;
+}
+
+#fpga_dev_board_body {
+}
+
+#fpga_dev_board_picture {
+  width: 80%;
+  margin:auto;
+}
+
+#fpga_dev_board_picture img {
+  max-width: 100%;
+  height: auto;
+}

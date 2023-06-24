@@ -1,0 +1,132 @@
+@charset "utf-8";
+/* CONTAINERS.CSS */
+
+/* SECTION I - COMMON TO ALL PAGES ------------------------------------------- */
+
+/* #### HEADER WRAPPER ######################################## */
+
+#header_wrapper h1 {
+    color: #0048af;
+}
+
+/* SECTION II - COMMON CONTAINERS -------------------------------------------- */
+
+/* #### TITLE CONTAINER ####################################### */
+
+.title_container {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(25,80,158,1) 50%, rgba(255,255,255,1) 100%);
+}
+
+.title_container p {
+    margin-bottom: .8em;
+    color: #FFFFFF;
+}
+
+.title_container h2 {
+    color: #FFFFFF;
+}
+
+.title_container h3 {
+    color: #FFFFFF;
+}
+
+.title_container a:link, .title_container a:visited  {
+    color: #9ebcff;
+}
+
+.title_container a:hover, .title_container a:active  {
+    color: #001074;
+}
+
+/* #### PICTURE CONTAINER ##################################### */
+
+.picture_container {
+    width: 90%;
+    margin:auto;
+}
+
+.picture_container img {
+    max-width: 100%;
+    height: auto;
+}
+
+.picture_container_2 {
+    width: 60%;
+    margin: auto;
+    padding-top: 30px;
+}
+
+.picture_container_2 img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* #### BOX CONTAINER ######################################### */
+/* Will line up you items in a row */
+
+.box_container {
+    text-align: center;
+    overflow: hidden;
+}
+
+.box_items_container{
+    height: inherit;
+    left: 50%;
+}
+
+.box_item {
+    display: inline-block;
+    vertical-align: top;
+    left: -50%;
+    margin-right: -4px;   /* THIS IS BECAUSE INLINE BLOCK ELEMENTS HAVE A SPACE BETWEEN THEM */
+}
+
+/* ------------- COMMON BUTTON ITEM -------------------- */
+
+.button_item {
+  height: 45px; /* does nothing */
+  width:200px;
+}
+
+.button_push {
+  border-style: solid;
+  width: 154px;   /* 160px - 6px */
+  height: 40px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.button_push_text {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Roboto Mono', monospace;
+}
+
+/* ------------- COMMON PULSE ------------------------ */
+
+.pulse {
+  animation: Pulse infinite alternate ease .85s;  
+}
+
+@keyframes Pulse {
+  0% {
+      opacity: 0.2;
+    }
+  100% {
+      opacity: 1;
+  }
+}
+
+/* SECTION III - PAGE SPECIFIC ----------------------------------------------- */
+
+/* Refer to there specific css */
