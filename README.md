@@ -7,7 +7,7 @@
 [![jeffdecola.com](https://img.shields.io/badge/website-jeffdecola.com-blue)](https://jeffdecola.com)
 
 ```text
-*** THE REPO IS UNDER CONSTRUCTION - SHOULD BE DONE JULY 1st, 2023 ***
+*** THE REPO IS UNDER CONSTRUCTION - SHOULD BE DONE JULY 4th, 2023 ***
 ```
 
 _Control an FPGA via a Raspberry Pi and a web server._
