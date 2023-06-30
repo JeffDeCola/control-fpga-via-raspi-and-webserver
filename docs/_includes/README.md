@@ -4,7 +4,7 @@
 # OVERVIEW
 
 I burned my
-[programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable-8-bit-microprocessor)
+[programable 8-bit microprocessor](https://github.com/JeffDeCola/my-verilog-examples/tree/master/systems/microprocessors/programable_8_bit_microprocessor)
 to an FPGA development board and you can control it at
 [jeffdecola.com/control-an-fpga](https://jeffdecola.com/control-an-fpga)._
 
@@ -47,7 +47,7 @@ This may help,
 Summary,
 
 * I designed my
-  [8-bit microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable_8_bit_microprocessor)
+  [programable 8-bit microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable_8_bit_microprocessor)
   in
   [Verilog](https://github.com/JeffDeCola/my-cheat-sheets/tree/master/hardware/development/languages/verilog-cheat-sheet)
   (An HDL language)
@@ -61,7 +61,7 @@ Summary,
 ### FPGA (MY 8-BIT MICROPROCESSOR)
 
 I designed a
-[programable-8-bit-microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable-8-bit-microprocessor)
+[programable 8-bit microprocessor](https://github.com/JeffDeCola/my-systemverilog-examples/tree/master/systems/microprocessors/programable_8_bit_microprocessor)
 in verilog and burned to an FPGA.  Refer to that repo on how I accomplished this.
 
 #### VERILOG
