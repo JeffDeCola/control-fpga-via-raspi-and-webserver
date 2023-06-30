@@ -8,6 +8,13 @@
 <div id="try_it_wrapper">
 
     <!-- ------------------------------------------------------------------------------------------------------- -->
+    <div id="title_container">
+
+        TRY IT - CLICK COMPUTE
+
+    </div>
+
+    <!-- ------------------------------------------------------------------------------------------------------- -->
     <div id="try_it_container"  class = "box_container">
         <div class = "box_items_container">
             
@@ -27,6 +34,13 @@
                 </div>
                 <div div id="label_data_in_b_name" class="label_name">
                     DATA_IN_B
+                </div>
+                <div div id="label_try_it_name">
+                    CLICK HERE
+                </div>
+                <div id="try_it_arrow_right">
+                    <div id="try_it_arrow_right_line"></div>
+                    <div id="try_it_arrow_right_point"></div>
                 </div>
                 <div div id="label_data_out_name" class="label_name">
                     DATA_OUT
@@ -295,6 +309,31 @@
             </div>
 
         </div>
+    </div>
+
+    <!-- ------------------------------------------------------------------------------------------------------- -->
+    <div class="comment_container">
+
+        <h3> THE MICROPROCESSOR ARCHITECTURE </h3>
+        <p> 
+            <a href="https://github.com/JeffDeCola/my-verilog-examples/tree/master/systems/microprocessors/programable_8_bit_microprocessor"> Code </a>
+            written in verilog
+        </p>                            
+
+    </div>
+
+    <!-- ------------------------------------------------------------------------------------------------------- -->
+    <div class="picture_container_2">
+
+        <img src="images/Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg" alt="Top-Level-Block-Diagram-of-the-8-bit-Microprocessor"/>
+
+    </div>
+
+    <!-- ------------------------------------------------------------------------------------------------------- -->
+    <div class="picture_container_2">
+
+        <img src="images/Processor-Block-of-the-8-bit-Microprocessor.jpg" alt="Processor-Block-of-the-8-bit-Microprocessorr"/>
+
     </div>
 
     <!-- ------------------------------------------------------------------------------------------------------- -->
