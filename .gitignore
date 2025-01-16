@@ -1,11 +1,7 @@
-# CONCOURSE
+# website-control-fpga-via-raspi-and-webserver-.gitignore
+
+# CONCOURSE SECRETS
 .credentials.yml
-
-# VSCODE
-.vscode/
-
-# GO
-coverage.out
 
 # macOS
 .DS_Store
@@ -13,14 +9,15 @@ coverage.out
 # WINDOWS
 *.jpg:Zone.Identifier
 
-# Ignore binaries
+# EXTENSION - SFTP SECRETS
+.vscode/
+sftp.json
+
+# BINARIES
 **/bin/control-fpga-via-raspi-and-webserver
 
-# Ignore test coverage
-**/test/test_coverage.txt
-
-# Ignore binary used for docker build
+# BINARY USED FOR DOCKER BUILD
 **/build/control-fpga-via-raspi-and-webserver
 
-# SFTP VS CODE EXTENTION
-sftp.json
+# TEST COVERAGE
+**/test/test_coverage.txt
