@@ -1,21 +1,18 @@
 # CONTROL FPGA VIA RASPI AND WEBSERVER
 
 [![Tag Latest](https://img.shields.io/github/v/tag/jeffdecola/control-fpga-via-raspi-and-webserver)](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tags)
-[![CodeClimate Issues](https://codeclimate.com/github/JeffDeCola/control-fpga-via-raspi-and-webserver/badges/issue_count.svg)](https://codeclimate.com/github/JeffDeCola/control-fpga-via-raspi-and-webserver/issues)
-[![Docker Pulls](https://badgen.net/docker/pulls/jeffdecola/control-fpga-via-raspi-and-webserver?icon=docker&label=pulls)](https://hub.docker.com/r/jeffdecola/control-fpga-via-raspi-and-webserver/)
+[![jeffdecola.com](https://img.shields.io/badge/website-jeffdecola.com-blue)](https://jeffdecola.com)
 [![MIT License](https://img.shields.io/:license-mit-blue.svg)](https://jeffdecola.mit-license.org)
 [![Docker Pulls](https://badgen.net/docker/pulls/jeffdecola/control-fpga-via-raspi-and-webserver?icon=docker&label=pulls)](https://hub.docker.com/r/jeffdecola/control-fpga-via-raspi-and-webserver/)
-[![jeffdecola.com](https://img.shields.io/badge/website-jeffdecola.com-blue)](https://jeffdecola.com)
 
 ```text
-*** THE REPO IS UNDER CONSTRUCTION - SHOULD BE DONE JULY 4th, 2023 ***
+*** THIS CHEAT SHEET IS UNDER CONSTRUCTION - CHECK BACK SOON ***
 ```
 
 _Control an FPGA via a Raspberry Pi and a web server._
 
 Table of Contents
 
-* [TRY IT](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#try-it)
 * [OVERVIEW](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#overview)
 * [SOFTWARE/HARDWARE STACK](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#softwarehardware-stack)
 * [SECTION I - THE FPGA](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver#section-i---the-fpga)
@@ -35,17 +32,15 @@ Table of Contents
 
 Documentation and Reference
 
-* Try it
+* try it
   [here](https://jeffdecola.com/control-an-fpga)
 * I burned my
   [programable 8-bit microprocessor](https://github.com/JeffDeCola/my-verilog-examples/tree/master/systems/microprocessors/programable_8_bit_microprocessor)
   to an FPGA
-* The
-  [control-fpga-via-raspi-and-webserver](https://hub.docker.com/r/jeffdecola/control-fpga-via-raspi-and-webserver)
+* [control-fpga-via-raspi-and-webserver](https://hub.docker.com/r/jeffdecola/control-fpga-via-raspi-and-webserver)
   docker image at dockerhub
-* [raspi-gpio](https://github.com/JeffDeCola/my-go-examples/tree/master/single-board-computers/raspi-gpio)
+* [raspi examples in go](https://github.com/JeffDeCola/my-go-examples?tab=readme-ov-file#iot)
   is an example of controlling the GPIO (Input/Output)
-  on the Raspberry Pi using go
 * This repos
   [github webpage](https://jeffdecola.github.io/control-fpga-via-raspi-and-webserver/)
   _built with
@@ -68,7 +63,7 @@ This project is separated into 5 main sections,
 
 This may help,
 
-![IMAGE - 8-bit processor - IMAGE](docs/pics/controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.jpg)
+![IMAGE - 8-bit processor - IMAGE](docs/pics/controlling-my-programable-8-bit-microprocessor-from-a-raspi-and-webserver.svg)
 
 ## SOFTWARE/HARDWARE STACK
 
@@ -119,7 +114,7 @@ in verilog and burned to an FPGA.  Refer to that repo on how I accomplished this
 This is the high level architecture of the 8-bit microprocessor
 I designed in verilog,
 
-![IMAGE - Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg - IMAGE](https://github.com/JeffDeCola/my-verilog-examples/blob/master/docs/pics/systems/Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg?raw=true)
+![IMAGE - Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.jpg - IMAGE](https://github.com/JeffDeCola/my-verilog-examples/blob/master/docs/pics/systems/Top-Level-Block-Diagram-of-the-8-bit-Microprocessor.svg?raw=true)
 
 #### INPUT/OUTPUT
 
@@ -139,7 +134,7 @@ I designed in verilog,
 I burned the microprocessor to an FPGA on an
 Arty S7-50 FPGA development board.
 
-![IMAGE - digilent-arty-s7-50.jpg - IMAGE](https://github.com/JeffDeCola/my-cheat-sheets/blob/master/docs/pics/digilent-arty-s7-50.jpg?raw=true)
+![IMAGE - digilent-arty-s7-50.jpg - IMAGE](https://github.com/JeffDeCola/my-cheat-sheets/blob/master/docs/pics/hardware/digilent-arty-s7-50.svg?raw=true)
 
 ### SERVER SIDE (CONNECTION TO RASPBERRY PI)
 
@@ -211,7 +206,7 @@ Select `Interfacing Options` and then
 **NOTE2** Pin 3 (GPIO2) and pin 5 (GPIO3) have
 fixed pull-up resistors to 3.3V.
 
-![IMAGE - arty-s7-50-pmod-to-raspi-gpio-breadboard-connections.jpg - IMAGE](docs/pics/arty-s7-50-pmod-to-raspi-gpio-breadboard-connections.jpg)
+![IMAGE - arty-s7-50-pmod-to-raspi-gpio-breadboard-connections.jpg - IMAGE](docs/pics/arty-s7-50-pmod-to-raspi-gpio-breadboard-connections.svg)
 
 The result,
 
@@ -294,7 +289,7 @@ and deployed to a Raspberry Pi 4B.
 #### RUN
 
 To
-[run.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/run.sh),
+[run.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-3-backend-server/run.sh),
 
 ```bash
 cd section-2-backend-server
@@ -315,7 +310,7 @@ It will look like,
 #### CREATE BINARY
 
 To
-[create-binary.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/bin/create-binary.sh),
+[create-binary.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-3-backend-server/bin/create-binary.sh),
 
 ```bash
 cd section-2-backend-server/bin
@@ -336,7 +331,7 @@ gotests -w -all main.go
 ```
 
 To run
-[unit-tests.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/section-2-backend-server/test/unit-tests.sh),
+[unit-tests.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/tree/master/section-3-backend-server/test/unit-tests.sh),
 
 ```bash
 go test -cover ./... | tee test/test_coverage.txt
@@ -346,9 +341,9 @@ cat test/test_coverage.txt
 #### STEP 2 - BUILD (DOCKER IMAGE VIA DOCKERFILE)
 
 To
-[build.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/build/build.sh)
+[build.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-3-backend-server/build/build.sh)
 with a
-[Dockerfile](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/build/Dockerfile),
+[Dockerfile](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-3-backend-server/build/Dockerfile),
 
 The Dockerfile has the architecture as arm64,
 
@@ -423,7 +418,7 @@ docker login
 ```
 
 To
-[push.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/push/push.sh),
+[push.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-3-backend-server/push/push.sh),
 
 ```bash
 docker push jeffdecola/control-fpga-via-raspi-and-webserver
@@ -436,7 +431,7 @@ at DockerHub.
 #### STEP 4 - DEPLOY (TO DOCKER ON RASPBERRY PI)
 
 To
-[deploy.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-2-backend-server/deploy/deploy.sh),
+[deploy.sh](https://github.com/JeffDeCola/control-fpga-via-raspi-and-webserver/blob/master/section-3-backend-server/deploy/deploy.sh),
 
 ```bash
 cd section-2-backend-server
