@@ -1,4 +1,4 @@
-# website-control-fpga-via-raspi-and-webserver-.gitignore
+# .gitignore
 
 # CONCOURSE SECRETS
 .concourse-secrets.yml
@@ -22,6 +22,8 @@ sftp.json
 # TAR FILES
 *.tar.gz
 *.tar.gz.gpg
+
+# website-control-fpga-via-raspi-and-webserver.gitignore SPECIFIC BELOW ---------------------------------------------
 
 # EXTENSION - SFTP SECRETS
 .vscode/
